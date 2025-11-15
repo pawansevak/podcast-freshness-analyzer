@@ -1,0 +1,393 @@
+API USAGE EXAMPLES
+==================
+
+This file shows how to interact with the Podcast Analyzer API
+using different programming languages and tools.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. CURL (Command Line)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# List available podcasts
+curl http://localhost:8000/api/podcasts
+
+# Analyze a podcast
+curl http://localhost:8000/api/analyze/podcast_1?user_id=default
+
+# Get user preferences
+curl http://localhost:8000/api/preferences/default
+
+# Update preferences
+curl -X POST http://localhost:8000/api/preferences/default \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topics_of_interest": ["AI", "Technology"],
+    "freshness_priority": "high",
+    "insight_style": "data-driven",
+    "avoid_topics": []
+  }'
+
+# Submit rating
+curl -X POST http://localhost:8000/api/rating \
+  -H "Content-Type: application/json" \
+  -d '{
+    "podcast_id": "podcast_1",
+    "user_id": "default",
+    "freshness_rating": 8,
+    "insight_rating": 9,
+    "feedback": "Great analysis!"
+  }'
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. PYTHON (Requests)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+import requests
+import json
+
+BASE_URL = "http://localhost:8000"
+
+# List podcasts
+response = requests.get(f"{BASE_URL}/api/podcasts")
+podcasts = response.json()
+print("Available podcasts:", podcasts.keys())
+
+# Analyze a podcast
+response = requests.get(
+    f"{BASE_URL}/api/analyze/podcast_1",
+    params={"user_id": "default"}
+)
+analysis = response.json()
+
+print(f"Freshness Score: {analysis['freshness_score']}/10")
+print(f"Insight Score: {analysis['insight_score']}/10")
+print("\nTop Highlights:")
+for i, highlight in enumerate(analysis['highlights'], 1):
+    print(f"{i}. {highlight['segment']}")
+
+# Update preferences
+preferences = {
+    "topics_of_interest": ["AI", "Science"],
+    "freshness_priority": "high",
+    "insight_style": "data-driven",
+    "avoid_topics": []
+}
+
+response = requests.post(
+    f"{BASE_URL}/api/preferences/my_user",
+    json=preferences
+)
+print(response.json())
+
+# Submit rating
+rating = {
+    "podcast_id": "podcast_1",
+    "user_id": "default",
+    "freshness_rating": 8,
+    "insight_rating": 9,
+    "feedback": "Excellent analysis!"
+}
+
+response = requests.post(f"{BASE_URL}/api/rating", json=rating)
+print(response.json())
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. JAVASCRIPT (Fetch API)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const BASE_URL = "http://localhost:8000";
+
+// List podcasts
+async function listPodcasts() {
+    const response = await fetch(`${BASE_URL}/api/podcasts`);
+    const podcasts = await response.json();
+    console.log("Available podcasts:", Object.keys(podcasts));
+    return podcasts;
+}
+
+// Analyze a podcast
+async function analyzePodcast(podcastId, userId = "default") {
+    const response = await fetch(
+        `${BASE_URL}/api/analyze/${podcastId}?user_id=${userId}`
+    );
+    const analysis = await response.json();
+    
+    console.log(`Freshness: ${analysis.freshness_score}/10`);
+    console.log(`Insights: ${analysis.insight_score}/10`);
+    console.log("\nHighlights:");
+    analysis.highlights.forEach((h, i) => {
+        console.log(`${i + 1}. ${h.segment}`);
+    });
+    
+    return analysis;
+}
+
+// Update preferences
+async function updatePreferences(userId, preferences) {
+    const response = await fetch(
+        `${BASE_URL}/api/preferences/${userId}`,
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(preferences)
+        }
+    );
+    return await response.json();
+}
+
+// Submit rating
+async function submitRating(podcastId, userId, ratings, feedback) {
+    const response = await fetch(`${BASE_URL}/api/rating`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            podcast_id: podcastId,
+            user_id: userId,
+            freshness_rating: ratings.freshness,
+            insight_rating: ratings.insight,
+            feedback: feedback
+        })
+    });
+    return await response.json();
+}
+
+// Usage
+listPodcasts();
+analyzePodcast("podcast_1");
+updatePreferences("my_user", {
+    topics_of_interest: ["AI", "Technology"],
+    freshness_priority: "high",
+    insight_style: "data-driven",
+    avoid_topics: []
+});
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. PYTHON (Using the Analyzer Module Directly)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+from analyzer import (
+    analyze_podcast,
+    load_transcript,
+    load_user_preferences,
+    save_analysis_cache,
+    load_analysis_cache
+)
+
+# Analyze a podcast with custom preferences
+transcript = load_transcript("podcast_1")
+
+custom_prefs = {
+    "topics_of_interest": ["AI", "Machine Learning"],
+    "freshness_priority": "high",
+    "insight_style": "data-driven"
+}
+
+result = analyze_podcast(transcript, custom_prefs)
+
+print(f"Freshness: {result['freshness_score']}/10")
+print(f"Insight: {result['insight_score']}/10")
+print(f"\n{result['summary']}")
+
+# Save to cache
+save_analysis_cache("podcast_1", "my_user", result)
+
+# Load from cache later
+cached_result = load_analysis_cache("podcast_1", "my_user")
+if cached_result:
+    print("Loaded from cache!")
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. BATCH ANALYSIS (Python)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+import requests
+import json
+from pathlib import Path
+
+BASE_URL = "http://localhost:8000"
+
+# Analyze all podcasts and save results
+def batch_analyze():
+    podcasts = requests.get(f"{BASE_URL}/api/podcasts").json()
+    
+    results = {}
+    for podcast_id, metadata in podcasts.items():
+        print(f"Analyzing {metadata['title']}...")
+        
+        response = requests.get(
+            f"{BASE_URL}/api/analyze/{podcast_id}",
+            params={"user_id": "default"}
+        )
+        
+        results[podcast_id] = {
+            "metadata": metadata,
+            "analysis": response.json()
+        }
+    
+    # Save all results
+    with open("batch_results.json", "w") as f:
+        json.dump(results, f, indent=2)
+    
+    print(f"\n✓ Analyzed {len(results)} podcasts")
+    
+    # Print summary
+    print("\nSUMMARY:")
+    print("-" * 60)
+    for pid, data in results.items():
+        analysis = data['analysis']
+        print(f"{data['metadata']['title'][:40]:40s}")
+        print(f"  Fresh: {analysis['freshness_score']}/10  "
+              f"Insight: {analysis['insight_score']}/10")
+
+if __name__ == "__main__":
+    batch_analyze()
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. RESPONSE FORMAT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Example Analysis Response:
+{
+  "freshness_score": 8,
+  "freshness_reasoning": "Content appears very recent and timely...",
+  "insight_score": 8,
+  "insight_reasoning": "Strong specific insights with data...",
+  "highlights": [
+    {
+      "segment": "Counter-intuitive insight shared",
+      "value": "Challenges conventional thinking..."
+    },
+    {
+      "segment": "Data-backed claim with specific numbers",
+      "value": "Provides concrete metrics..."
+    },
+    {
+      "segment": "Concrete example or case study",
+      "value": "Real-world application..."
+    }
+  ],
+  "key_characteristics": {
+    "has_specific_data": true,
+    "has_concrete_examples": true,
+    "has_novel_frameworks": true,
+    "has_contrarian_takes": true,
+    "has_actionable_advice": true
+  },
+  "summary": "Excellent podcast with specific data...",
+  "cached": false
+}
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7. ERROR HANDLING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+import requests
+
+try:
+    response = requests.get(
+        "http://localhost:8000/api/analyze/invalid_podcast"
+    )
+    response.raise_for_status()
+    data = response.json()
+except requests.exceptions.HTTPError as e:
+    if response.status_code == 404:
+        print("Podcast not found!")
+    elif response.status_code == 500:
+        print("Server error during analysis")
+    else:
+        print(f"Error: {e}")
+except requests.exceptions.ConnectionError:
+    print("Cannot connect to server. Is it running?")
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8. INTEGRATION EXAMPLE (Complete Workflow)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+import requests
+import time
+
+BASE_URL = "http://localhost:8000"
+
+def complete_workflow(podcast_id, user_id):
+    """
+    Complete workflow: set preferences, analyze, rate
+    """
+    
+    # Step 1: Set user preferences
+    print("Setting preferences...")
+    preferences = {
+        "topics_of_interest": ["AI", "Technology"],
+        "freshness_priority": "high",
+        "insight_style": "data-driven",
+        "avoid_topics": []
+    }
+    
+    requests.post(
+        f"{BASE_URL}/api/preferences/{user_id}",
+        json=preferences
+    )
+    
+    # Step 2: Analyze podcast
+    print(f"Analyzing podcast {podcast_id}...")
+    start = time.time()
+    
+    response = requests.get(
+        f"{BASE_URL}/api/analyze/{podcast_id}",
+        params={"user_id": user_id, "use_cache": False}
+    )
+    
+    analysis = response.json()
+    elapsed = time.time() - start
+    
+    print(f"✓ Analysis complete in {elapsed:.2f}s")
+    print(f"  Freshness: {analysis['freshness_score']}/10")
+    print(f"  Insights: {analysis['insight_score']}/10")
+    print(f"  Cached: {analysis['cached']}")
+    
+    # Step 3: Display highlights
+    print("\nTop Highlights:")
+    for i, h in enumerate(analysis['highlights'], 1):
+        print(f"  {i}. {h['segment']}")
+        print(f"     → {h['value']}")
+    
+    # Step 4: Submit rating
+    print("\nSubmitting rating...")
+    rating = {
+        "podcast_id": podcast_id,
+        "user_id": user_id,
+        "freshness_rating": analysis['freshness_score'],
+        "insight_rating": analysis['insight_score'],
+        "feedback": "Automated rating"
+    }
+    
+    requests.post(f"{BASE_URL}/api/rating", json=rating)
+    print("✓ Rating submitted")
+    
+    return analysis
+
+# Run the workflow
+if __name__ == "__main__":
+    result = complete_workflow("podcast_1", "demo_user")
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For more information, see:
+- README.md for detailed documentation
+- QUICKSTART.txt for getting started
+- ARCHITECTURE.txt for system design

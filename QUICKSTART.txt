@@ -1,0 +1,308 @@
+🎙️ PODCAST ANALYZER - QUICK START GUIDE
+========================================
+
+Welcome! This guide will get you up and running in 5 minutes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 PREREQUISITES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Python 3.8 or higher
+✓ pip (Python package manager)
+✓ A web browser
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 QUICK START (3 Steps)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: Install Dependencies
+─────────────────────────────
+cd podcast-analyzer
+pip install -r requirements.txt
+
+(On some systems, you may need: pip install --break-system-packages -r requirements.txt)
+
+
+STEP 2: Start the Server
+─────────────────────────
+python app.py
+
+OR use the startup script:
+./start.sh         (Mac/Linux)
+bash start.sh      (Windows Git Bash)
+
+
+STEP 3: Open Your Browser
+──────────────────────────
+Visit: http://localhost:8000
+
+That's it! You're ready to analyze podcasts.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 HOW TO USE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Select a Podcast
+   ├─ Choose from the dropdown menu
+   └─ 3 sample podcasts are pre-loaded
+
+2. Click "Analyze Podcast"
+   ├─ Analysis takes a few seconds
+   └─ Results appear below
+
+3. Review the Scores
+   ├─ Freshness Score (1-10): How current is the content?
+   ├─ Insight Score (1-10): How valuable are the insights?
+   └─ Top 3 Highlights: Most valuable segments
+
+4. Optional: Leave Feedback
+   ├─ Rate whether the analysis was helpful
+   └─ Your feedback helps personalize future analyses
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 SAMPLE PODCASTS INCLUDED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Tech Frontiers - AI Coding Agents
+   ├─ High freshness (8/10)
+   ├─ High insights (8/10)
+   └─ Example of excellent, data-driven content
+
+2. The Productivity Show
+   ├─ Low freshness (3/10)
+   ├─ Low insights (3/10)
+   └─ Example of generic advice content
+
+3. Science Deep Dive - Neural Plasticity
+   ├─ High freshness (8/10)
+   ├─ High insights (8/10)
+   └─ Example of research-based content
+
+These demonstrate how the analyzer distinguishes quality.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 ADDING YOUR OWN TRANSCRIPTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Method 1: Manual Addition
+──────────────────────────
+1. Save your transcript as: transcripts/podcast_4.txt
+
+2. Update transcripts_metadata.json:
+   {
+     "podcast_4": {
+       "title": "Your Podcast Title",
+       "duration": "45:30",
+       "date": "2024-11-14",
+       "topics": ["topic1", "topic2"]
+     }
+   }
+
+3. Refresh your browser
+
+Method 2: Future YouTube Integration
+─────────────────────────────────────
+(Coming in next version)
+- Paste YouTube URL
+- App downloads and transcribes automatically
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎨 CUSTOMIZING PREFERENCES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Edit: users/default_preferences.json
+
+{
+  "topics_of_interest": ["AI", "Science", "Business"],
+  "freshness_priority": "high",      // high, medium, low
+  "insight_style": "data-driven",    // data-driven, contrarian, actionable
+  "avoid_topics": ["politics"]
+}
+
+These preferences personalize the analysis to your taste.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problem: "Module not found" error
+Solution: pip install -r requirements.txt
+
+Problem: Port 8000 already in use
+Solution: Kill the process or use: python app.py --port 8001
+
+Problem: "No such file or directory"
+Solution: Make sure you're in the podcast-analyzer directory
+
+Problem: Page won't load
+Solution: Check that the server is running (you should see "Uvicorn running...")
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧪 TESTING THE DEMO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Run the command-line demo:
+──────────────────────────
+python demo.py
+
+This will:
+✓ Analyze all 3 sample podcasts
+✓ Show comparison of scores
+✓ Demonstrate personalization
+✓ Display in a nice terminal format
+
+
+Test the analyzer directly:
+───────────────────────────
+python analyzer.py
+
+This runs a quick test to verify everything works.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔌 CONNECTING TO REAL CLAUDE API
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Currently, the app uses SIMULATED analysis for demo purposes.
+
+To connect to the real Claude API:
+
+1. Get API key from: https://console.anthropic.com/
+
+2. Set environment variable:
+   export ANTHROPIC_API_KEY="your-key-here"
+   
+   (Windows: set ANTHROPIC_API_KEY=your-key-here)
+
+3. In analyzer.py, uncomment the real API code:
+   - Import anthropic
+   - Create client
+   - Call client.messages.create()
+   - Remove the simulate_analysis() call
+
+4. Restart the server
+
+NOTE: Real API calls cost ~2-3 cents per podcast analysis.
+The app caches results to minimize costs.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 API ENDPOINTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GET  /api/podcasts
+     └─ List all available podcasts
+
+GET  /api/analyze/{podcast_id}?user_id=default
+     └─ Analyze a podcast (returns scores + highlights)
+
+GET  /api/preferences/{user_id}
+     └─ Get user preferences
+
+POST /api/preferences/{user_id}
+     └─ Update user preferences
+
+POST /api/rating
+     └─ Submit feedback on an analysis
+
+GET  /api/health
+     └─ Check if server is running
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🗺️ PROJECT ROADMAP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Phase 1: MVP (Current)
+   - Core analysis with simulated LLM
+   - Basic web interface
+   - User preferences
+   - Feedback collection
+
+⬜ Phase 2: YouTube Integration
+   - URL input
+   - Audio extraction
+   - Automatic transcription
+
+⬜ Phase 3: Real Personalization
+   - Learning from ratings
+   - Taste profile generation
+   - Few-shot prompting with examples
+
+⬜ Phase 4: Production Ready
+   - User authentication
+   - Database (PostgreSQL)
+   - Job queue (async processing)
+   - Analytics dashboard
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 TIPS & BEST PRACTICES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Cache is automatic
+  └─ Same podcast analyzed twice uses cached results
+
+✓ Analyze different types of podcasts
+  └─ See how scoring differs between high/low quality
+
+✓ Leave feedback after each analysis
+  └─ Helps improve future personalization
+
+✓ Customize your preferences
+  └─ Better results when aligned with your interests
+
+✓ Check ARCHITECTURE.txt
+  └─ Understand how everything connects
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❓ NEED HELP?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Check these files:
+├─ README.md         (Detailed documentation)
+├─ ARCHITECTURE.txt  (System design)
+└─ This file         (Quick start)
+
+Run the demo:
+└─ python demo.py
+
+Test the analyzer:
+└─ python analyzer.py
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 YOU'RE READY!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Start the server:
+    python app.py
+
+Open your browser:
+    http://localhost:8000
+
+Start analyzing!
+
+Built with ❤️ using FastAPI and Claude AI

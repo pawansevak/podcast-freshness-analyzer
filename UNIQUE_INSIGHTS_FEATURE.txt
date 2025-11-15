@@ -1,0 +1,201 @@
+🆕 UNIQUE INSIGHTS FEATURE - UPDATE GUIDE
+=========================================
+
+NEW FEATURE: Unique Insights with Exact Quotes
+-----------------------------------------------
+
+The Podcast Analyzer now extracts and displays unique insights with 
+exact quotes from the podcast transcript!
+
+WHAT'S NEW?
+-----------
+
+✨ **Unique Insights Section**
+   - Automatically identifies 5 most impactful insights
+   - Shows exact quotes from the transcript
+   - Categorizes each insight by type
+
+📋 **Insight Types:**
+   - 🔬 Data-Backed Insight: Claims with specific numbers/research
+   - 💡 Counter-intuitive Finding: Surprising or unexpected perspectives
+   - 🎯 Novel Framework: New mental models or patterns
+   - 💭 Key Insight: Important points worth noting
+
+🎨 **Beautiful UI:**
+   - Green accent cards for each insight
+   - Large quotation marks for visual appeal
+   - Type badges for quick identification
+   - Italic quotes for readability
+
+
+HOW TO USE
+----------
+
+1. **Start the Server** (if not already running):
+   ```bash
+   cd podcast-analyzer\ 3
+   source venv/bin/activate
+   python app.py
+   ```
+
+2. **Open in Browser**: http://localhost:8000
+
+3. **Select and Analyze** any podcast
+
+4. **Scroll down** to see the new "💡 Unique Insights with Quotes" section!
+
+
+WHAT YOU'LL SEE
+---------------
+
+After the "Top Highlights" section, you'll now see a new section with:
+
+Example from Tech Podcast:
+┌─────────────────────────────────────────────────────────────┐
+│ 💡 Unique Insights with Quotes                              │
+├─────────────────────────────────────────────────────────────┤
+│ [COUNTER-INTUITIVE FINDING]                                 │
+│ "That's where it gets counterintuitive. The bottleneck      │
+│  isn't the AI's capability anymore—it's our ability to      │
+│  articulate what we want..."                                │
+├─────────────────────────────────────────────────────────────┤
+│ [DATA-BACKED INSIGHT]                                       │
+│ "We ran an A/B test with our team over three months.        │
+│  The spec-first features had 42% fewer post-deployment      │
+│  bugs and took 30% less time to ship..."                    │
+└─────────────────────────────────────────────────────────────┘
+
+
+HOW IT WORKS
+------------
+
+The analyzer looks for:
+✓ Keywords indicating insights ("counterintuitive", "surprising", "interesting")
+✓ Data claims (percentages, studies, research)
+✓ Novel frameworks ("pattern", "model", "framework")
+✓ Important statements ("key insight", "important", "non-obvious")
+
+Then extracts the exact quote and categorizes it.
+
+
+TESTING THE FEATURE
+-------------------
+
+1. **Quick Test - Command Line:**
+   ```bash
+   python demo.py
+   ```
+   You'll see insights printed with quotes for all 3 podcasts
+
+2. **Full Test - Web Interface:**
+   - Start the app: `python app.py`
+   - Analyze podcast_1 (Tech/AI) - Should show 5 unique insights
+   - Analyze podcast_2 (Generic) - Shows fewer quality insights
+   - Analyze podcast_3 (Science) - Should show research-based insights
+
+
+CLEARING CACHE
+--------------
+
+Since this is a new feature, you may want to clear old cached results:
+
+```bash
+rm cache/*.json
+```
+
+This forces re-analysis with the new insight extraction.
+
+
+CUSTOMIZING
+-----------
+
+To adjust what gets extracted as insights, edit `analyzer.py`:
+
+1. **Change insight keywords** (line ~180):
+   ```python
+   insight_keywords = [
+       'counterintuitive', 'surprising', 'unexpected',
+       'interesting', 'novel', 'key insight'
+       # Add your own keywords here
+   ]
+   ```
+
+2. **Adjust number of insights** (line ~220):
+   ```python
+   if len(unique_insights) < 5:  # Change from 5 to any number
+   ```
+
+3. **Modify quote length** (line ~210):
+   ```python
+   "quote": quote[:300]  # Change from 300 to any length
+   ```
+
+
+EXAMPLES BY PODCAST TYPE
+-------------------------
+
+📱 **Tech/AI Podcast** (podcast_1):
+   - Shows data on cost reduction, performance metrics
+   - Counter-intuitive takes on AI capabilities
+   - Novel frameworks like "specification-first development"
+
+📊 **Generic Productivity** (podcast_2):
+   - Fewer unique insights (expected for generic content)
+   - Shows basic advice statements
+   - Demonstrates the analyzer can distinguish quality
+
+🔬 **Science Research** (podcast_3):
+   - Research findings with percentages
+   - Counter-intuitive discoveries about adult learning
+   - Specific data from studies
+
+
+WHAT'S NEXT?
+------------
+
+Future enhancements:
+- Click to highlight quote location in full transcript
+- Filter insights by type
+- Export insights to note-taking apps
+- Link insights to YouTube timestamps (when YT integration added)
+- Use LLM to better extract and summarize insights
+
+
+TROUBLESHOOTING
+---------------
+
+❌ "No insights showing"
+   → Clear cache: `rm cache/*.json`
+   → Re-analyze the podcast
+
+❌ "Quotes look truncated"
+   → This is intentional (300 char limit)
+   → Adjust in analyzer.py if needed
+
+❌ "Generic content shows many insights"
+   → The extractor is liberal - it captures potential insights
+   → The quality is reflected in the insight_score instead
+
+
+FEEDBACK
+--------
+
+The insight extraction uses keyword matching and heuristics.
+For production, you'd want to:
+
+1. Use Claude API to intelligently extract insights
+2. Ask it to identify truly novel/surprising points
+3. Have it explain why each insight is valuable
+
+This would give much higher quality results than the current
+keyword-based approach, which is optimized for the demo.
+
+
+═══════════════════════════════════════════════════════════════
+
+Ready to try it? Run:
+  python app.py
+
+Then open http://localhost:8000 and analyze a podcast!
+
+═══════════════════════════════════════════════════════════════

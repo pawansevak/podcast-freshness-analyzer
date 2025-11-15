@@ -1,0 +1,203 @@
+PODCAST ANALYZER - SYSTEM ARCHITECTURE
+=====================================
+
+┌─────────────────────────────────────────────────────────────────┐
+│                         USER INTERFACE                          │
+│                     (Web Browser - HTML/CSS/JS)                 │
+│                                                                 │
+│  ┌───────────────┐  ┌──────────────┐  ┌────────────────────┐ │
+│  │ Select Podcast│  │ View Scores  │  │ Submit Feedback    │ │
+│  └───────┬───────┘  └──────▲───────┘  └─────────┬──────────┘ │
+└──────────┼──────────────────┼───────────────────┼─────────────┘
+           │                  │                   │
+           │                  │                   │
+           ▼                  │                   ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                       FASTAPI BACKEND                           │
+│                                                                 │
+│  GET /api/podcasts          POST /api/rating                   │
+│  ┌───────────────────┐      ┌──────────────────────┐          │
+│  │ List Available    │      │ Store User Rating    │          │
+│  │ Podcasts          │      │ & Feedback           │          │
+│  └───────────────────┘      └──────────────────────┘          │
+│                                                                 │
+│  GET /api/analyze/{id}                                         │
+│  ┌───────────────────────────────────────────────────────┐    │
+│  │                                                        │    │
+│  │  1. Check Cache ──────► [CACHE] JSON Files            │    │
+│  │       │                                                │    │
+│  │       ├─ Hit → Return cached result                   │    │
+│  │       │                                                │    │
+│  │       └─ Miss ↓                                        │    │
+│  │                                                        │    │
+│  │  2. Load Transcript ──► [TRANSCRIPTS] .txt Files      │    │
+│  │       │                                                │    │
+│  │       ▼                                                │    │
+│  │  3. Load User Prefs ──► [USERS] preferences.json      │    │
+│  │       │                                                │    │
+│  │       ▼                                                │    │
+│  │  4. Analyze with LLM ──────────────────┐              │    │
+│  │       │                                 │              │    │
+│  │       ▼                                 ▼              │    │
+│  │  5. Cache Result                [ANALYZER MODULE]     │    │
+│  │       │                         ┌──────────────┐      │    │
+│  │       ▼                         │ Claude API   │      │    │
+│  │  6. Return to User              │ (or simulated│      │    │
+│  │                                 │  for demo)   │      │    │
+│  └─────────────────────────────────┴──────────────┴──────┘    │
+└─────────────────────────────────────────────────────────────────┘
+                             │
+                             ▼
+           ┌─────────────────────────────────────┐
+           │      ANALYZER.PY CORE LOGIC         │
+           │                                     │
+           │  ┌──────────────────────────────┐  │
+           │  │ Build Personalized Prompt    │  │
+           │  │ (Include user preferences)   │  │
+           │  └────────────┬─────────────────┘  │
+           │               ▼                     │
+           │  ┌──────────────────────────────┐  │
+           │  │ Send to Claude/LLM API       │  │
+           │  │ (or simulate for demo)       │  │
+           │  └────────────┬─────────────────┘  │
+           │               ▼                     │
+           │  ┌──────────────────────────────┐  │
+           │  │ Parse JSON Response          │  │
+           │  │ - Freshness Score (1-10)     │  │
+           │  │ - Insight Score (1-10)       │  │
+           │  │ - Top 3 Highlights           │  │
+           │  │ - Key Characteristics        │  │
+           │  │ - Reasoning & Summary        │  │
+           │  └──────────────────────────────┘  │
+           └─────────────────────────────────────┘
+
+
+DATA FLOW FOR PERSONALIZATION
+==============================
+
+┌────────────────┐
+│ NEW USER       │
+└────────┬───────┘
+         │
+         ▼
+┌────────────────────────────┐
+│ Set Initial Preferences    │
+│ - Topics of interest       │
+│ - Freshness priority       │
+│ - Insight style           │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────┐     ┌──────────────────┐
+│ Analyze Podcast            │────▶│ Include prefs    │
+│ (with preferences)         │     │ in LLM prompt    │
+└────────────┬───────────────┘     └──────────────────┘
+             │
+             ▼
+┌────────────────────────────┐
+│ User Rates Analysis        │
+│ - Agrees/Disagrees         │
+│ - Leaves feedback          │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────┐
+│ Store Rating Data          │
+│ - Podcast excerpts         │
+│ - User scores              │
+│ - Feedback comments        │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────┐
+│ FUTURE: Use ratings in     │
+│ next analysis (few-shot)   │
+│                            │
+│ "User previously rated     │
+│  highly: [examples]"       │
+└────────────────────────────┘
+
+
+FILE STRUCTURE
+==============
+
+podcast-analyzer/
+│
+├── app.py                    # FastAPI server (entry point)
+├── analyzer.py               # Core analysis logic
+├── demo.py                   # Demo script
+├── start.sh                  # Startup script
+├── requirements.txt          # Python dependencies
+├── README.md                 # Documentation
+│
+├── transcripts/              # Podcast transcripts
+│   ├── podcast_1.txt        # Tech/AI (high quality)
+│   ├── podcast_2.txt        # Productivity (low quality)
+│   └── podcast_3.txt        # Science (high quality)
+│
+├── transcripts_metadata.json # Podcast info
+│
+├── users/                    # User data
+│   ├── default_preferences.json
+│   └── ratings/             # (created on rating submission)
+│
+├── cache/                    # Analysis cache
+│   └── {podcast_id}_{user_id}.json
+│
+└── static/                   # Frontend
+    └── index.html           # Web interface
+
+
+KEY FEATURES
+============
+
+✓ Freshness Scoring (1-10)
+  - Evaluates how recent and timely the content is
+  - Looks for recent dates, current events, emerging topics
+
+✓ Insight Scoring (1-10)
+  - Measures non-obvious insights
+  - Checks for specific data vs. generic claims
+  - Identifies novel frameworks and contrarian perspectives
+
+✓ Highlight Extraction
+  - Top 3 most valuable segments
+  - Explains why each is worth listening to
+
+✓ Content Analysis
+  - Flags specific characteristics
+  - Has data? Has examples? Novel frameworks?
+
+✓ Personalization
+  - Considers user preferences
+  - Adapts scoring to user interests
+  - Ready for learning from feedback
+
+✓ Caching
+  - Avoids re-analyzing same content
+  - Saves API costs
+  - Faster response times
+
+
+NEXT STEPS
+==========
+
+1. YouTube Integration
+   - Add URL input
+   - Extract audio with yt-dlp
+   - Transcribe with Whisper API
+
+2. Real Claude API
+   - Connect to Anthropic API
+   - Remove simulation code
+
+3. Enhanced Personalization
+   - Use past ratings in prompts
+   - Build taste profiles
+   - Few-shot learning
+
+4. Production Features
+   - User authentication
+   - Database storage
+   - Job queue for async processing
+   - Rate limiting
