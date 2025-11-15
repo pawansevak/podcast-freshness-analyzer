@@ -1,20 +1,26 @@
 {
-  "podcast_1": {
-    "title": "Tech Frontiers - AI Coding Agents with Sarah Chen",
-    "duration": "28:15",
-    "date": "2024-11-10",
-    "topics": ["AI", "Software Development", "Technology"]
+  "snowflake_ceo": {
+    "title": "Snowflake CEO Sridhar Ramaswamy on AI Strategy",
+    "host": "No Priors Podcast",
+    "guest": "Sridhar Ramaswamy",
+    "date": "2024-10-15",
+    "duration_mins": 60,
+    "youtube_url": "https://youtube.com/watch?v=xxx"
   },
-  "podcast_2": {
-    "title": "The Productivity Show - Time Management with Mike Chen",
-    "duration": "15:42",
-    "date": "2023-06-15",
-    "topics": ["Productivity", "Business", "Self-help"]
+  "anthropic_cpo": {
+    "title": "Anthropic Co-founder: AGI Predictions & What Keeps Him Up at Night",
+    "host": "Unknown",
+    "guest": "Ben Mann",
+    "date": "2024-11-01",
+    "duration_mins": 75,
+    "youtube_url": "https://youtube.com/watch?v=yyy"
   },
-  "podcast_3": {
-    "title": "Science Deep Dive - Neural Plasticity Research with Dr. Martinez",
-    "duration": "32:08",
-    "date": "2024-10-28",
-    "topics": ["Neuroscience", "Research", "Science"]
+  "gamma_ceo": {
+    "title": "From 'Dumbest Idea' to $100M ARR - Inside the Rise of Gamma",
+    "host": "Lenny's Podcast",
+    "guest": "Grant Lee",
+    "date": "2024-09-20",
+    "duration_mins": 70,
+    "youtube_url": "https://youtube.com/watch?v=zzz"
   }
 }

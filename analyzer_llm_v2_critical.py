@@ -9,8 +9,7 @@ import json
 import os
 from datetime import datetime
 
-# Your Claude API key - REPLACE WITH YOUR ACTUAL KEY
-CLAUDE_API_KEY = "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"
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 
 client = anthropic.Anthropic(api_key=CLAUDE_API_KEY)
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podcast Analyzer MVP</title>
+    <title>Mostly Mid - Brutally Honest Podcast Analysis</title>
     <style>
         * {
             margin: 0;
@@ -13,522 +13,513 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+        
+        .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .problem {
+            padding: 80px 20px;
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        h1 {
-            color: #2d3748;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-        
-        .subtitle {
-            color: #718096;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-        
-        .selector-section {
-            background: #f7fafc;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-        
-        label {
-            display: block;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 10px;
-            font-size: 0.95em;
-        }
-        
-        select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1em;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        select:hover {
-            border-color: #667eea;
-        }
-        
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        
-        .analyze-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 15px;
-        }
-        
-        .analyze-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-        
-        .analyze-btn:active {
-            transform: translateY(0);
-        }
-        
-        .analyze-btn:disabled {
-            background: #cbd5e0;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .loading {
             text-align: center;
+        }
+        
+        .problem h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #2d3748;
+        }
+        
+        .problem p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+        
+        .how-it-works {
+            padding: 80px 20px;
+            background: #f7fafc;
+        }
+        
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #2d3748;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            background: white;
             padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+        
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
             color: #667eea;
-            font-size: 1.1em;
+            margin-bottom: 20px;
         }
         
-        .spinner {
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2d3748;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .step p {
+            color: #4a5568;
+            line-height: 1.7;
         }
         
-        .results {
-            animation: fadeIn 0.5s;
+        .scoring {
+            padding: 80px 20px;
+            background: white;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .scoring h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+        
+        .scoring-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-bottom: 50px;
         }
         
         .score-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-bottom: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .score-card {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid #e2e8f0;
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid;
         }
+        
+        .score-card.excellent { border-left-color: #48bb78; }
+        .score-card.good { border-left-color: #4299e1; }
+        .score-card.mid { border-left-color: #ed8936; }
+        .score-card.bad { border-left-color: #f56565; }
         
         .score-label {
-            color: #718096;
-            font-size: 0.9em;
+            font-size: 1.1rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         
-        .score-value {
-            font-size: 3em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
+        .score-emoji {
+            font-size: 1.5rem;
+            margin-right: 10px;
         }
         
-        .score-reasoning {
+        .score-desc {
             color: #4a5568;
-            font-size: 0.9em;
-            line-height: 1.5;
+            font-size: 0.95rem;
         }
         
-        .highlights-section {
-            margin-top: 30px;
-        }
-        
-        .section-title {
-            color: #2d3748;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .highlight {
-            background: white;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .highlight:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
-        
-        .highlight-segment {
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 8px;
-            font-size: 1.05em;
-        }
-        
-        .highlight-value {
-            color: #4a5568;
-            line-height: 1.6;
-        }
-        
-        .unique-insights-section {
-            margin-top: 30px;
-        }
-        
-        .insight-card {
-            background: white;
-            border-left: 4px solid #48bb78;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        
-        .insight-type {
-            display: inline-block;
-            background: #48bb78;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.75em;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-        }
-        
-        .insight-quote {
-            color: #2d3748;
-            font-style: italic;
-            line-height: 1.8;
-            font-size: 1.05em;
-            padding: 15px;
+        .featured {
+            padding: 80px 20px;
             background: #f7fafc;
-            border-radius: 6px;
-            position: relative;
         }
         
-        .insight-quote:before {
-            content: '"';
-            font-size: 3em;
-            color: #e2e8f0;
-            position: absolute;
-            left: 5px;
-            top: -10px;
-            font-family: Georgia, serif;
-        }
-        
-        .characteristics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .badge {
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-        
-        .badge-true {
-            background: #c6f6d5;
-            color: #22543d;
-        }
-        
-        .badge-false {
-            background: #fed7d7;
-            color: #742a2a;
-        }
-        
-        .summary {
-            background: #edf2f7;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-            border-left: 4px solid #764ba2;
-        }
-        
-        .summary-text {
+        .featured h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
             color: #2d3748;
-            line-height: 1.6;
-            font-size: 1.05em;
         }
         
-        .cache-badge {
-            display: inline-block;
-            background: #fef3c7;
-            color: #78350f;
-            padding: 4px 10px;
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .podcast-card {
+            background: white;
             border-radius: 12px;
-            font-size: 0.75em;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-        
-        .rating-section {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 2px solid #e2e8f0;
-        }
-        
-        .rating-prompt {
-            color: #4a5568;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        
-        .feedback-box {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95em;
-            margin-top: 10px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            padding: 10px 20px;
-            background: #48bb78;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
-            margin-top: 10px;
         }
         
-        .submit-btn:hover {
-            background: #38a169;
+        .podcast-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        
+        .podcast-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .podcast-meta {
+            color: #718096;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .podcast-scores {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .score-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .score-badge.freshness {
+            background: #e6fffa;
+            color: #047857;
+        }
+        
+        .score-badge.insights {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .preview-insight {
+            color: #4a5568;
+            font-style: italic;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .target {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .target h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2d3748;
+        }
+        
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .target-list {
+            list-style: none;
+        }
+        
+        .target-list li {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .target-list.for li {
+            background: #f0fdf4;
+            color: #166534;
+        }
+        
+        .target-list.not-for li {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+        
+        .target-list li::before {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .target-list.for li::before {
+            content: "✅";
+        }
+        
+        .target-list.not-for li::before {
+            content: "❌";
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .target-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎙️ Podcast Analyzer</h1>
-        <p class="subtitle">Discover fresh insights and valuable moments in podcasts</p>
-        
-        <div class="selector-section">
-            <label for="podcast-select">Select a Podcast</label>
-            <select id="podcast-select">
-                <option value="">Choose a podcast to analyze...</option>
-            </select>
-            <button class="analyze-btn" onclick="analyzePodcast()">Analyze Podcast</button>
+    <section class="hero">
+        <div class="container">
+            <h1>Life's Too Short for Another<br>"Iterate and Learn" Podcast</h1>
+            <p>We've all been there. You're 45 minutes into a podcast and the guest just said "move fast and break things" for the third time. We built an AI to save you from this fate.</p>
+            <div class="cta-buttons">
+                <a href="#featured" class="btn btn-primary">See What's Actually Good</a>
+                <a href="#how" class="btn btn-secondary">How It Works</a>
+            </div>
         </div>
-        
-        <div id="loading" class="loading" style="display:none;">
-            <div class="spinner"></div>
-            <p>Analyzing podcast... This may take a moment.</p>
-        </div>
-        
-        <div id="results" style="display:none;">
-            <!-- Results will be inserted here -->
-        </div>
-    </div>
+    </section>
 
-    <script>
-        let podcasts = {};
-        let currentAnalysis = null;
-        
-        // Load available podcasts on page load
-        async function loadPodcasts() {
-            try {
-                const response = await fetch('/api/podcasts');
-                podcasts = await response.json();
-                
-                const select = document.getElementById('podcast-select');
-                Object.keys(podcasts).forEach(id => {
-                    const option = document.createElement('option');
-                    option.value = id;
-                    option.textContent = podcasts[id].title;
-                    select.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Failed to load podcasts:', error);
-                alert('Failed to load podcasts. Please refresh the page.');
-            }
-        }
-        
-        async function analyzePodcast() {
-            const select = document.getElementById('podcast-select');
-            const podcastId = select.value;
-            
-            if (!podcastId) {
-                alert('Please select a podcast first');
-                return;
-            }
-            
-            // Show loading
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('results').style.display = 'none';
-            
-            try {
-                const response = await fetch(`/api/analyze/${podcastId}?user_id=default`);
-                const data = await response.json();
-                
-                currentAnalysis = { podcastId, data };
-                displayResults(data, podcasts[podcastId]);
-                
-            } catch (error) {
-                console.error('Analysis failed:', error);
-                alert('Analysis failed. Please try again.');
-            } finally {
-                document.getElementById('loading').style.display = 'none';
-            }
-        }
-        
-        function displayResults(data, metadata) {
-            const resultsDiv = document.getElementById('results');
-            
-            const cachedBadge = data.cached ? '<span class="cache-badge">CACHED</span>' : '';
-            
-            const characteristicsBadges = Object.entries(data.key_characteristics)
-                .map(([key, value]) => {
-                    const label = key.replace('has_', '').replace(/_/g, ' ');
-                    const badgeClass = value ? 'badge-true' : 'badge-false';
-                    const icon = value ? '✓' : '✗';
-                    return `<span class="badge ${badgeClass}">${icon} ${label}</span>`;
-                })
-                .join('');
-            
-            const highlightsHtml = data.highlights.map((h, i) => `
-                <div class="highlight">
-                    <div class="highlight-segment">${i + 1}. ${h.segment}</div>
-                    <div class="highlight-value">${h.value}</div>
+    <section class="problem">
+        <div class="container">
+            <h2>Let's Be Honest.</h2>
+            <p>You subscribed to 47 podcasts. You've got 238 unplayed episodes. Everyone keeps telling you to listen to this founder, that expert, this viral episode.</p>
+            <p>You try. You really do.</p>
+            <p>But 20 minutes in, they're explaining why "customer feedback is important" like it's a revolutionary idea. You've heard this exact conversation on 15 other shows.</p>
+            <p><strong>Your time is worth more than this.</strong></p>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">🎧</div>
+                    <h3>We Listen (So You Don't Have To)</h3>
+                    <p>Our AI has the patience of a saint. It listens to entire podcast episodes - yes, even the parts where they plug their newsletter for 5 minutes.</p>
                 </div>
-            `).join('');
-            
-            // NEW: Create unique insights HTML
-            const uniqueInsightsHtml = data.unique_insights && data.unique_insights.length > 0 
-                ? data.unique_insights.map((insight, i) => `
-                    <div class="insight-card">
-                        <span class="insight-type">${insight.type}</span>
-                        <div class="insight-quote">${insight.quote}</div>
+                <div class="step">
+                    <div class="step-number">😤</div>
+                    <h3>We Get Annoyed (On Your Behalf)</h3>
+                    <p>"Iterate fast"? REJECTED.<br>"Focus on the customer"? SNOOZE.<br>"Ship and learn"? WE'VE HEARD IT.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">⏱️</div>
+                    <h3>You Save Time</h3>
+                    <p>Get the Top 5 non-obvious insights with timestamps. Listen to 15 minutes instead of 60. Show up to Monday's meeting with fresh ideas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="scoring">
+        <div class="container">
+            <h2>Our Scoring System (Brutally Honest)</h2>
+            <p class="scoring-subtitle">Most podcasts are 5-6/10. MOST. That's not mean, that's MATH.</p>
+            <div class="score-grid">
+                <div class="score-card excellent">
+                    <div class="score-label"><span class="score-emoji">🤯</span>10/10 "Holy shit"</div>
+                    <div class="score-desc">Life-changing content</div>
+                </div>
+                <div class="score-card excellent">
+                    <div class="score-label"><span class="score-emoji">🌟</span>9/10 "This slaps"</div>
+                    <div class="score-desc">Actually amazing</div>
+                </div>
+                <div class="score-card excellent">
+                    <div class="score-label"><span class="score-emoji">🔥</span>8/10 "Really good"</div>
+                    <div class="score-desc">Worth every minute</div>
+                </div>
+                <div class="score-card good">
+                    <div class="score-label"><span class="score-emoji">👍</span>7/10 "Pretty solid"</div>
+                    <div class="score-desc">Some genuinely good moments</div>
+                </div>
+                <div class="score-card good">
+                    <div class="score-label"><span class="score-emoji">👌</span>6/10 "Fine"</div>
+                    <div class="score-desc">Decent, a few interesting points</div>
+                </div>
+                <div class="score-card mid">
+                    <div class="score-label"><span class="score-emoji">😐</span>5/10 "Aggressively mid"</div>
+                    <div class="score-desc">Elevator music in podcast form</div>
+                </div>
+                <div class="score-card mid">
+                    <div class="score-label"><span class="score-emoji">😬</span>4/10 "Mostly fluff"</div>
+                    <div class="score-desc">Could've been an email</div>
+                </div>
+                <div class="score-card bad">
+                    <div class="score-label"><span class="score-emoji">😴</span>3/10 "Make it stop"</div>
+                    <div class="score-desc">You already knew all this</div>
+                </div>
+                <div class="score-card bad">
+                    <div class="score-label"><span class="score-emoji">🤦</span>2/10 "Why"</div>
+                    <div class="score-desc">No new information created</div>
+                </div>
+                <div class="score-card bad">
+                    <div class="score-label"><span class="score-emoji">💀</span>1/10 "Cursed"</div>
+                    <div class="score-desc">Owes you an apology</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured" id="featured">
+        <div class="container">
+            <h2>Recently Analyzed</h2>
+            <div class="podcast-grid">
+                <div class="podcast-card" onclick="window.location.href='/analyze/snowflake_ceo'">
+                    <div class="podcast-title">Snowflake CEO on AI Strategy</div>
+                    <div class="podcast-meta">Host: No Priors | Guest: Sridhar Ramaswamy</div>
+                    <div class="podcast-scores">
+                        <span class="score-badge freshness">Freshness: 7/10</span>
+                        <span class="score-badge insights">Insights: 6/10</span>
                     </div>
-                `).join('')
-                : '<p style="color: #718096; font-style: italic;">No unique insights with direct quotes found in this transcript.</p>';
-            
-            resultsDiv.innerHTML = `
-                <h2 class="section-title">Analysis Results ${cachedBadge}</h2>
+                    <div class="preview-insight">#1: PageRank died in 2005. Click behavior became Google's real competitive moat...</div>
+                </div>
                 
-                <div class="score-grid">
-                    <div class="score-card">
-                        <div class="score-label">Freshness Score</div>
-                        <div class="score-value">${data.freshness_score}<span style="font-size:0.5em; color:#a0aec0;">/10</span></div>
-                        <div class="score-reasoning">${data.freshness_reasoning}</div>
+                <div class="podcast-card" onclick="window.location.href='/analyze/gamma_ceo'">
+                    <div class="podcast-title">Gamma: From "Dumbest Idea" to $100M ARR</div>
+                    <div class="podcast-meta">Host: Lenny's Podcast | Guest: Grant Lee</div>
+                    <div class="podcast-scores">
+                        <span class="score-badge freshness">Freshness: 6/10</span>
+                        <span class="score-badge insights">Insights: 5/10</span>
                     </div>
-                    
-                    <div class="score-card">
-                        <div class="score-label">Insight Score</div>
-                        <div class="score-value">${data.insight_score}<span style="font-size:0.5em; color:#a0aec0;">/10</span></div>
-                        <div class="score-reasoning">${data.insight_reasoning}</div>
+                    <div class="preview-insight">#1: Product Hunt wins can be vanity metrics. Signups ≠ word-of-mouth growth...</div>
+                </div>
+                
+                <div class="podcast-card" onclick="window.location.href='/analyze/anthropic_cpo'">
+                    <div class="podcast-title">Anthropic Co-founder on AGI & Safety</div>
+                    <div class="podcast-meta">Guest: Ben Mann</div>
+                    <div class="podcast-scores">
+                        <span class="score-badge freshness">Freshness: 7/10</span>
+                        <span class="score-badge insights">Insights: 6/10</span>
                     </div>
+                    <div class="preview-insight">#1: Constitutional AI creates personality as a byproduct of safety training...</div>
                 </div>
-                
-                <div class="highlights-section">
-                    <h3 class="section-title">🎯 Top Highlights</h3>
-                    ${highlightsHtml}
+            </div>
+        </div>
+    </section>
+
+    <section class="target">
+        <div class="container">
+            <h2>Who This Is For</h2>
+            <div class="target-grid">
+                <div>
+                    <h3 style="margin-bottom: 20px; color: #166534;">This is for you if:</h3>
+                    <ul class="target-list for">
+                        <li>You've yelled "GET TO THE POINT" at your phone</li>
+                        <li>Your podcast queue gives you anxiety</li>
+                        <li>You've hate-listened to an entire episode out of spite</li>
+                        <li>You value your time more than pretending to be productive</li>
+                        <li>You're tired of "iterate and learn" advice</li>
+                    </ul>
                 </div>
-                
-                <div class="unique-insights-section">
-                    <h3 class="section-title">💡 Unique Insights with Quotes</h3>
-                    ${uniqueInsightsHtml}
+                <div>
+                    <h3 style="margin-bottom: 20px; color: #991b1b;">This is NOT for you if:</h3>
+                    <ul class="target-list not-for">
+                        <li>You enjoy 4-hour rambling conversations</li>
+                        <li>You think every podcast is a 10/10 masterpiece</li>
+                        <li>"Move fast and break things" still excites you</li>
+                        <li>You can't handle the truth about your favorite show</li>
+                    </ul>
                 </div>
-                
-                <div class="characteristics">
-                    ${characteristicsBadges}
-                </div>
-                
-                <div class="summary">
-                    <h3 class="section-title" style="margin-bottom:10px; font-size:1.2em;">Summary</h3>
-                    <p class="summary-text">${data.summary}</p>
-                </div>
-                
-                <div class="rating-section">
-                    <h3 class="section-title" style="font-size:1.2em;">Was this analysis helpful?</h3>
-                    <p class="rating-prompt">Your feedback helps personalize future analyses</p>
-                    <textarea class="feedback-box" id="feedback-text" placeholder="Optional: Share what you liked or what could be improved..."></textarea>
-                    <button class="submit-btn" onclick="submitFeedback()">Submit Feedback</button>
-                </div>
-            `;
-            
-            resultsDiv.style.display = 'block';
-        }
-        
-        async function submitFeedback() {
-            const feedback = document.getElementById('feedback-text').value;
-            
-            if (!currentAnalysis) return;
-            
-            try {
-                await fetch('/api/rating', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        podcast_id: currentAnalysis.podcastId,
-                        user_id: 'default',
-                        freshness_rating: currentAnalysis.data.freshness_score,
-                        insight_rating: currentAnalysis.data.insight_score,
-                        feedback: feedback
-                    })
-                });
-                
-                alert('Thank you for your feedback!');
-                document.getElementById('feedback-text').value = '';
-                
-            } catch (error) {
-                console.error('Failed to submit feedback:', error);
-                alert('Failed to submit feedback. Please try again.');
-            }
-        }
-        
-        // Load podcasts when page loads
-        loadPodcasts();
-    </script>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>Mostly Mid</strong> - Most podcasts are mid. We find the exceptions.</p>
+        <p>Built with spite, caffeine, and Claude AI</p>
+        <p style="margin-top: 20px; opacity: 0.7;">Currently analyzing AI, Product, and Startup podcasts</p>
+    </footer>
 </body>
 </html>

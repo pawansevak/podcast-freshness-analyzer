@@ -1,0 +1,20 @@
+{
+  "podcast_1": {
+    "title": "Tech Frontiers - AI Coding Agents with Sarah Chen",
+    "duration": "28:15",
+    "date": "2024-11-10",
+    "topics": ["AI", "Software Development", "Technology"]
+  },
+  "podcast_2": {
+    "title": "The Productivity Show - Time Management with Mike Chen",
+    "duration": "15:42",
+    "date": "2023-06-15",
+    "topics": ["Productivity", "Business", "Self-help"]
+  },
+  "podcast_3": {
+    "title": "Science Deep Dive - Neural Plasticity Research with Dr. Martinez",
+    "duration": "32:08",
+    "date": "2024-10-28",
+    "topics": ["Neuroscience", "Research", "Science"]
+  }
+}
