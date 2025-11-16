@@ -13,11 +13,10 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 
 def get_client():
     """Lazy load the Anthropic client"""
-    import anthropic
     api_key = os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
         raise ValueError("ANTHROPIC_API_KEY environment variable not set")
-    return anthropic.Client(api_key=api_key)
+    return anthropic.Anthropic(api_key=api_key)
 
 
 ANALYSIS_PROMPT = """You are an EXTREMELY CRITICAL expert at analyzing podcast content for freshness and insight quality. You are evaluating for an experienced Principal Product Manager in AI/ML who has heard HUNDREDS of podcasts and read extensively. Your standards are very high.
