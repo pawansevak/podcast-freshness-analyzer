@@ -10,8 +10,31 @@ import os
 from datetime import datetime
 
 # Your Claude API key - REPLACE WITH YOUR ACTUAL KEY
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
-client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+"""
+Podcast Analyzer - LLM-Powered Version (CRITICAL SCORING + TOP 5 TAKEAWAYS)
+Uses Claude API with HARSH criteria for freshness and insights
+Always returns Top 5 non-obvious takeaways with timestamps
+"""
+
+import anthropic
+import json
+import os
+from datetime import datetime
+
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+
+def get_client():
+    """Lazy load the Anthropic client"""
+    return anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+
+ANALYSIS_PROMPT = """You are an EXTREMELY CRITICAL expert at analyzing podcast content for freshness and insight quality. You are evaluating for an experienced Principal Product Manager in AI/ML who has heard HUNDREDS of podcasts and read extensively. Your standards are very high.
+
+**CRITICAL CONTEXT:**
+Most podcasts recycle the same advice. Iteration, speed, customer focus, building MVPs, finding PMF - these are OBVIOUS. The PM you're analyzing for has heard all of this dozens of times. They want insights that would surprise THEM.
+
+Analyze this podcast transcript with HARSH scoring:
+
+
 
 ANALYSIS_PROMPT = """You are an EXTREMELY CRITICAL expert at analyzing podcast content for freshness and insight quality. You are evaluating for an experienced Principal Product Manager in AI/ML who has heard HUNDREDS of podcasts and read extensively. Your standards are very high.
 
@@ -189,6 +212,7 @@ def analyze_podcast_with_llm(transcript: str, podcast_metadata: dict = None) -> 
     
     try:
         # Call Claude API
+        client = get_client()
         message = client.messages.create(
             model="claude-sonnet-4-20250514",
             max_tokens=2500,
