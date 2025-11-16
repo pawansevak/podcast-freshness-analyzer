@@ -9,9 +9,10 @@ import os
 from datetime import datetime
 
 # Your Claude API key - REPLACE THIS WITH YOUR FULL KEY
-CLAUDE_API_KEY = "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"  # Replace with sk-ant-api03-...
 
-client = anthropic.Anthropic(api_key=CLAUDE_API_KEY)
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+
+client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
 ANALYSIS_PROMPT = """You are an expert at analyzing podcast content for freshness and insight quality.
 
