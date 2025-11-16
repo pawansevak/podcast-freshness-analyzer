@@ -4,19 +4,11 @@ Uses Claude API with HARSH criteria for freshness and insights
 Always returns Top 5 non-obvious takeaways with timestamps
 """
 
-import anthropic
 import json
 import os
 from datetime import datetime
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-
-def get_client():
-    """Lazy load the Anthropic client"""
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key:
-        raise ValueError("ANTHROPIC_API_KEY environment variable not set")
-    return anthropic.Anthropic(api_key=api_key)
 
 
 ANALYSIS_PROMPT = """You are an EXTREMELY CRITICAL expert at analyzing podcast content for freshness and insight quality. You are evaluating for an experienced Principal Product Manager in AI/ML who has heard HUNDREDS of podcasts and read extensively. Your standards are very high.
