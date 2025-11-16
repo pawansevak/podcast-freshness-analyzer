@@ -204,25 +204,25 @@ def analyze_podcast_with_llm(transcript: str, podcast_metadata: dict = None) -> 
             "content-type": "application/json"
         }
     
-    data = {
-        "model": "claude-sonnet-4-20250514",
-        "max_tokens": 2500,
-        "temperature": 0.2,
-        "messages": [
-            {"role": "user", "content": prompt}
-        ]
-    }
+        data = {
+            "model": "claude-sonnet-4-20250514",
+            "max_tokens": 2500,
+            "temperature": 0.2,
+            "messages": [
+                {"role": "user", "content": prompt}
+            ]
+        }
     
-    response = requests.post(
-        "https://api.anthropic.com/v1/messages",
-        headers=headers,
-        json=data
-    )
-    response.raise_for_status()
-    result = response.json()
+        response = requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers=headers,
+            json=data
+        )
+        response.raise_for_status()
+        result = response.json()
     
-    # Extract the response
-    response_text = result["content"][0]["text"]
+        # Extract the response
+        response_text = result["content"][0]["text"]
         
         # Parse JSON response
         if "```json" in response_text:
