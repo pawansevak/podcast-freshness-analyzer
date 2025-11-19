@@ -455,38 +455,52 @@
     <section class="featured" id="featured">
         <div class="container">
             <h2>Recently Analyzed</h2>
-            <div class="podcast-grid">
-                <div class="podcast-card" onclick="window.location.href='/analyze/snowflake_ceo'">
-                    <div class="podcast-title">Snowflake CEO on AI Strategy</div>
-                    <div class="podcast-meta">Host: No Priors | Guest: Sridhar Ramaswamy</div>
-                    <div class="podcast-scores">
-                        <span class="score-badge freshness">Freshness: 7/10</span>
-                        <span class="score-badge insights">Insights: 6/10</span>
-                    </div>
-                    <div class="preview-insight">#1: PageRank died in 2005. Click behavior became Google's real competitive moat...</div>
+            <div class="podcast-grid" id="podcast-grid">
+    <!-- Podcasts will load here dynamically -->
+    <p style="text-align: center; color: #718096;">Loading podcasts...</p>
+</div>
+
+<script>
+// Load podcasts dynamically
+fetch('/api/podcasts')
+    .then(response => response.json())
+    .then(podcasts => {
+        const grid = document.getElementById('podcast-grid');
+        grid.innerHTML = '';
+        
+        // Convert to array and sort by insight score (highest first)
+        const podcastArray = Object.entries(podcasts).map(([id, data]) => ({
+            id,
+            ...data
+        }));
+        
+        podcastArray.sort((a, b) => b.insight_score - a.insight_score);
+        
+        // Create cards
+        podcastArray.forEach(podcast => {
+            const card = document.createElement('div');
+            card.className = 'podcast-card';
+            card.onclick = () => window.location.href = `/analyze/${podcast.id}`;
+            
+            card.innerHTML = `
+                <div class="podcast-title">${podcast.title}</div>
+                <div class="podcast-scores">
+                    <span class="score-badge freshness">Freshness: ${podcast.freshness_score}/10</span>
+                    <span class="score-badge insights">Insights: ${podcast.insight_score}/10</span>
                 </div>
-                
-                <div class="podcast-card" onclick="window.location.href='/analyze/gamma_ceo'">
-                    <div class="podcast-title">Gamma: From "Dumbest Idea" to $100M ARR</div>
-                    <div class="podcast-meta">Host: Lenny's Podcast | Guest: Grant Lee</div>
-                    <div class="podcast-scores">
-                        <span class="score-badge freshness">Freshness: 6/10</span>
-                        <span class="score-badge insights">Insights: 5/10</span>
-                    </div>
-                    <div class="preview-insight">#1: Product Hunt wins can be vanity metrics. Signups ≠ word-of-mouth growth...</div>
-                </div>
-                
-                <div class="podcast-card" onclick="window.location.href='/analyze/anthropic_cpo'">
-                    <div class="podcast-title">Anthropic Co-founder on AGI & Safety</div>
-                    <div class="podcast-meta">Guest: Ben Mann</div>
-                    <div class="podcast-scores">
-                        <span class="score-badge freshness">Freshness: 7/10</span>
-                        <span class="score-badge insights">Insights: 6/10</span>
-                    </div>
-                    <div class="preview-insight">#1: Constitutional AI creates personality as a byproduct of safety training...</div>
-                </div>
-            </div>
-        </div>
+                <div class="preview-insight">${podcast.top_insight.substring(0, 120)}...</div>
+            `;
+            
+            grid.appendChild(card);
+        });
+    })
+    .catch(error => {
+        console.error('Error loading podcasts:', error);
+        document.getElementById('podcast-grid').innerHTML = 
+            '<p style="color: #f56565;">Error loading podcasts. Please refresh.</p>';
+    });
+</script>
+            
     </section>
 
     <section class="target">

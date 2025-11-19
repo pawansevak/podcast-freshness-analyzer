@@ -1,26 +1,177 @@
 {
-  "snowflake_ceo": {
-    "title": "Snowflake CEO Sridhar Ramaswamy on AI Strategy",
-    "host": "No Priors Podcast",
-    "guest": "Sridhar Ramaswamy",
-    "date": "2024-10-15",
-    "duration_mins": 60,
-    "youtube_url": "https://youtube.com/watch?v=xxx"
+  "Why Uber\u2019s CPO delivers food on weekends _ Sachin Kansal": {
+    "title": "Why Uber\u2019S Cpo Delivers Food On Weekends   Sachin Kansal",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "Uber CPO shares extreme dogfooding practices (700+ driver trips) and 'ship ship ship' philosophy, with some genuinely surprising insights about mobile app usage in moving vehicles and the primacy of human interactions over app features in driver satisfaction.",
+    "top_insight": "The center of a driver's universe during rides is the human interaction with passengers, not the app - friendly passengers lift mood while rude ones can be demotivating, which affects driver retention more than app features"
   },
-  "anthropic_cpo": {
-    "title": "Anthropic Co-founder: AGI Predictions & What Keeps Him Up at Night",
-    "host": "Unknown",
-    "guest": "Ben Mann",
-    "date": "2024-11-01",
-    "duration_mins": 75,
-    "youtube_url": "https://youtube.com/watch?v=yyy"
+  "Anthropic's CPO on what comes next _ Mike Krieger (co-founder of Instagram)": {
+    "title": "Anthropic'S Cpo On What Comes Next   Mike Krieger (Co-Founder Of Instagram)",
+    "freshness_score": 8,
+    "insight_score": 7,
+    "summary": "Mike Krieger shares cutting-edge insights from Anthropic where 90% of code is AI-generated, revealing how this fundamentally shifts product development bottlenecks from engineering time to infrastructure limits and decision-making. The most valuable product work happens at the intersection of model capabilities and user experience, not traditional UX optimization.",
+    "top_insight": "When 90% of code is AI-generated, bottlenecks shift from engineering time to merge queues and infrastructure - Anthropic had to completely rearchitect their merge queue because it 'completely blew out expectations' from the volume of AI-generated pull requests"
   },
-  "gamma_ceo": {
-    "title": "From 'Dumbest Idea' to $100M ARR - Inside the Rise of Gamma",
-    "host": "Lenny's Podcast",
-    "guest": "Grant Lee",
-    "date": "2024-09-20",
-    "duration_mins": 70,
-    "youtube_url": "https://youtube.com/watch?v=zzz"
+  "Behind the product_ Duolingo streaks _ Jackson Shuttleworth (Group PM, Retention Team)": {
+    "title": "Behind The Product  Duolingo Streaks   Jackson Shuttleworth (Group Pm, Retent...",
+    "freshness_score": 6,
+    "insight_score": 7,
+    "summary": "Deep dive into Duolingo's streak feature development through 600+ experiments over 4 years, revealing counterintuitive insights about user psychology, commitment mechanisms, and the importance of intentional friction in engagement design.",
+    "top_insight": "Adding an opt-out button to streak goal commitment increased engagement significantly - the intentionality of choosing 'yes' or 'no' was more valuable than forcing users through"
+  },
+  "\u201cI\u2019m incapable of doing my job without AI\u201d_ How this PM uses Claude + ChatGPT as his second brain": {
+    "title": "\u201cI\u2019M Incapable Of Doing My Job Without Ai\u201d  How This Pm Uses Claude + Chatgpt...",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "A monday.com AI PM demonstrates systematic approaches to building persistent AI assistants for product management, including Reddit scraping for customer insights, context-rich project brains, and personal development coaching through AI.",
+    "top_insight": "Creating separate AI 'brains' for each project that accumulate context over time, starting with 2-3 files and growing to 20+ files including scraped customer conversations, internal docs, and analysis outputs"
+  },
+  "Anthropic co-founder_ AGI predictions, leaving OpenAI, what keeps him up at night _ Ben Mann (1)": {
+    "title": "Anthropic Co-Founder  Agi Predictions, Leaving Openai, What Keeps Him Up At N...",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Anthropic co-founder discusses AI safety alignment, recruiting wars, and timeline predictions. Provides insider perspective on OpenAI's organizational tensions and technical details on Constitutional AI implementation.",
+    "top_insight": "Individual AI researchers can generate 1-10% efficiency gains on inference stacks that justify $100M compensation packages because companies are spending $300B annually on AI CapEx, making these salaries 'cheap' relative to value created"
+  },
+  "\u201cDumbest idea I\u2019ve heard\u201d to $100M ARR_ Inside the rise of Gamma _ Grant Lee (co-founder) (1)": {
+    "title": "\u201cDumbest Idea I\u2019Ve Heard\u201d To $100M Arr  Inside The Rise Of Gamma   Grant Lee ...",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "Grant Lee shares tactical growth lessons from scaling Gamma to $100M ARR, focusing heavily on onboarding optimization, founder-led marketing, and specific growth tactics. The conversation emphasizes execution details over revolutionary insights.",
+    "top_insight": "Winning Product Hunt (product of day/week/month) can be a vanity metric trap - they achieved this but recognized it wasn't sustainable growth and made a 'bet the company' decision to rebuild onboarding entirely"
+  },
+  "How Intercom rose from the ashes by betting everything on AI _ Eoghan McCabe (founder and CEO)": {
+    "title": "How Intercom Rose From The Ashes By Betting Everything On Ai   Eoghan Mccabe ...",
+    "freshness_score": 8,
+    "insight_score": 7,
+    "summary": "Eoghan McCabe shares the brutal realities of transforming Intercom from a stagnating SaaS business to an AI-first company generating 300%+ growth with Fin. The transformation required massive cultural surgery, counterintuitive pricing bets, and acknowledging that AI can be more 'personal' than humans.",
+    "top_insight": "Intercom initially lost money on every AI transaction (charged 99 cents, cost $1.20) but committed to outcome-based pricing anyway, believing costs would drop faster than value perception - and it worked"
+  },
+  "How this Yelp AI PM works backward from \u201cgolden conversations\u201d to create high-quality prototypes": {
+    "title": "How This Yelp Ai Pm Works Backward From \u201cGolden Conversations\u201d To Create High...",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "A Yelp PM demonstrates a conversation-first approach to AI product development, using example dialogues as wireframes and Claude artifacts for rapid prototyping. While the specific workflow is useful, most insights are tactical improvements rather than paradigm shifts.",
+    "top_insight": "Start AI product development with 'golden conversations' - write complete example user-AI dialogues first, then work backwards to system prompts and UI, rather than starting with features or technical architecture"
+  },
+  "Behind the product_ Replit _ Amjad Masad (co-founder and CEO)": {
+    "title": "Behind The Product  Replit   Amjad Masad (Co-Founder And Ceo)",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Amjad demonstrates Replit's AI agent building a full-stack application in minutes, then discusses how this represents a fundamental shift in software development architecture, team communication, and skill requirements. The conversation reveals sophisticated technical innovations like AI-specific computer interfaces and multi-agent systems that go beyond typical AI democratization narratives.",
+    "top_insight": "Replit built an entirely different computer architecture specifically optimized for AI agents to use, with text-based interfaces instead of visual ones, creating what they call 'AI Computer Interfaces' (ACI) as a new discipline parallel to Human-Computer Interaction (HCI)"
+  },
+  "Behind the product_ NotebookLM _ Raiza Martin (Senior Product Manager, AI @ Google Labs) (1)": {
+    "title": "Behind The Product  Notebooklm   Raiza Martin (Senior Product Manager, Ai @ G...",
+    "freshness_score": 8,
+    "insight_score": 7,
+    "summary": "Deep dive into NotebookLM's viral success, revealing that the magic comes from 'Content Studio' rather than just the AI model, and showcasing an unconventional product development approach that starts with technology first and uses a famous author as a living product specification.",
+    "top_insight": "The real breakthrough wasn't the AI model but 'Content Studio' - a system that shapes how the AI interacts with data to create different formats, with one engineer (Usama) as the craftsman behind making content relatable and engaging"
+  },
+  "The AI-native startup_ 5 products, 7-figure revenue, 100% AI-written code. _ Dan Shipper (Every)": {
+    "title": "The Ai-Native Startup  5 Products, 7-Figure Revenue, 100% Ai-Written Code.   ...",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Dan Shipper shares tactical insights from running an AI-first company, including novel definitions of AGI, underutilized AI tools for non-technical users, and specific operational practices like AI operations roles and compound engineering that enable a 15-person team to run multiple products.",
+    "top_insight": "AGI can be defined by 'leash length' - when it becomes economically profitable to run agents indefinitely without human intervention, similar to child development psychology where autonomy increases over time"
+  },
+  "AI prompt engineering in 2025_ What works and what doesn\u2019t _ Sander Schulhoff": {
+    "title": "Ai Prompt Engineering In 2025  What Works And What Doesn\u2019T   Sander Schulhoff",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Schulhoff debunks popular prompting myths (role prompting, threat/reward prompting) with specific research data while providing concrete techniques like few-shot prompting, decomposition, and self-criticism. Most valuable for the statistical evidence against commonly accepted practices.",
+    "top_insight": "Role prompting (telling AI 'you are a math professor') provides no statistically significant performance improvement on accuracy-based tasks - studies showed differences of only 0.01% between roles, with no statistical significance"
+  },
+  "Why AI evals are the hottest new skill for product builders _ Hamel Husain & Shreya Shankar (1)": {
+    "title": "Why Ai Evals Are The Hottest New Skill For Product Builders   Hamel Husain & ...",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "A systematic walkthrough of applying traditional qualitative research methods (open coding, axial coding) to AI product evaluation, emphasizing manual error analysis before automation and providing specific tactical approaches for organizing eval development.",
+    "top_insight": "Error analysis for AI products should start with manual 'open coding' of traces rather than automated evaluation - LLMs cannot effectively identify product-context errors like offering non-existent features"
+  },
+  "Building Lovable_ $10M ARR in 60 days with 15 people _ Anton Osika (CEO and co-founder)": {
+    "title": "Building Lovable  $10M Arr In 60 Days With 15 People   Anton Osika (Ceo And C...",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Anton discusses Lovable's explosive growth (10M ARR in 2 months with 15 people) and the technical/organizational insights behind building AI coding tools that don't get 'stuck.' Key themes include systematic AI failure prevention, geographic arbitrage on ambition, and hiring for obsession over credentials.",
+    "top_insight": "The biggest bottleneck for AI coding tools isn't the AI getting smarter, but preventing it from getting 'stuck' in specific technical scenarios like adding authentication, data persistence, and payment integration - requiring painstaking identification and tuning of these failure points"
+  },
+  "Building a magical AI code editor used by over 1m developers in 4 months_ Inside Windsurf": {
+    "title": "Building A Magical Ai Code Editor Used By Over 1M Developers In 4 Months  Ins...",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "Kodium's CEO shares the journey from GPU infrastructure to AI coding tools, emphasizing technical differentiation through massive codebase understanding rather than just better models. Key insights around strategic pivoting, UI importance over AI models, and enterprise developer tool adoption patterns.",
+    "top_insight": "AI coding companies need distributed systems to rank and retrieve relevant code snippets from 100+ million line codebases in parallel across thousands of GPUs - this is the real technical moat, not the AI models themselves"
+  },
+  "Inside monday.com\u2019s transformation_ Radical transparency, impact over output, & the path to $1B ARR": {
+    "title": "Inside Monday.Com\u2019S Transformation  Radical Transparency, Impact Over Output,...",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "Daniel Ara shares Monday.com's journey from 40 to 2500 employees, focusing on their transformation from slow feature delivery to rapid platform development and their extreme approach to transparency including financial metrics for all employees.",
+    "top_insight": "Monday requires all product managers to sign 10b5-1 automatic stock selling plans so they can maintain radical transparency with financial metrics even as a public company"
+  },
+  "Everyone\u2019s an engineer now_ Inside v0\u2019s mission to create 100 million builders _ Guillermo Rauch": {
+    "title": "Everyone\u2019S An Engineer Now  Inside V0\u2019S Mission To Create 100 Million Builder...",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Vercel CEO discusses how AI tools like V0 are transforming product development by eliminating translation-heavy programming tasks while creating new collaborative building paradigms. Offers specific technical insights about which roles disappear versus persist based on AI architectural limitations.",
+    "top_insight": "Programming specializations are becoming 'translation tasks' that LLMs excel at - the same transformer architecture that solved Google Translate is now eliminating CSS/styling specialists and other code translation roles"
+  },
+  "OpenAI\u2019s CPO on how AI changes must-have skills, moats, coding, startup playbooks, more _ Kevin Weil": {
+    "title": "Openai\u2019S Cpo On How Ai Changes Must-Have Skills, Moats, Coding, Startup Playb...",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Kevin Weil discusses the unique challenges of building AI products at OpenAI, emphasizing how rapidly evolving model capabilities require fundamentally different product development approaches than traditional software, with insights on UX design, evaluation frameworks, and strategic positioning.",
+    "top_insight": "You can reason about AI product UX design by thinking about how humans would behave in similar situations - like how a human wouldn't go silent for 20 seconds when thinking, so reasoning models shouldn't either"
+  },
+  "$46B of hard truths_ Why founders fail and why you need to run toward fear _ Ben Horowitz (a16z)": {
+    "title": "$46B Of Hard Truths  Why Founders Fail And Why You Need To Run Toward Fear   ...",
+    "freshness_score": 4,
+    "insight_score": 6,
+    "summary": "Ben Horowitz shares hard-earned lessons about the psychological challenges of leadership, emphasizing decision-making under pressure, the counterintuitive nature of adding value through unpopular decisions, and practical frameworks for evaluating executive performance and leverage.",
+    "top_insight": "Success is a series of small, hard decisions that lead to each other - plane crashes happen from 17 consecutive bad decisions, none terrible alone but catastrophic together. Breaking the chain through accepting sunk costs is the key psychological skill."
+  },
+  "He saved OpenAI, invented the \u201cLike\u201d button, and built Google Maps_ Bret Taylor (Sierra)": {
+    "title": "He Saved Openai, Invented The \u201cLike\u201d Button, And Built Google Maps  Bret Tayl...",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "Bret Taylor shares lessons from his career spanning Google, Facebook, Salesforce, and multiple startups, with particularly novel insights about how AI will reshape programming languages and development practices. The conversation covers both timeless leadership lessons and forward-looking technical perspectives.",
+    "top_insight": "Python is 'comically bad' for AI to generate because it was optimized for human ergonomics, not machine verification - we need programming systems designed for AI-generated code that prioritize compile-time verification over human readability"
+  },
+  "Rethinking SEO in the age of AI _ Eli Schwartz (SEO advisor, author)": {
+    "title": "Rethinking Seo In The Age Of Ai   Eli Schwartz (Seo Advisor, Author)",
+    "freshness_score": 8,
+    "insight_score": 7,
+    "summary": "Expert SEO strategist explains how AI Overviews are fundamentally changing search by eating top-funnel queries while creating new mid-funnel opportunities. Argues SEO should be a product discipline and that many B2B SaaS companies shouldn't invest in SEO due to their sales-driven conversion models.",
+    "top_insight": "AI Overviews are creating a fundamental shift where top-funnel SEO queries (like 'best beach vacations') get answered directly by AI, but mid-funnel searches (like 'Riverside pricing' after learning about podcast tools) remain valuable SEO opportunities"
+  },
+  "Inside ChatGPT_ The fastest growing product in history  _ Nick Turley (OpenAI)": {
+    "title": "Inside Chatgpt  The Fastest Growing Product In History    Nick Turley (Openai)",
+    "freshness_score": 8,
+    "insight_score": 7,
+    "summary": "An incredibly candid look at ChatGPT's accidental path to becoming the most successful consumer product in history, revealing how many consequential decisions were made hastily or accidentally rather than through strategic planning.",
+    "top_insight": "ChatGPT's $20 pricing was determined by a Google Form survey using Van Westendorp methodology sent to Discord users because they ran out of time for proper pricing research"
+  },
+  "Inside Devin_ The AI engineer that's set to write 50% of its company\u2019s code this year _ Scott Wu": {
+    "title": "Inside Devin  The Ai Engineer That'S Set To Write 50% Of Its Company\u2019S Code T...",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Scott Woo discusses how Cognition's Devon AI agent is being used in production by their own 15-person engineering team, with concrete metrics showing 25% of PRs now come from AI agents. The conversation reveals specific workflows for managing multiple AI agents per engineer and the product decisions behind treating AI as autonomous team members rather than just coding tools.",
+    "top_insight": "Cognition's 15-person engineering team currently has AI agents (Devons) contributing 25% of all pull requests, with each engineer working asynchronously with up to 5 AI agents simultaneously, and they expect this to exceed 50% by year-end"
+  },
+  "With Snowflake CEO Sridhar Ramaswamy (1)": {
+    "title": "With Snowflake Ceo Sridhar Ramaswamy (1)",
+    "freshness_score": 7,
+    "insight_score": 6,
+    "summary": "Sridhar Ramaswami discusses Snowflake's 18-month transformation to become AI-first, revealing specific strategic decisions about foundation models, organizational changes, and enterprise AI adoption patterns. The conversation provides insider perspectives on competing with hyperscalers and foundation model companies while building durable enterprise value.",
+    "top_insight": "PageRank died around 2004-2005, and Google's real competitive moat became click behavior feedback loops on search results, not the original algorithm everyone talks about"
+  },
+  "Notion's lost years, near collapse during COVID, staying small to move fast, building horizontal": {
+    "title": "Notion'S Lost Years, Near Collapse During Covid, Staying Small To Move Fast, ...",
+    "freshness_score": 6,
+    "insight_score": 5,
+    "summary": "Ivan Zhao shares the philosophical and practical journey of building Notion, emphasizing the balance between vision and market reality, the power of abstractions over linear progress, and maintaining craft while scaling.",
+    "top_insight": "Steve Jobs fundamentally misunderstood Xerox PARC's vision - he saw the GUI but missed the deeper power of malleable, user-modifiable systems like Smalltalk, leading the entire industry down a more rigid application-based path"
   }
 }
