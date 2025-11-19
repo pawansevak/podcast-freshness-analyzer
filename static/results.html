@@ -269,78 +269,96 @@
         </div>
     </div>
     <script>
-        // Get podcast ID from URL
-        // Get podcast ID from URL and normalize it
-        let podcastId = decodeURIComponent(window.location.pathname.split('/').pop());
-        // Convert to lowercase and replace special chars with underscores (to match cache filenames)
-        podcastId = podcastId.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
-        // Fetch both metadata and analysis
-        Promise.all([
-            fetch(`/api/podcasts`).then(r => r.json()),
-            fetch(`/api/analyze/${podcastId}`).then(r => r.json())
-        ])
-        .then(([allPodcasts, data]) => {
-            // Get metadata for this podcast
-            const metadata = allPodcasts[podcastId];
-            
-            // Populate metadata
-            if (metadata) {
-                document.getElementById('podcastTitle').textContent = metadata.title;
-                document.getElementById('podcastMeta').textContent = metadata.summary || 'Podcast analysis';
-            } else {
-                // Fallback: use podcast_id as title
-                document.getElementById('podcastTitle').textContent = podcastId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                document.getElementById('podcastMeta').textContent = 'Analysis results';
-            }
-            
-            // Populate scores
-            document.getElementById('freshnessScore').textContent = `${data.freshness_score}/10`;
-            document.getElementById('freshnessReason').textContent = data.freshness_reasoning;
-            document.getElementById('insightScore').textContent = `${data.insight_score}/10`;
-            document.getElementById('insightReason').textContent = data.insight_reasoning;
-            
-            // Populate takeaways
-            const takeawaysHTML = data.top_5_takeaways.map(t => {
-                const obviousnessClass = t.obviousness_level === 'truly_non_obvious' ? 'truly' : 
-                                    t.obviousness_level === 'moderately_non_obvious' ? 'moderately' : 'best';
-                const obviousnessText = t.obviousness_level === 'truly_non_obvious' ? '🤯 Mind-blown' : 
-                                    t.obviousness_level === 'moderately_non_obvious' ? '🤔 Pretty interesting' : '😐 Best available';
+        // Get podcast ID from URL (decode URL encoding)
+        const urlPodcastId = decodeURIComponent(window.location.pathname.split('/').pop());
+        
+        // Fetch podcasts metadata and find the right one
+        fetch(`/api/podcasts`)
+            .then(r => r.json())
+            .then(allPodcasts => {
+                // Try to find exact match in metadata
+                let metadata = allPodcasts[urlPodcastId];
+                let podcastId = urlPodcastId;
                 
-                return `
-                    <div class="takeaway">
-                        <div class="takeaway-header">
-                            <span class="rank-badge">#${t.rank}</span>
-                            <span class="timestamp" onclick="navigator.clipboard.writeText('${t.timestamp}')">${t.timestamp}</span>
-                            <span class="obviousness-tag ${obviousnessClass}">${obviousnessText}</span>
+                // If not found, try case-insensitive match
+                if (!metadata) {
+                    const lowerUrl = urlPodcastId.toLowerCase();
+                    const matchKey = Object.keys(allPodcasts).find(key => key.toLowerCase() === lowerUrl);
+                    if (matchKey) {
+                        metadata = allPodcasts[matchKey];
+                        podcastId = matchKey;
+                    }
+                }
+                
+                // Fetch analysis data
+                return fetch(`/api/analyze/${podcastId}`)
+                    .then(r => r.json())
+                    .then(data => ({ metadata, data }));
+            })
+            .then(({ metadata, data }) => {
+                // Populate title and metadata
+                if (metadata) {
+                    document.getElementById('podcastTitle').textContent = metadata.title;
+                    document.getElementById('podcastMeta').textContent = metadata.summary || 'Podcast analysis';
+                } else {
+                    document.getElementById('podcastTitle').textContent = urlPodcastId.replace(/_/g, ' ');
+                    document.getElementById('podcastMeta').textContent = 'Analysis results';
+                }
+                
+                // Populate scores
+                document.getElementById('freshnessScore').textContent = `${data.freshness_score}/10`;
+                document.getElementById('freshnessReason').textContent = data.freshness_reasoning;
+                document.getElementById('insightScore').textContent = `${data.insight_score}/10`;
+                document.getElementById('insightReason').textContent = data.insight_reasoning;
+                
+                // Populate takeaways
+                if (data.top_5_takeaways && data.top_5_takeaways.length > 0) {
+                    const takeawaysHTML = data.top_5_takeaways.map(t => {
+                        const obviousnessClass = t.obviousness_level === 'truly_non_obvious' ? 'truly' : 
+                                            t.obviousness_level === 'moderately_non_obvious' ? 'moderately' : 'best';
+                        const obviousnessText = t.obviousness_level === 'truly_non_obvious' ? '🤯 Mind-blown' : 
+                                            t.obviousness_level === 'moderately_non_obvious' ? '🤔 Pretty interesting' : '😐 Best available';
+                        
+                        return `
+                            <div class="takeaway">
+                                <div class="takeaway-header">
+                                    <span class="rank-badge">#${t.rank}</span>
+                                    <span class="timestamp" onclick="navigator.clipboard.writeText('${t.timestamp}')">${t.timestamp}</span>
+                                    <span class="obviousness-tag ${obviousnessClass}">${obviousnessText}</span>
+                                </div>
+                                <div class="insight-text">${t.insight}</div>
+                                <div class="why-valuable">→ ${t.why_valuable}</div>
+                            </div>
+                        `;
+                    }).join('');
+                    document.getElementById('takeaways').innerHTML = takeawaysHTML;
+                } else {
+                    document.getElementById('takeaways').innerHTML = '<p>No takeaways available.</p>';
+                }
+                
+                // Populate rejected insights
+                if (data.obvious_insights_rejected && data.obvious_insights_rejected.length > 0) {
+                    const rejectedHTML = data.obvious_insights_rejected.map(r => `
+                        <div class="rejected-item">
+                            <div class="rejected-title">${r.split('(')[0].trim()}</div>
+                            <div class="rejected-reason">→ ${r.includes('(') ? r.split('(')[1].replace(')', '') : 'Too obvious'}</div>
                         </div>
-                        <div class="insight-text">${t.insight}</div>
-                        <div class="why-valuable">→ ${t.why_valuable}</div>
-                    </div>
-                `;
-            }).join('');
-            document.getElementById('takeaways').innerHTML = takeawaysHTML;
-            
-            // Populate rejected insights
-            if (data.obvious_insights_rejected && data.obvious_insights_rejected.length > 0) {
-                const rejectedHTML = data.obvious_insights_rejected.map(r => `
-                    <div class="rejected-item">
-                        <div class="rejected-title">${r.split('(')[0].trim()}</div>
-                        <div class="rejected-reason">→ ${r.includes('(') ? r.split('(')[1].replace(')', '') : 'Too obvious'}</div>
-                    </div>
-                `).join('');
-                document.getElementById('rejected').innerHTML = rejectedHTML;
-            }
-            
-            // Populate summary
-            if (data.summary) {
-                document.getElementById('summary').textContent = data.summary;
-            }
-        })
-        .catch(error => {
-            console.error('Error loading analysis:', error);
-            document.getElementById('podcastTitle').textContent = 'Error Loading Analysis';
-            document.getElementById('podcastMeta').textContent = 'Please try refreshing the page';
-        });
+                    `).join('');
+                    document.getElementById('rejected').innerHTML = rejectedHTML;
+                } else {
+                    document.getElementById('rejected').innerHTML = '<p>No rejected insights.</p>';
+                }
+                
+                // Populate summary if exists
+                if (data.summary && document.getElementById('summary')) {
+                    document.getElementById('summary').textContent = data.summary;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading analysis:', error);
+                document.getElementById('podcastTitle').textContent = 'Error Loading Analysis';
+                document.getElementById('podcastMeta').textContent = 'Please try refreshing the page or check the console for details.';
+            });
     </script>
 </body>
 </html>
