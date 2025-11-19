@@ -1,0 +1,61 @@
+{
+  "freshness_score": 6,
+  "freshness_reasoning": "Contains some recent AI/ML terminology and discusses current challenges with LLM evaluation, but the core concepts (error analysis, open coding, axial coding) are decades-old methodologies from social science and machine learning. The specific application to AI products is moderately fresh but not cutting-edge.",
+  "insight_score": 5,
+  "insight_reasoning": "While the systematic approach to AI product evaluation is useful, most insights are adaptations of well-known data science techniques. The 'benevolent dictator' concept and specific workflow are somewhat valuable, but an experienced PM would recognize these as standard qualitative analysis methods applied to a new domain.",
+  "top_5_takeaways": [
+    {
+      "rank": 1,
+      "insight": "Error analysis for AI products should start with manual 'open coding' of traces rather than automated evaluation - LLMs cannot effectively identify product-context errors like offering non-existent features",
+      "timestamp": "24:01",
+      "why_valuable": "Directly contradicts the common assumption that AI can evaluate AI - shows why human domain expertise is irreplaceable for contextual product errors",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 2,
+      "insight": "The 'benevolent dictator' approach - appointing one domain expert rather than using committees for eval development - prevents analysis paralysis and keeps the process tractable",
+      "timestamp": "25:57",
+      "why_valuable": "Challenges the typical consensus-driven approach most teams use, providing a specific organizational pattern for eval ownership",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 3,
+      "insight": "Theoretical saturation principle determines when to stop error analysis - continue until no new failure modes emerge, typically 40-100 traces depending on application complexity",
+      "timestamp": "31:08",
+      "why_valuable": "Provides a concrete stopping criterion for what feels like an infinite process, borrowed from qualitative research methodology",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 4,
+      "insight": "Using 'none of the above' category when AI categorizes failure modes reveals incomplete taxonomies and forces iterative refinement of error categories",
+      "timestamp": "43:23",
+      "why_valuable": "Specific tactical technique for improving categorization accuracy that most wouldn't think to include",
+      "obviousness_level": "best_available"
+    },
+    {
+      "rank": 5,
+      "insight": "Cost-benefit analysis should determine eval type - use code-based evals for simple checks (formatting, structure) and LLM-as-judge only for complex subjective judgments",
+      "timestamp": "47:24",
+      "why_valuable": "Provides decision framework for eval architecture, though the principle of using simpler solutions first is fairly standard",
+      "obviousness_level": "best_available"
+    }
+  ],
+  "summary": "A systematic walkthrough of applying traditional qualitative research methods (open coding, axial coding) to AI product evaluation, emphasizing manual error analysis before automation and providing specific tactical approaches for organizing eval development.",
+  "characteristics": [
+    "methodical",
+    "data-driven",
+    "tactical",
+    "process-focused",
+    "hands-on"
+  ],
+  "obvious_insights_rejected": [
+    "Building evals is important for AI products (repeated constantly in AI podcasts)",
+    "Start with data analysis before building tests (standard software development practice)",
+    "Use simple counting and pivot tables for analysis (basic data science)",
+    "Iterate and improve your prompts based on errors (common AI development advice)",
+    "Domain experts should be involved in product decisions (universal product management wisdom)"
+  ],
+  "analyzed_at": "2025-11-19T07:02:27.166822",
+  "model": "claude-sonnet-4-20250514",
+  "scoring_mode": "critical"
+}
