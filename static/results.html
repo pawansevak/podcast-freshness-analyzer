@@ -268,14 +268,10 @@
             <div class="tags" id="tags"></div>
         </div>
     </div>
-
     <script>
         // Get podcast ID from URL
         const podcastId = window.location.pathname.split('/').pop();
         
-        // Get podcast ID from URL
-        const podcastId = window.location.pathname.split('/').pop();
-
         // Fetch both metadata and analysis
         Promise.all([
             fetch(`/api/podcasts`).then(r => r.json()),
@@ -284,7 +280,7 @@
         .then(([allPodcasts, data]) => {
             // Get metadata for this podcast
             const metadata = allPodcasts[podcastId];
-
+            
             // Populate metadata
             if (metadata) {
                 document.getElementById('podcastTitle').textContent = metadata.title;
@@ -294,46 +290,36 @@
                 document.getElementById('podcastTitle').textContent = podcastId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                 document.getElementById('podcastMeta').textContent = 'Analysis results';
             }
-
-        // Fetch analysis
-        fetch(`/api/analyze/${podcastId}`)
-            .then(res => res.json())
-            .then(data => {
-                // Populate metadata
-                if (data.podcast_metadata) {
-                    document.getElementById('podcastTitle').textContent = data.podcast_metadata.title;
-                    document.getElementById('podcastMeta').textContent = 
-                        `Host: ${data.podcast_metadata.host} | Guest: ${data.podcast_metadata.guest}`;
-                }
+            
+            // Populate scores
+            document.getElementById('freshnessScore').textContent = `${data.freshness_score}/10`;
+            document.getElementById('freshnessReason').textContent = data.freshness_reasoning;
+            document.getElementById('insightScore').textContent = `${data.insight_score}/10`;
+            document.getElementById('insightReason').textContent = data.insight_reasoning;
+            
+            // Populate takeaways
+            const takeawaysHTML = data.top_5_takeaways.map(t => {
+                const obviousnessClass = t.obviousness_level === 'truly_non_obvious' ? 'truly' : 
+                                    t.obviousness_level === 'moderately_non_obvious' ? 'moderately' : 'best';
+                const obviousnessText = t.obviousness_level === 'truly_non_obvious' ? '🤯 Mind-blown' : 
+                                    t.obviousness_level === 'moderately_non_obvious' ? '🤔 Pretty interesting' : '😐 Best available';
                 
-                // Populate scores
-                document.getElementById('freshnessScore').textContent = `${data.freshness_score}/10`;
-                document.getElementById('freshnessReason').textContent = data.freshness_reasoning;
-                document.getElementById('insightScore').textContent = `${data.insight_score}/10`;
-                document.getElementById('insightReason').textContent = data.insight_reasoning;
-                
-                // Populate takeaways
-                const takeawaysHTML = data.top_5_takeaways.map(t => {
-                    const obviousnessClass = t.obviousness_level === 'truly_non_obvious' ? 'truly' : 
-                                           t.obviousness_level === 'moderately_non_obvious' ? 'moderately' : 'best';
-                    const obviousnessText = t.obviousness_level === 'truly_non_obvious' ? '🤯 Mind-blown' : 
-                                          t.obviousness_level === 'moderately_non_obvious' ? '🤔 Pretty interesting' : '😐 Best available';
-                    
-                    return `
-                        <div class="takeaway">
-                            <div class="takeaway-header">
-                                <span class="rank-badge">#${t.rank}</span>
-                                <span class="timestamp" onclick="navigator.clipboard.writeText('${t.timestamp}')">${t.timestamp}</span>
-                                <span class="obviousness-tag ${obviousnessClass}">${obviousnessText}</span>
-                            </div>
-                            <div class="insight-text">${t.insight}</div>
-                            <div class="why-valuable">→ ${t.why_valuable}</div>
+                return `
+                    <div class="takeaway">
+                        <div class="takeaway-header">
+                            <span class="rank-badge">#${t.rank}</span>
+                            <span class="timestamp" onclick="navigator.clipboard.writeText('${t.timestamp}')">${t.timestamp}</span>
+                            <span class="obviousness-tag ${obviousnessClass}">${obviousnessText}</span>
                         </div>
-                    `;
-                }).join('');
-                document.getElementById('takeaways').innerHTML = takeawaysHTML;
-                
-                // Populate rejected insights
+                        <div class="insight-text">${t.insight}</div>
+                        <div class="why-valuable">→ ${t.why_valuable}</div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('takeaways').innerHTML = takeawaysHTML;
+            
+            // Populate rejected insights
+            if (data.obvious_insights_rejected && data.obvious_insights_rejected.length > 0) {
                 const rejectedHTML = data.obvious_insights_rejected.map(r => `
                     <div class="rejected-item">
                         <div class="rejected-title">${r.split('(')[0].trim()}</div>
@@ -341,20 +327,18 @@
                     </div>
                 `).join('');
                 document.getElementById('rejected').innerHTML = rejectedHTML;
-                
-                // Populate summary
+            }
+            
+            // Populate summary
+            if (data.summary) {
                 document.getElementById('summary').textContent = data.summary;
-                
-                // Populate tags
-                const tagsHTML = data.characteristics.map(tag => 
-                    `<span class="tag">${tag}</span>`
-                ).join('');
-                document.getElementById('tags').innerHTML = tagsHTML;
-            })
-            .catch(err => {
-                console.error('Error loading analysis:', err);
-                document.getElementById('takeaways').innerHTML = '<p>Error loading analysis. Please try again.</p>';
-            });
+            }
+        })
+        .catch(error => {
+            console.error('Error loading analysis:', error);
+            document.getElementById('podcastTitle').textContent = 'Error Loading Analysis';
+            document.getElementById('podcastMeta').textContent = 'Please try refreshing the page';
+        });
     </script>
 </body>
 </html>
