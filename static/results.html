@@ -273,6 +273,28 @@
         // Get podcast ID from URL
         const podcastId = window.location.pathname.split('/').pop();
         
+        // Get podcast ID from URL
+        const podcastId = window.location.pathname.split('/').pop();
+
+        // Fetch both metadata and analysis
+        Promise.all([
+            fetch(`/api/podcasts`).then(r => r.json()),
+            fetch(`/api/analyze/${podcastId}`).then(r => r.json())
+        ])
+        .then(([allPodcasts, data]) => {
+            // Get metadata for this podcast
+            const metadata = allPodcasts[podcastId];
+
+            // Populate metadata
+            if (metadata) {
+                document.getElementById('podcastTitle').textContent = metadata.title;
+                document.getElementById('podcastMeta').textContent = metadata.summary || 'Podcast analysis';
+            } else {
+                // Fallback: use podcast_id as title
+                document.getElementById('podcastTitle').textContent = podcastId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                document.getElementById('podcastMeta').textContent = 'Analysis results';
+            }
+
         // Fetch analysis
         fetch(`/api/analyze/${podcastId}`)
             .then(res => res.json())
