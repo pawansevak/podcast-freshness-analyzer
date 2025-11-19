@@ -24,7 +24,14 @@ def create_metadata():
             analysis = json.load(f)
         
         # Create a readable title from podcast_id
-        title = podcast_id.replace('_', ' ').title()
+        title = podcast_id.replace('_', ' ')
+        # Capitalize first letter of each major word, but keep small words lowercase
+        words = title.split()
+        title = ' '.join([
+            word.capitalize() if word.lower() not in ['a', 'an', 'the', 'in', 'on', 'at', 'to', 'for', 'of', 'and', 'or', 'but'] or i == 0
+            else word.lower()
+            for i, word in enumerate(words)
+        ])
         
         # Limit title length
         if len(title) > 80:

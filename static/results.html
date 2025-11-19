@@ -270,8 +270,10 @@
     </div>
     <script>
         // Get podcast ID from URL
-        const podcastId = window.location.pathname.split('/').pop();
-        
+        // Get podcast ID from URL and normalize it
+        let podcastId = decodeURIComponent(window.location.pathname.split('/').pop());
+        // Convert to lowercase and replace special chars with underscores (to match cache filenames)
+        podcastId = podcastId.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
         // Fetch both metadata and analysis
         Promise.all([
             fetch(`/api/podcasts`).then(r => r.json()),
