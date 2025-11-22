@@ -1,0 +1,79 @@
+{
+  "scores": {
+    "insight_density": 7,
+    "signal_to_noise": 8,
+    "actionability": 8,
+    "contrarian_index": 7,
+    "freshness": 9,
+    "host_quality": 7,
+    "overall": 7.5
+  },
+  "verdict": {
+    "tldr": "Genuinely valuable peek into how AI-first engineering teams actually work today - worth it for the concrete specifics and contrarian takes.",
+    "best_for": "Engineering leaders, CTOs, and senior PMs who need to understand how AI agents will reshape software development workflows in the next 1-2 years",
+    "skip_if": "You're looking for generic AI strategy advice or aren't directly involved in engineering team operations",
+    "worth_it": true,
+    "best_quote": "We expect Devon to be writing more than half our PRs by end of year - our whole team uses up to 5 Devons each, and Devon merges several hundred pull requests into production every month"
+  },
+  "top_5_takeaways": [
+    {
+      "rank": 1,
+      "insight": "Cognition's 15-person engineering team has Devon merge several hundred PRs per month (25% of all PRs), with each engineer working with up to 5 Devons simultaneously, expecting >50% by year-end",
+      "timestamp": "22:29",
+      "why_valuable": "Concrete data on AI agent adoption at scale - most companies have no benchmark for what 'AI-first engineering' actually looks like in practice",
+      "obviousness_level": "truly_non_obvious"
+    },
+    {
+      "rank": 2,
+      "insight": "AI technology adoption differs fundamentally from previous tech revolutions (PC, internet, mobile) because there's no hardware distribution bottleneck - enabling explosive rather than gradual growth",
+      "timestamp": "105:34",
+      "why_valuable": "Challenges conventional wisdom about technology adoption curves and explains why AI scaling feels different from historical precedents",
+      "obviousness_level": "truly_non_obvious"
+    },
+    {
+      "rank": 3,
+      "insight": "The shift from 'brick layer to architect' means 90% of engineering time (debugging, migrations, boilerplate) gets automated while 10% (problem definition, architecture) becomes the core human value",
+      "timestamp": "24:53",
+      "why_valuable": "Specific breakdown of how engineering roles will actually change, not just vague 'humans will do higher-level work' platitudes",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 4,
+      "insight": "Devon works best on 'tasks not problems' - well-defined work with clear verification loops rather than open-ended exploration or architectural decisions",
+      "timestamp": "48:17",
+      "why_valuable": "Practical guidance on AI agent limitations that most teams will need to learn through expensive trial and error",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 5,
+      "insight": "Base model intelligence is 'basically already there' - the real work is teaching models the idiosyncrasies of real-world engineering (DataDog, GitHub workflows, debugging patterns)",
+      "timestamp": "103:07",
+      "why_valuable": "Contrarian take on where AI development effort should focus, against the common belief that we need much smarter base models",
+      "obviousness_level": "moderately_non_obvious"
+    }
+  ],
+  "why_these_scores": {
+    "insight_density": "Strong concrete data points and specific examples (25% PR ratio, 5 Devons per engineer) mixed with some predictable startup advice. The technical specifics and workflow details are genuinely valuable.",
+    "signal_to_noise": "Very tight conversation with minimal rambling. Host keeps focus on practical details and concrete examples rather than philosophical discussions.",
+    "actionability": "Highly specific tactical advice - exact workflows, integration patterns, onboarding approaches. Includes live demos and concrete implementation details teams can replicate.",
+    "contrarian_index": "Several genuinely contrarian takes: AI adoption curves differ from hardware, base intelligence is sufficient, more engineers not fewer, focus on tasks not problems.",
+    "freshness": "Extremely current - references Devon 2.0 launch weeks ago, discusses cutting-edge AI agent workflows, time-sensitive insights about current state of AI engineering.",
+    "host_quality": "Solid interviewer who asks follow-up questions and pushes for specifics, though could have challenged some claims more deeply."
+  },
+  "summary": "Scott Wu provides a rare inside look at how an AI-first engineering team actually operates, with concrete metrics on AI agent adoption and specific workflows. The technical depth and contrarian perspectives on AI adoption make this valuable for engineering leaders planning their AI strategy.",
+  "characteristics": [
+    "ai_agents",
+    "engineering_workflows",
+    "technical_depth",
+    "concrete_metrics",
+    "future_of_work"
+  ],
+  "obvious_insights_rejected": [
+    "AI will change software engineering and make developers more productive",
+    "Companies should move fast and hire great people in competitive markets",
+    "Focus on building something people want and staying close to customers"
+  ],
+  "analyzed_at": "2025-11-22T10:38:49.374837",
+  "model": "claude-sonnet-4-20250514",
+  "scoring_mode": "hybrid_critical"
+}

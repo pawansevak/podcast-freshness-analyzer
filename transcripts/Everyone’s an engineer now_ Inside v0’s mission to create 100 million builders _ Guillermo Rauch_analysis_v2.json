@@ -1,0 +1,31 @@
+{
+  "scores": {
+    "insight_density": 7,
+    "signal_to_noise": 6,
+    "actionability": 8,
+    "contrarian_index": 6,
+    "freshness": 9,
+    "host_quality": 7,
+    "overall": 7.0
+  },
+  "verdict": {
+    "tldr": "Solid tactical episode on AI-powered building with real demos and specific tips, worth it if you're actively building products.",
+    "best_for": "Product managers, designers, and founders who want to understand how AI tools like V0 actually work and get practical tips for building with AI",
+    "skip_if": "You're looking for high-level AI strategy or already deeply familiar with AI building tools - this is very V0-focused",
+    "worth_it": true,
+    "best_quote": "A lot of the programming jobs to be done that used to be specializations are going away - they're translation tasks. But knowing how things work under the hood is going to be very important because you're going to be able to influence the model and make it follow your intention a lot better."
+  },
+  "key_insights": [
+    "The future skill isn't deep coding expertise but understanding 'tokens' - knowing CSS, databases, APIs conceptually so you can guide AI effectively. You need less depth but broader symbolic knowledge.",
+    "AI building tools work best with iteration mindset - literally tell the AI 'try something else' when stuck. Think of it like coaching an engineer, not expecting perfection on first try.",
+    "Increase 'exposure hours' to build taste - quantify time spent watching people use your products and others. Taste is a learnable skill through deliberate exposure, not innate talent."
+  ],
+  "why_these_scores": {
+    "insight_density": "Strong practical insights about future skills (tokens vs deep coding), specific tactics (exposure hours, iteration mindset), but some repetition and demo time dilutes density",
+    "signal_to_noise": "Good content-to-filler ratio but includes lengthy demos and some promotional elements. Host keeps it focused but could be tighter",
+    "actionability": "Excellent - specific prompting tips, exposure hours framework, concrete examples of how to use V0, step-by-step demo. You can immediately apply these tactics",
+    "contrarian_index": "Somewhat contrarian on coding skills becoming less important and 'translation tasks' going away, but not deeply controversial. Challenges some orthodoxy about engineering roles",
+    "freshness": "Very current - discusses latest AI tools, recent features, cutting-edge product development. Highly relevant to 2024/2025 reality",
+    "host_quality": "Good interviewer who asks follow-up questions and keeps guest on track. Could push harder on some points but generally elevates the conversation"
+  }
+}

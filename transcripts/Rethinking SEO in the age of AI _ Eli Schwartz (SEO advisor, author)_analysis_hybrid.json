@@ -1,0 +1,79 @@
+{
+  "scores": {
+    "insight_density": 8,
+    "signal_to_noise": 7,
+    "actionability": 8,
+    "contrarian_index": 8,
+    "freshness": 7,
+    "host_quality": 7,
+    "overall": 7.7
+  },
+  "verdict": {
+    "tldr": "Actually worth your time - challenges SEO orthodoxy with specific, contrarian insights you won't find elsewhere.",
+    "best_for": "Product leaders at B2B companies wondering if SEO is worth investing in, or anyone doing SEO who wants to stop wasting money on obvious tactics",
+    "skip_if": "You're looking for basic SEO how-tos or already know that most B2B SaaS shouldn't prioritize SEO",
+    "worth_it": true,
+    "best_quote": "Most SaaS tools shouldn't do SEO because there isn't necessarily an SEO journey - it's typically a brand challenge, not a search challenge"
+  },
+  "top_5_takeaways": [
+    {
+      "rank": 1,
+      "insight": "Keyword research tools are wrong by factors of 10x - they're all guessing because Google can't legally share real search volumes, so use top-down TAM forecasting instead of bottom-up keyword volume estimates",
+      "timestamp": "67:30",
+      "why_valuable": "Completely undermines the foundation of how most people do SEO forecasting and budget allocation - this could save companies from massive misallocation of resources",
+      "obviousness_level": "truly_non_obvious"
+    },
+    {
+      "rank": 2,
+      "insight": "Most B2B SaaS companies shouldn't do SEO at all because the buyer journey requires sales/committees - if you can't convert someone who just read a blog post, SEO is the wrong channel regardless of search volume",
+      "timestamp": "25:45",
+      "why_valuable": "Directly contradicts the default assumption that every funded startup should do SEO - could prevent massive resource waste on the wrong growth channel",
+      "obviousness_level": "truly_non_obvious"
+    },
+    {
+      "rank": 3,
+      "insight": "AI overviews are actually creating better SEO opportunities by eliminating top-funnel competition - now you can focus on mid-funnel searches where people have actual intent to buy",
+      "timestamp": "15:30",
+      "why_valuable": "Contrarian take when everyone thinks AI will kill SEO - reframes the threat as an opportunity to focus on higher-converting traffic",
+      "obviousness_level": "truly_non_obvious"
+    },
+    {
+      "rank": 4,
+      "insight": "Link building is actually brand building - buying guest posts on low-authority sites is worthless, but getting mentioned by building products people want to reference naturally is everything",
+      "timestamp": "45:20",
+      "why_valuable": "Challenges the entire link-building industry and explains why most SEO agencies deliver poor ROI with their standard deliverables",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 5,
+      "insight": "SEO should be owned by product teams, not marketing - it's about building products for search users, not optimizing content for keywords",
+      "timestamp": "23:15",
+      "why_valuable": "Organizational insight that could change how companies structure their SEO efforts and potentially improve results significantly",
+      "obviousness_level": "moderately_non_obvious"
+    }
+  ],
+  "why_these_scores": {
+    "insight_density": "Multiple genuinely surprising insights that contradict industry orthodoxy - the keyword tool accuracy revelation alone is worth the listen, plus specific contrarian takes on B2B SaaS and AI impact",
+    "signal_to_noise": "Some rambling and sponsor segments, but mostly stays on valuable content. Host asks decent follow-ups and guest stays focused on actionable insights",
+    "actionability": "Very specific advice on how to evaluate if SEO is right for you, how to forecast properly, and what to focus on. Concrete examples from real companies with enough detail to replicate",
+    "contrarian_index": "Directly challenges multiple industry assumptions - that all startups should do SEO, that keyword tools are accurate, that AI will kill SEO, that link building works as commonly practiced",
+    "freshness": "Discusses recent AI overviews rollout and Google antitrust verdict with specific insights, but also covers timeless strategic principles. Mix of current and evergreen",
+    "host_quality": "Competent interviewer who asks follow-up questions and keeps conversation moving. Not exceptional but doesn't detract from the content"
+  },
+  "summary": "Eli Schwarz delivers genuinely contrarian SEO insights that challenge industry orthodoxy, particularly around whether B2B companies should do SEO at all and how AI is actually creating better opportunities. The keyword research tool revelation alone justifies the listen time.",
+  "characteristics": [
+    "contrarian",
+    "data-driven",
+    "strategic",
+    "product-focused",
+    "anti-hype"
+  ],
+  "obvious_insights_rejected": [
+    "Create helpful content for users instead of just optimizing for keywords - standard advice everyone knows",
+    "Focus on user intent and buyer journey - commonly repeated in every SEO resource",
+    "Technical SEO audits can solve ranking problems - typical agency pitch that most experienced people have heard"
+  ],
+  "analyzed_at": "2025-11-22T11:05:40.535954",
+  "model": "claude-sonnet-4-20250514",
+  "scoring_mode": "hybrid_critical"
+}

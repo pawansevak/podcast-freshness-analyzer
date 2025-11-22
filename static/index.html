@@ -3,537 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostly Mid - Brutally Honest Podcast Analysis</title>
+    <title>Mostly Mid - Stop Wasting Time on Mediocre Podcasts</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #1a1a1a;
-            background: #fafafa;
+            color: #1f2937;
+            background: #f9fafb;
         }
-        
+
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 4rem 2rem;
             text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
             line-height: 1.2;
         }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
             opacity: 0.95;
+            max-width: 700px;
         }
-        
+
+        .hero .description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
         .cta-buttons {
             display: flex;
-            gap: 20px;
-            justify-content: center;
+            gap: 1.5rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
-        
+
         .btn {
-            padding: 16px 32px;
-            font-size: 1.1rem;
-            border: none;
+            padding: 1rem 2.5rem;
             border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
             text-decoration: none;
-            display: inline-block;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
         }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-        
+
         .btn-primary {
-            background: #ff6b6b;
-            color: white;
-        }
-        
-        .btn-secondary {
             background: white;
             color: #667eea;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        
-        .problem {
-            padding: 80px 20px;
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
             background: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat {
             text-align: center;
         }
-        
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 5rem 2rem;
+            background: #fef3c7;
+            text-align: center;
+        }
+
         .problem h2 {
             font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #2d3748;
+            margin-bottom: 2rem;
+            color: #92400e;
         }
-        
-        .problem p {
-            font-size: 1.2rem;
+
+        .problem-list {
             max-width: 800px;
-            margin: 0 auto 20px;
-            color: #4a5568;
-            line-height: 1.8;
+            margin: 0 auto;
+            text-align: left;
         }
-        
+
+        .problem-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            font-size: 1.1rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .solution-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .solution h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature p {
+            color: #6b7280;
+        }
+
+        /* How It Works */
         .how-it-works {
-            padding: 80px 20px;
-            background: #f7fafc;
+            padding: 5rem 2rem;
+            background: #f3f4f6;
         }
-        
+
+        .how-it-works-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
         .how-it-works h2 {
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 60px;
-            color: #2d3748;
+            margin-bottom: 3rem;
         }
-        
+
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
-        
+
         .step {
             background: white;
-            padding: 40px;
+            padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            text-align: center;
         }
-        
+
         .step-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #667eea;
-            margin-bottom: 20px;
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
         }
-        
+
         .step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #2d3748;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
-        
-        .step p {
-            color: #4a5568;
-            line-height: 1.7;
+
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
         }
-        
-        .scoring {
-            padding: 80px 20px;
-            background: white;
-        }
-        
-        .scoring h2 {
+
+        .final-cta h2 {
             font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #2d3748;
+            margin-bottom: 1rem;
         }
-        
-        .scoring-subtitle {
-            text-align: center;
-            font-size: 1.3rem;
-            color: #ff6b6b;
-            font-weight: 600;
-            margin-bottom: 50px;
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
-        
-        .score-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .score-card {
-            background: #f7fafc;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid;
-        }
-        
-        .score-card.excellent { border-left-color: #48bb78; }
-        .score-card.good { border-left-color: #4299e1; }
-        .score-card.mid { border-left-color: #ed8936; }
-        .score-card.bad { border-left-color: #f56565; }
-        
-        .score-label {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .score-emoji {
-            font-size: 1.5rem;
-            margin-right: 10px;
-        }
-        
-        .score-desc {
-            color: #4a5568;
-            font-size: 0.95rem;
-        }
-        
-        .featured {
-            padding: 80px 20px;
-            background: #f7fafc;
-        }
-        
-        .featured h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: #2d3748;
-        }
-        
-        .podcast-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .podcast-card {
+
+        /* Newsletter */
+        .newsletter {
             background: white;
+            padding: 2rem;
             border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-            transition: transform 0.2s, box-shadow 0.2s;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .newsletter button {
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
             cursor: pointer;
         }
-        
-        .podcast-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+
+        .newsletter button:hover {
+            background: #5568d3;
         }
-        
-        .podcast-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #2d3748;
-        }
-        
-        .podcast-meta {
-            color: #718096;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-        
-        .podcast-scores {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .score-badge {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .score-badge.freshness {
-            background: #e6fffa;
-            color: #047857;
-        }
-        
-        .score-badge.insights {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        
-        .preview-insight {
-            color: #4a5568;
-            font-style: italic;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        .target {
-            padding: 80px 20px;
-            background: white;
-        }
-        
-        .target h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: #2d3748;
-        }
-        
-        .target-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .target-list {
-            list-style: none;
-        }
-        
-        .target-list li {
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-        }
-        
-        .target-list.for li {
-            background: #f0fdf4;
-            color: #166534;
-        }
-        
-        .target-list.not-for li {
-            background: #fef2f2;
-            color: #991b1b;
-        }
-        
-        .target-list li::before {
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        
-        .target-list.for li::before {
-            content: "✅";
-        }
-        
-        .target-list.not-for li::before {
-            content: "❌";
-        }
-        
+
+        /* Footer */
         footer {
-            background: #2d3748;
+            background: #1f2937;
             color: white;
-            padding: 40px 20px;
+            padding: 2rem;
             text-align: center;
         }
-        
-        footer p {
-            margin-bottom: 10px;
-        }
-        
+
+        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
+
+            .hero .subtitle {
+                font-size: 1.2rem;
             }
-            
-            .target-grid {
-                grid-template-columns: 1fr;
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .stats-bar {
+                gap: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <h1>Life's Too Short for Another<br>"Iterate and Learn" Podcast</h1>
-            <p>We've all been there. You're 45 minutes into a podcast and the guest just said "move fast and break things" for the third time. We built an AI to save you from this fate.</p>
-            <div class="cta-buttons">
-                <a href="#featured" class="btn btn-primary">See What's Actually Good</a>
-                <a href="#how" class="btn btn-secondary">How It Works</a>
+        <h1>Stop Wasting Time on<br>Mediocre Podcasts</h1>
+        <p class="subtitle">We analyze every episode so you don't have to.</p>
+        <p class="description">
+            Most podcasts are 6/10. We find the 8+/10 episodes worth your time, 
+            and save you from the rest. Multi-dimensional scoring by experienced PMs for experienced PMs.
+        </p>
+        <div class="cta-buttons">
+            <a href="/episodes" class="btn btn-primary">🎯 Show Me Examples</a>
+            <a href="#newsletter" class="btn btn-secondary">📧 Get Weekly Picks</a>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stat">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Episodes Analyzed</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Scoring Dimensions</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">72%</div>
+            <div class="stat-label">Filtered as Mid</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Generic Advice</div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <h2>You're Drowning in "Meh" Content</h2>
+        <div class="problem-list">
+            <div class="problem-item">
+                💀 <strong>60+ minutes wasted</strong> on generic "talk to users" advice you've heard 100 times
+            </div>
+            <div class="problem-item">
+                😴 <strong>Everyone scores 7/10</strong> making it impossible to know what's actually worth listening to
+            </div>
+            <div class="problem-item">
+                🔄 <strong>Same platitudes recycled</strong> across every podcast ("iterate fast", "find PMF", "build MVPs")
+            </div>
+            <div class="problem-item">
+                ⏰ <strong>No way to know</strong> if an episode has genuinely non-obvious insights before investing an hour
             </div>
         </div>
     </section>
 
-    <section class="problem">
-        <div class="container">
-            <h2>Let's Be Honest.</h2>
-            <p>You subscribed to 47 podcasts. You've got 238 unplayed episodes. Everyone keeps telling you to listen to this founder, that expert, this viral episode.</p>
-            <p>You try. You really do.</p>
-            <p>But 20 minutes in, they're explaining why "customer feedback is important" like it's a revolutionary idea. You've heard this exact conversation on 15 other shows.</p>
-            <p><strong>Your time is worth more than this.</strong></p>
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="solution-container">
+            <h2>We Filter the Noise</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; max-width: 700px; margin: 0 auto;">
+                Every episode gets 6-dimensional scoring with HARSH standards. 
+                We call out generic advice. We show you the timestamp of the best insights. 
+                We save you from wasting time.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Multi-Dimensional Scoring</h3>
+                    <p>Insight Density, Signal-to-Noise, Actionability, Contrarian Index, Freshness, Host Quality - all scored separately</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Top 5 Non-Obvious Takeaways</h3>
+                    <p>We rank insights by non-obviousness and give you timestamps. Skip straight to the gold.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">❌</div>
+                    <h3>Transparent Filtering</h3>
+                    <p>See what obvious advice we rejected. No more "iterate fast" or "build MVPs" platitudes.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💡</div>
+                    <h3>Critical Standards</h3>
+                    <p>Scored for experienced PMs, founders, and leaders. We assume you've heard the basics.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Time-Stamped Insights</h3>
+                    <p>Jump directly to the 3 minutes that matter. Skip the 57 minutes of filler.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✅</div>
+                    <h3>Honest Verdicts</h3>
+                    <p>"Best for Series B growth leads." "Skip if you hate unstructured rambling." Real talk.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="how-it-works" id="how">
-        <div class="container">
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="how-it-works-container">
             <h2>How It Works</h2>
             <div class="steps">
                 <div class="step">
-                    <div class="step-number">🎧</div>
-                    <h3>We Listen (So You Don't Have To)</h3>
-                    <p>Our team (homo sapiens + AI) has the patience of a saint. They listen to entire podcast episodes - yes, even the parts where they plug their newsletter for 5 minutes.</p>
+                    <div class="step-number">1</div>
+                    <h3>We Listen</h3>
+                    <p>Our AI analyzes every podcast episode in the PM/product space</p>
                 </div>
                 <div class="step">
-                    <div class="step-number">😤</div>
-                    <h3>We Get Annoyed (On Your Behalf)</h3>
-                    <p>"Iterate fast"? REJECTED.<br>"Focus on the customer"? SNOOZE.<br>"Ship and learn"? WE'VE HEARD IT.</p>
+                    <div class="step-number">2</div>
+                    <h3>We Score (Harshly)</h3>
+                    <p>6 dimensions. No grade inflation. Most episodes ARE 5-6/10.</p>
                 </div>
                 <div class="step">
-                    <div class="step-number">⏱️</div>
+                    <div class="step-number">3</div>
+                    <h3>We Filter</h3>
+                    <p>Generic advice gets rejected. Only non-obvious insights make the cut.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
                     <h3>You Save Time</h3>
-                    <p>Get the Top 5 non-obvious insights with timestamps. Listen to 15 minutes instead of 60. Show up to Monday's meeting with fresh ideas.</p>
+                    <p>Skip the 72% that are mid. Listen to the 8+/10 episodes.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="scoring">
-        <div class="container">
-            <h2>Our Scoring System (Brutally Honest)</h2>
-            <p class="scoring-subtitle">Most podcasts are 5-6/10. MOST. That's not mean, that's MATH.</p>
-            <div class="score-grid">
-                <div class="score-card excellent">
-                    <div class="score-label"><span class="score-emoji">🤯</span>10/10 "Holy shit"</div>
-                    <div class="score-desc">Life-changing content</div>
-                </div>
-                <div class="score-card excellent">
-                    <div class="score-label"><span class="score-emoji">🌟</span>9/10 "This slaps"</div>
-                    <div class="score-desc">Actually amazing</div>
-                </div>
-                <div class="score-card excellent">
-                    <div class="score-label"><span class="score-emoji">🔥</span>8/10 "Really good"</div>
-                    <div class="score-desc">Worth every minute</div>
-                </div>
-                <div class="score-card good">
-                    <div class="score-label"><span class="score-emoji">👍</span>7/10 "Pretty solid"</div>
-                    <div class="score-desc">Some genuinely good moments</div>
-                </div>
-                <div class="score-card good">
-                    <div class="score-label"><span class="score-emoji">👌</span>6/10 "Fine"</div>
-                    <div class="score-desc">Decent, a few interesting points</div>
-                </div>
-                <div class="score-card mid">
-                    <div class="score-label"><span class="score-emoji">😐</span>5/10 "Aggressively mid"</div>
-                    <div class="score-desc">Elevator music in podcast form</div>
-                </div>
-                <div class="score-card mid">
-                    <div class="score-label"><span class="score-emoji">😬</span>4/10 "Mostly fluff"</div>
-                    <div class="score-desc">Could've been an email</div>
-                </div>
-                <div class="score-card bad">
-                    <div class="score-label"><span class="score-emoji">😴</span>3/10 "Make it stop"</div>
-                    <div class="score-desc">You already knew all this</div>
-                </div>
-                <div class="score-card bad">
-                    <div class="score-label"><span class="score-emoji">🤦</span>2/10 "Why"</div>
-                    <div class="score-desc">No new information created</div>
-                </div>
-                <div class="score-card bad">
-                    <div class="score-label"><span class="score-emoji">💀</span>1/10 "Cursed"</div>
-                    <div class="score-desc">Owes you an apology</div>
-                </div>
-            </div>
+    <!-- Final CTA -->
+    <section class="final-cta" id="newsletter">
+        <h2>Ready to Stop Wasting Time?</h2>
+        <p>Browse analyzed episodes now, or get our weekly picks delivered</p>
+        
+        <div class="cta-buttons" style="margin-bottom: 2rem;">
+            <a href="/episodes" class="btn btn-primary">🎯 Browse All Episodes</a>
+        </div>
+
+        <div class="newsletter">
+            <h3>Get Weekly Newsletter</h3>
+            <p style="color: #6b7280; margin-bottom: 1rem;">
+                Every week: 1-2 episodes worth your time, 3-5 to skip
+            </p>
+            <form class="newsletter-form" action="#" method="post">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit">Subscribe</button>
+            </form>
         </div>
     </section>
 
-    <section class="featured" id="featured">
-        <div class="container">
-            <h2>Recently Analyzed</h2>
-            <div class="podcast-grid" id="podcast-grid">
-    <!-- Podcasts will load here dynamically -->
-    <p style="text-align: center; color: #718096;">Loading podcasts...</p>
-</div>
-
-<script>
-// Load podcasts dynamically
-fetch('/api/podcasts')
-    .then(response => response.json())
-    .then(podcasts => {
-        const grid = document.getElementById('podcast-grid');
-        grid.innerHTML = '';
-        
-        // Convert to array and sort by insight score (highest first)
-        const podcastArray = Object.entries(podcasts).map(([id, data]) => ({
-            id,
-            ...data
-        }));
-        
-        podcastArray.sort((a, b) => b.insight_score - a.insight_score);
-        
-        // Create cards
-        podcastArray.forEach(podcast => {
-            const card = document.createElement('div');
-            card.className = 'podcast-card';
-            card.onclick = () => window.location.href = `/analyze/${podcast.id}`;
-            
-            card.innerHTML = `
-                <div class="podcast-title">${podcast.title}</div>
-                <div class="podcast-scores">
-                    <span class="score-badge freshness">Freshness: ${podcast.freshness_score}/10</span>
-                    <span class="score-badge insights">Insights: ${podcast.insight_score}/10</span>
-                </div>
-                <div class="preview-insight">${podcast.top_insight.substring(0, 120)}...</div>
-            `;
-            
-            grid.appendChild(card);
-        });
-    })
-    .catch(error => {
-        console.error('Error loading podcasts:', error);
-        document.getElementById('podcast-grid').innerHTML = 
-            '<p style="color: #f56565;">Error loading podcasts. Please refresh.</p>';
-    });
-</script>
-            
-    </section>
-
-    <section class="target">
-        <div class="container">
-            <h2>Who This Is For</h2>
-            <div class="target-grid">
-                <div>
-                    <h3 style="margin-bottom: 20px; color: #166534;">This is for you if:</h3>
-                    <ul class="target-list for">
-                        <li>You've yelled "GET TO THE POINT" at your phone</li>
-                        <li>Your podcast queue gives you anxiety</li>
-                        <li>You've hate-listened to an entire episode out of spite</li>
-                        <li>You value your time more than pretending to be productive</li>
-                        <li>You're tired of "iterate and learn" advice</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 style="margin-bottom: 20px; color: #991b1b;">This is NOT for you if:</h3>
-                    <ul class="target-list not-for">
-                        <li>You enjoy 4-hour rambling conversations</li>
-                        <li>You think every podcast is a 10/10 masterpiece</li>
-                        <li>"Move fast and break things" still excites you</li>
-                        <li>You can't handle the truth about your favorite show</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <p><strong>Mostly Mid</strong> - Most podcasts are mid. We find the exceptions.</p>
-        <p>Built with spite, caffeine, and Claude AI</p>
-        <p style="margin-top: 20px; opacity: 0.7;">Currently analyzing AI, Product, and Startup podcasts</p>
+        <p>&copy; 2024 Mostly Mid. Built for busy professionals who value their time.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.7;">
+            Because life's too short for mediocre podcasts.
+        </p>
     </footer>
 </body>
 </html>

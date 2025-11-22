@@ -1,0 +1,33 @@
+{
+  "scores": {
+    "insight_density": 8,
+    "signal_to_noise": 7,
+    "actionability": 9,
+    "contrarian_index": 7,
+    "freshness": 9,
+    "host_quality": 8,
+    "overall": 8.0
+  },
+  "verdict": {
+    "tldr": "Dense, practical AI prompting masterclass that will immediately improve how you use LLMs - worth every minute.",
+    "best_for": "Product managers, engineers, and founders building AI features or anyone who uses ChatGPT/Claude regularly for work",
+    "skip_if": "You never use AI tools or only care about high-level AI strategy without getting into tactical implementation",
+    "worth_it": true,
+    "best_quote": "Studies have shown that using bad prompts can get you down to like 0% on a problem and good prompts can boost you up to 90%."
+  },
+  "key_insights": [
+    "Few-shot prompting (giving examples) is the single most effective technique - paste previous emails to get AI to write in your style, or show question-answer pairs for classification tasks",
+    "Role prompting ('You are a world-class copywriter') doesn't work for accuracy tasks anymore - only helps with expressive/writing tasks, contrary to popular belief",
+    "Decomposition technique: Ask 'what are the sub-problems you need to solve first?' then solve each one - works like having AI think through steps before jumping to solutions",
+    "Self-criticism method: Ask AI to check its own response, then implement its suggestions - can be repeated 1-3 times for iterative improvement",
+    "Prompt injection is unsolvable - even Sam Altman admits only 95-99% security is possible, making AI agents potentially dangerous as they gain real-world capabilities"
+  ],
+  "why_these_scores": {
+    "insight_density": "Packed with specific, actionable techniques backed by research. The 76-page prompt report analysis and concrete examples like medical coding accuracy jumping 70% provide real substance every few minutes.",
+    "signal_to_noise": "Mostly valuable content with minimal rambling. Some tangents into foraging/personal stories, but host keeps things focused on practical techniques and real examples.",
+    "actionability": "Extremely actionable - gives exact phrases to use, specific formatting advice (XML, Q&A), and step-by-step implementation. You can immediately apply few-shot prompting and decomposition.",
+    "contrarian_index": "Challenges popular beliefs about role prompting and 'tip me $5' techniques with research backing. Not revolutionary but definitely goes against common Twitter advice.",
+    "freshness": "Highly current - references recent models like o3, discusses latest research from 2024, and covers cutting-edge topics like AI red teaming competitions.",
+    "host_quality": "Strong preparation with specific examples, good follow-up questions, and keeps guest focused on practical advice rather than just theory."
+  }
+}

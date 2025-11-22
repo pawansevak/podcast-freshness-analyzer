@@ -1,0 +1,79 @@
+{
+  "scores": {
+    "insight_density": 6,
+    "signal_to_noise": 7,
+    "actionability": 8,
+    "contrarian_index": 4,
+    "freshness": 6,
+    "host_quality": 7,
+    "overall": 6.5
+  },
+  "verdict": {
+    "tldr": "Solid tactical AI workflows for PMs, but mostly incremental improvements on obvious use cases rather than mind-blowing insights.",
+    "best_for": "Mid-level PMs who haven't systematized their AI workflows yet and want specific implementation steps",
+    "skip_if": "You're already using custom GPTs regularly or looking for strategic AI insights beyond workflow optimization",
+    "worth_it": true,
+    "best_quote": "I can be asked on the spot from pretty much anyone in the company about something and I can give you an answer really quickly. I couldn't have done that pre-AI."
+  },
+  "top_5_takeaways": [
+    {
+      "rank": 1,
+      "insight": "Use Claude to write step-by-step Python scraping scripts for non-technical PMs - resulted in 34,000 Reddit conversations about his product that he analyzed for product prioritization",
+      "timestamp": "9:20",
+      "why_valuable": "Most PMs know they should gather user feedback but don't have technical skills to scale it programmatically. The specific workflow from 'I want everything' to narrowed data sources to working script is replicable.",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 2,
+      "insight": "Print competitor websites/pricing pages as PDFs and upload to GPT projects instead of trying to paste URLs - 'everything is text' approach to knowledge management",
+      "timestamp": "15:36",
+      "why_valuable": "Simple but overlooked technique that ensures scoped, reliable content ingestion vs. unreliable web crawling. Most people don't think of PDFs as a text ingestion strategy.",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 3,
+      "insight": "Load performance review feedback into a custom GPT to create an always-available coach for specific development areas like concise writing",
+      "timestamp": "22:04",
+      "why_valuable": "Solves the common problem of getting feedback but having no systematic way to improve on it. Most people get 'write more concisely' feedback and do nothing actionable about it.",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 4,
+      "insight": "GPT Voice Mode for interview prep is superior to text-based practice because verbal and written communication skills are fundamentally different",
+      "timestamp": "29:16",
+      "why_valuable": "Addresses the gap between knowing what to say and being able to articulate it verbally under pressure. Most interview prep is reading/writing focused.",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 5,
+      "insight": "Explicitly instruct AI to 'challenge me and not be too nice' and 'give candid feedback' to avoid the supportiveness problem",
+      "timestamp": "16:39",
+      "why_valuable": "Common frustration with AI being overly supportive, but most people don't systematically prompt for pushback. Simple but effective prompt engineering.",
+      "obviousness_level": "best_available"
+    }
+  ],
+  "why_these_scores": {
+    "insight_density": "Mix of solid tactical advice with some genuinely useful specifics, but nothing that fundamentally changes how you think about AI or product management. About 1 decent insight per 10 minutes.",
+    "signal_to_noise": "Well-edited with clear demos and minimal rambling. Host keeps things moving and guest stays focused on practical examples.",
+    "actionability": "Very strong - provides step-by-step workflows, specific prompts, and replicable processes. You could implement most of these Monday morning.",
+    "contrarian_index": "Mostly consensus views about AI being helpful for PMs. Nothing particularly controversial or challenging to conventional wisdom.",
+    "freshness": "Uses current AI tools and references recent developments, but the core insights about workflow optimization are somewhat timeless. Could stay relevant for 1-2 years.",
+    "host_quality": "Good at extracting specific examples and keeping guest focused on practical demos rather than theory. Asks follow-up questions and manages the technical demo well."
+  },
+  "summary": "Practical deep-dive into how an experienced PM systematizes AI workflows for customer research, writing improvement, and interview prep. Strong on tactical implementation details but light on strategic insights about AI's impact on product management.",
+  "characteristics": [
+    "tactical",
+    "workflow-focused",
+    "demo-heavy",
+    "implementation-specific",
+    "AI-tools"
+  ],
+  "obvious_insights_rejected": [
+    "AI helps with context switching and managing multiple projects - standard productivity advice",
+    "Custom GPTs are useful for product managers - widely known since GPT-4 launch",
+    "Voice mode feels more natural than text for practice - obvious once you try it"
+  ],
+  "analyzed_at": "2025-11-22T10:35:06.273478",
+  "model": "claude-sonnet-4-20250514",
+  "scoring_mode": "hybrid_critical"
+}

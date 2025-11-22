@@ -1,0 +1,31 @@
+{
+  "scores": {
+    "insight_density": 8,
+    "signal_to_noise": 7,
+    "actionability": 6,
+    "contrarian_index": 7,
+    "freshness": 9,
+    "host_quality": 7,
+    "overall": 7.3
+  },
+  "verdict": {
+    "tldr": "Rare insider view of how AI is actually changing product development at the bleeding edge - worth it for the concrete examples and contrarian takes.",
+    "best_for": "Product leaders at AI companies, founders building on LLM APIs, or anyone wanting to understand how 90% AI-generated code changes everything",
+    "skip_if": "You want tactical product advice for traditional companies or aren't interested in AI's impact on product development",
+    "worth_it": true,
+    "best_quote": "90% of your code roughly is written by AI. We really rapidly became bottlenecked on other things like our merge queue - it just completely blew out the expectations."
+  },
+  "key_insights": [
+    "When 90% of code is AI-generated, bottlenecks shift from engineering to decision-making/alignment upstream and merge queues/review processes downstream - traditional product development assumptions break down",
+    "At Anthropic's Claude Code team, 95%+ of code is written by Claude itself in a self-improving loop, with human review shifting from line-by-line to acceptance testing of larger AI-generated pull requests",
+    "The highest leverage for AI product teams comes from embedding PMs with researchers during model training, not just building UX around finished models - most value is at the intersection of product and research"
+  ],
+  "why_these_scores": {
+    "insight_density": "Packed with specific, novel insights about AI product development that you can't get elsewhere - concrete stats like 90% AI code, specific bottleneck shifts, real examples of how workflows change",
+    "signal_to_noise": "Mostly valuable content with some rambling and standard interview filler, but Lenny keeps it moving and Mike stays concrete most of the time",
+    "actionability": "Good directional advice for AI product teams but lacks step-by-step playbooks - more strategic insights than tactical implementation details",
+    "contrarian_index": "Several genuinely contrarian takes: focus on builders over consumers, embed PMs with researchers not just UX, challenger brands should differentiate rather than chase market leaders",
+    "freshness": "Extremely current - recorded recently with cutting-edge insights from the frontier of AI development that most people haven't heard yet",
+    "host_quality": "Lenny asks good follow-up questions and keeps the conversation focused, though could have pushed harder on some vague answers"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "scores": {
+    "insight_density": 7,
+    "signal_to_noise": 6,
+    "actionability": 8,
+    "contrarian_index": 6,
+    "freshness": 9,
+    "host_quality": 7,
+    "overall": 7.0
+  },
+  "verdict": {
+    "tldr": "Solid tactical insights from an AI coding tool founder, but gets bogged down in company storytelling and demo fluff.",
+    "best_for": "Product managers and engineers at mid-to-large companies who want to understand how AI coding tools actually work and impact team dynamics",
+    "skip_if": "You're looking for breakthrough strategic insights or hate detailed product demos that eat up 15+ minutes",
+    "worth_it": true,
+    "best_quote": "We should be cannibalizing the existing state of our product every 6 to 12 months. Every 6 to 12 months, it should make our existing product look silly."
+  },
+  "key_insights": [
+    "Hiring philosophy: Only hire when you're 'underwater' - company should be like a 'dehydrated entity' where every hire is water you only add when desperately needed. Forces ruthless prioritization and prevents manufactured work.",
+    "AI coding reality check: Even if AI writes 90% of code, engineers only get ~30-40% productivity boost due to Amdahl's law - they still review, debug, design, deploy. This means companies should hire MORE engineers, not fewer, as ROI of building technology increases.",
+    "Product cannibalization strategy: Run two roadmaps - one based on user feedback, one 'secret roadmap' betting on future needs. Must be willing to make current product look 'dumb' every 6-12 months to stay ahead."
+  ],
+  "why_these_scores": {
+    "insight_density": "Strong specific frameworks (dehydrated hiring, Amdahl's law application, cannibalization strategy) but diluted by lengthy company origin story and demo sections",
+    "signal_to_noise": "Good tactical content but 15+ minute demo and extensive backstory reduce efficiency. Could be 30% shorter without losing value",
+    "actionability": "Excellent practical advice: specific hiring approach, concrete tips for using AI tools, clear PM workflow with Windsurf. Can implement Monday morning",
+    "contrarian_index": "Challenges conventional wisdom on AI replacing engineers and lean startup hiring, but not deeply controversial. Mostly informed contrarian takes",
+    "freshness": "Cutting-edge AI coding space, recorded recently, highly relevant to current 2024/2025 reality of AI tool adoption",
+    "host_quality": "Good follow-up questions and keeps conversation moving, though allows demo to run long. Decent preparation and probing"
+  }
+}

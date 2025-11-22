@@ -1,0 +1,31 @@
+{
+  "scores": {
+    "insight_density": 7,
+    "signal_to_noise": 6,
+    "actionability": 8,
+    "contrarian_index": 6,
+    "freshness": 9,
+    "host_quality": 7,
+    "overall": 7.0
+  },
+  "verdict": {
+    "tldr": "Solid deep-dive into AI-powered product building with concrete tactics, but could lose 20 minutes of fluff.",
+    "best_for": "Product managers and founders who want to understand how AI tools will change product development and get specific tips for using tools like Lovable",
+    "skip_if": "You're already deep into AI product building or hate live demos that take up significant podcast time",
+    "worth_it": true,
+    "best_quote": "The best thing you can do for your current profession is to be in the top 1% in knowing how to use AI tools - spend a full week solving one real problem end-to-end and you're there."
+  },
+  "key_insights": [
+    "Lovable hit 4M ARR in 4 weeks, 10M ARR in 2 months with 15 people by solving the 'getting unstuck' problem - they identified specific failure points (login, data persistence, payments) and made the AI reliably handle those scenarios",
+    "The new valuable skillset is being a generalist who can do 'a bit of everything' - if building a product team today, hire for as many skill sets as possible per person rather than narrow specialists",
+    "To get in the top 1% of AI tool usage: spend one full week solving a real problem end-to-end using AI, from idea to working solution that someone actually uses"
+  ],
+  "why_these_scores": {
+    "insight_density": "Strong specific insights about scaling AI products and future hiring, but diluted by lengthy demo and some generic startup advice",
+    "signal_to_noise": "Good content but 15+ minutes of demo, sponsor reads, and some rambling about the future reduces efficiency",
+    "actionability": "Excellent specific tactics: work trials for hiring, weekly planning with FigJam, chat mode for learning AI tools, concrete steps to master AI",
+    "contrarian_index": "Mildly contrarian on hiring generalists over specialists and building in Europe vs SF, but not groundbreaking takes",
+    "freshness": "Cutting-edge - recorded recently about the fastest-growing AI startup with current tools and tactics",
+    "host_quality": "Good follow-ups and keeps guest on track, though could have trimmed the demo length for podcast format"
+  }
+}
