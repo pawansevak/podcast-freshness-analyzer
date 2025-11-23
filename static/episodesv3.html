@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode Library - MOSTLY MID</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #1DB954;
+            --green-bright: #1ed760;
+            --yellow: #FFD600;
+            --dark: #121212;
+            --dark-light: #181818;
+            --dark-gray: #282828;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --red: #ff3b30;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-primary);
+            background: var(--dark);
+        }
+
+        /* Header */
+        .header {
+            background: var(--dark);
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid var(--green);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(18, 18, 18, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .page-header p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            background: var(--dark-light);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 2px solid var(--dark-gray);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            border-right: 2px solid var(--dark-gray);
+            transition: all 0.2s;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat:hover {
+            background: var(--dark-gray);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Filters */
+        .filters {
+            background: var(--dark-light);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--dark-gray);
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .filters-header h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .clear-filters {
+            background: transparent;
+            border: 2px solid var(--text-secondary);
+            color: var(--text-secondary);
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+        }
+
+        .clear-filters:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-label {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            border: 2px solid var(--dark-gray);
+            background: var(--dark);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--green);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--green);
+            color: #000;
+            border-color: var(--green);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--dark-gray);
+            background: var(--dark);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .search-box::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Results Info */
+        .results-info {
+            margin-bottom: 2rem;
+            padding: 1rem 1.5rem;
+            background: var(--dark-light);
+            border: 2px solid var(--dark-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .results-count {
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .sort-dropdown {
+            padding: 0.6rem 1rem;
+            border: 2px solid var(--dark-gray);
+            background: var(--dark);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sort-dropdown:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        /* Episodes Grid */
+        .episodes-grid {
+            display: grid;
+            gap: 0;
+        }
+
+        .episode-card {
+            background: var(--dark-light);
+            padding: 2rem;
+            border: 2px solid var(--dark-gray);
+            border-top: none;
+            transition: all 0.2s;
+        }
+
+        .episode-card:first-child {
+            border-top: 2px solid var(--dark-gray);
+        }
+
+        .episode-card:hover {
+            background: var(--dark-gray);
+            border-color: var(--green);
+        }
+
+        .episode-header {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .episode-number {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-secondary);
+        }
+
+        .episode-title h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .episode-guest {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .overall-score {
+            font-size: 3rem;
+            font-weight: 900;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .score-excellent {
+            color: var(--green);
+        }
+
+        .score-good {
+            color: var(--green);
+            opacity: 0.7;
+        }
+
+        .score-ok {
+            color: var(--yellow);
+        }
+
+        .score-poor {
+            color: var(--red);
+        }
+
+        .verdict-badge {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 2px solid;
+        }
+
+        .verdict-listen {
+            background: var(--green);
+            color: #000;
+            border-color: var(--green);
+        }
+
+        .verdict-maybe {
+            background: transparent;
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .verdict-skip {
+            background: transparent;
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        /* Skip Recommendation */
+        .skip-recommendation {
+            background: rgba(255, 59, 48, 0.1);
+            border-left: 4px solid var(--red);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skip-recommendation strong {
+            display: block;
+            color: var(--red);
+            margin-bottom: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .skip-recommendation p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Dimensions */
+        .dimensions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dimension {
+            background: var(--dark);
+            padding: 1rem;
+            border: 2px solid var(--dark-gray);
+            transition: all 0.2s;
+        }
+
+        .dimension:hover {
+            border-color: var(--green);
+        }
+
+        .dimension-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .dimension-name {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .dimension-score {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--green);
+        }
+
+        .dimension-bar {
+            height: 4px;
+            background: var(--dark-gray);
+            overflow: hidden;
+        }
+
+        .dimension-fill {
+            height: 100%;
+            background: var(--green);
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Top Insight */
+        .top-insight {
+            background: rgba(29, 185, 84, 0.1);
+            border-left: 4px solid var(--green);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .top-insight strong {
+            display: block;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .top-insight p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Card Footer */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 2px solid var(--dark-gray);
+        }
+
+        .episode-duration {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .view-details {
+            background: var(--green);
+            color: #000;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .view-details:hover {
+            background: var(--green-bright);
+        }
+
+        /* Loading/Empty States */
+        .loading, .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            border: 4px solid var(--dark-gray);
+            border-top: 4px solid var(--green);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .empty-state p {
+            color: var(--text-secondary);
+        }
+
+        .debug-info {
+            background: var(--dark-light);
+            border: 2px solid var(--yellow);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .debug-info pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Mobile */
+        @media (max-width: 968px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat {
+                border-right: none;
+                border-bottom: 2px solid var(--dark-gray);
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
+
+            .dimensions {
+                grid-template-columns: 1fr;
+            }
+
+            .episode-header {
+                grid-template-columns: 1fr auto;
+                gap: 1rem;
+            }
+
+            .episode-number {
+                display: none;
+            }
+
+            .verdict-badge {
+                grid-column: 1 / -1;
+                text-align: center;
+            }
+
+            .results-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">Mostly Mid</a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/episodes">Episodes</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Episode Library</h1>
+            <p>Brutally honest analysis of podcast quality</p>
+        </div>
+
+        <!-- Debug Info (will hide when working) -->
+        <div class="debug-info" id="debug-info" style="display: none;">
+            <strong style="color: var(--yellow);">DEBUG INFO:</strong>
+            <pre id="debug-content"></pre>
+        </div>
+
+        <!-- Stats Dashboard -->
+        <div class="stats-dashboard">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value" id="total-episodes">-</div>
+                    <div class="stat-label">Episodes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="avg-score">-</div>
+                    <div class="stat-label">Avg Score</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="worth-listening">-</div>
+                    <div class="stat-label">Worth It</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="skip-count">-</div>
+                    <div class="stat-label">Skip</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filters-header">
+                <h3>Filter</h3>
+                <button class="clear-filters" onclick="clearAllFilters()">Clear All</button>
+            </div>
+
+            <!-- Search -->
+            <div class="filter-group">
+                <label class="filter-label">Search</label>
+                <input 
+                    type="text" 
+                    class="search-box" 
+                    id="search-input"
+                    placeholder="Search by title, guest, or topic..."
+                    oninput="filterEpisodes()"
+                >
+            </div>
+
+            <!-- Quality Filter -->
+            <div class="filter-group">
+                <label class="filter-label">Quality</label>
+                <div class="filter-buttons">
+                    <button class="filter-btn" data-filter="quality" data-value="all" onclick="setFilter('quality', 'all')">All</button>
+                    <button class="filter-btn" data-filter="quality" data-value="excellent" onclick="setFilter('quality', 'excellent')">8-10</button>
+                    <button class="filter-btn" data-filter="quality" data-value="good" onclick="setFilter('quality', 'good')">6-8</button>
+                    <button class="filter-btn" data-filter="quality" data-value="mediocre" onclick="setFilter('quality', 'mediocre')">4-6</button>
+                    <button class="filter-btn" data-filter="quality" data-value="skip" onclick="setFilter('quality', 'skip')">&lt;4</button>
+                </div>
+            </div>
+
+            <!-- Dimension Filter -->
+            <div class="filter-group">
+                <label class="filter-label">Focus</label>
+                <div class="filter-buttons">
+                    <button class="filter-btn" data-filter="dimension" data-value="all" onclick="setFilter('dimension', 'all')">All</button>
+                    <button class="filter-btn" data-filter="dimension" data-value="specificity" onclick="setFilter('dimension', 'specificity')">Specific</button>
+                    <button class="filter-btn" data-filter="dimension" data-value="originality" onclick="setFilter('dimension', 'originality')">Original</button>
+                    <button class="filter-btn" data-filter="dimension" data-value="density" onclick="setFilter('dimension', 'density')">Dense</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Info -->
+        <div class="results-info">
+            <div class="results-count">
+                <strong id="showing-count">0</strong> of <strong id="total-count">0</strong> episodes
+            </div>
+            <select class="sort-dropdown" id="sort-select" onchange="sortEpisodes()">
+                <option value="score-desc">Highest Score</option>
+                <option value="score-asc">Lowest Score</option>
+                <option value="title-asc">Title A-Z</option>
+                <option value="title-desc">Title Z-A</option>
+            </select>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading" id="loading-state">
+            <div class="spinner"></div>
+            <p>Loading episodes...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <div class="empty-state-icon">🔍</div>
+            <h3>No Episodes Found</h3>
+            <p>Try adjusting your filters</p>
+        </div>
+
+        <!-- Episodes Grid -->
+        <div class="episodes-grid" id="episodes-grid">
+            <!-- Episodes loaded via JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        let allEpisodes = [];
+        let currentFilters = {
+            quality: 'all',
+            dimension: 'all',
+            search: ''
+        };
+        let episodeCounter = 1;
+
+        function debugLog(message, data) {
+            console.log(message, data);
+            const debugDiv = document.getElementById('debug-info');
+            const debugContent = document.getElementById('debug-content');
+            debugDiv.style.display = 'block';
+            debugContent.textContent += message + '\n' + (data ? JSON.stringify(data, null, 2) : '') + '\n\n';
+        }
+
+        async function loadEpisodes() {
+            try {
+                debugLog('Fetching episodes from /api/episodes...');
+                const response = await fetch('/api/episodes');
+                
+                debugLog('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                debugLog('Raw API response:', data);
+                
+                // Handle different possible response formats
+                if (Array.isArray(data)) {
+                    allEpisodes = data;
+                } else if (data.episodes && Array.isArray(data.episodes)) {
+                    allEpisodes = data.episodes;
+                } else if (typeof data === 'object') {
+                    // If it's an object, try to extract episodes from it
+                    allEpisodes = Object.values(data).filter(item => 
+                        item && typeof item === 'object' && item.title
+                    );
+                }
+                
+                debugLog(`Loaded ${allEpisodes.length} episodes`);
+                
+                if (allEpisodes.length > 0) {
+                    debugLog('First episode sample:', allEpisodes[0]);
+                    // Hide debug info if we have episodes
+                    document.getElementById('debug-info').style.display = 'none';
+                }
+                
+                updateStats();
+                filterEpisodes();
+            } catch (error) {
+                console.error('Error loading episodes:', error);
+                debugLog('ERROR:', error.message);
+                document.getElementById('loading-state').innerHTML = `
+                    <div class="empty-state-icon">⚠️</div>
+                    <h3>Error Loading</h3>
+                    <p>${error.message}</p>
+                    <p style="margin-top: 1rem;">Check the debug info above or browser console</p>
+                `;
+            }
+        }
+
+        function updateStats() {
+            const total = allEpisodes.length;
+            const avgScore = total > 0 
+                ? (allEpisodes.reduce((sum, ep) => sum + (ep.overall_score || 0), 0) / total).toFixed(1)
+                : '0.0';
+            const worthListening = allEpisodes.filter(ep => (ep.overall_score || 0) >= 7).length;
+            const skipCount = allEpisodes.filter(ep => ep.skip_recommendation).length;
+
+            document.getElementById('total-episodes').textContent = total;
+            document.getElementById('avg-score').textContent = avgScore;
+            document.getElementById('worth-listening').textContent = worthListening;
+            document.getElementById('skip-count').textContent = skipCount;
+            document.getElementById('total-count').textContent = total;
+        }
+
+        function setFilter(type, value) {
+            currentFilters[type] = value;
+            
+            document.querySelectorAll(`[data-filter="${type}"]`).forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === value);
+            });
+            
+            filterEpisodes();
+        }
+
+        function clearAllFilters() {
+            currentFilters = { quality: 'all', dimension: 'all', search: '' };
+            document.getElementById('search-input').value = '';
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === 'all');
+            });
+            filterEpisodes();
+        }
+
+        function filterEpisodes() {
+            currentFilters.search = document.getElementById('search-input').value.toLowerCase();
+            
+            let filtered = allEpisodes.filter(episode => {
+                if (currentFilters.quality !== 'all') {
+                    const score = episode.overall_score || 0;
+                    if (currentFilters.quality === 'excellent' && score < 8) return false;
+                    if (currentFilters.quality === 'good' && (score < 6 || score >= 8)) return false;
+                    if (currentFilters.quality === 'mediocre' && (score < 4 || score >= 6)) return false;
+                    if (currentFilters.quality === 'skip' && score >= 4) return false;
+                }
+                
+                if (currentFilters.dimension !== 'all') {
+                    const dim = currentFilters.dimension;
+                    const dimensions = episode.dimensions || {};
+                    const dimScore = dimensions[dim] || 0;
+                    if (dimScore < 7) return false;
+                }
+                
+                if (currentFilters.search) {
+                    const searchText = `${episode.title || ''} ${episode.guest || ''}`.toLowerCase();
+                    if (!searchText.includes(currentFilters.search)) return false;
+                }
+                
+                return true;
+            });
+            
+            sortEpisodes(filtered);
+        }
+
+        function sortEpisodes(episodes = null) {
+            const sortValue = document.getElementById('sort-select').value;
+            const toSort = episodes || allEpisodes;
+            
+            let sorted = [...toSort];
+            
+            switch(sortValue) {
+                case 'score-desc':
+                    sorted.sort((a, b) => (b.overall_score || 0) - (a.overall_score || 0));
+                    break;
+                case 'score-asc':
+                    sorted.sort((a, b) => (a.overall_score || 0) - (b.overall_score || 0));
+                    break;
+                case 'title-asc':
+                    sorted.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+                    break;
+                case 'title-desc':
+                    sorted.sort((a, b) => (b.title || '').localeCompare(a.title || ''));
+                    break;
+            }
+            
+            renderEpisodes(sorted);
+        }
+
+        function renderEpisodes(episodes) {
+            const grid = document.getElementById('episodes-grid');
+            const loadingState = document.getElementById('loading-state');
+            const emptyState = document.getElementById('empty-state');
+            
+            loadingState.style.display = 'none';
+            episodeCounter = 1;
+            
+            if (episodes.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                grid.style.display = 'grid';
+                emptyState.style.display = 'none';
+                
+                grid.innerHTML = episodes.map(episode => createEpisodeCard(episode)).join('');
+                
+                setTimeout(() => {
+                    document.querySelectorAll('.dimension-fill').forEach(bar => {
+                        bar.style.width = bar.dataset.width;
+                    });
+                }, 100);
+            }
+            
+            document.getElementById('showing-count').textContent = episodes.length;
+        }
+
+        function createEpisodeCard(episode) {
+            const score = episode.overall_score || 0;
+            const scoreClass = 
+                score >= 8 ? 'score-excellent' :
+                score >= 6 ? 'score-good' :
+                score >= 4 ? 'score-ok' : 'score-poor';
+            
+            const verdictClass = 
+                score >= 7 ? 'verdict-listen' :
+                score >= 5 ? 'verdict-maybe' : 'verdict-skip';
+            
+            const verdictText = 
+                score >= 7 ? 'Listen' :
+                score >= 5 ? 'Maybe' : 'Skip';
+            
+            const skipSection = episode.skip_recommendation ? `
+                <div class="skip-recommendation">
+                    <strong>⚠️ Skip This</strong>
+                    <p>${episode.skip_reason || 'Generic content without unique value.'}</p>
+                </div>
+            ` : '';
+            
+            const topInsights = episode.top_insights || episode.takeaways || [];
+            const topInsight = topInsights.length > 0 ? `
+                <div class="top-insight">
+                    <strong>💡 Top Insight</strong>
+                    <p>${topInsights[0].insight || topInsights[0].takeaway || topInsights[0]}</p>
+                </div>
+            ` : '';
+            
+            const currentNumber = episodeCounter++;
+            
+            const dimensions = episode.dimensions || {};
+            const dimensionEntries = Object.entries(dimensions).slice(0, 6);
+            
+            return `
+                <div class="episode-card">
+                    <div class="episode-header">
+                        <div class="episode-number">${currentNumber}</div>
+                        <div class="episode-title">
+                            <h3>${episode.title || 'Untitled Episode'}</h3>
+                            <p class="episode-guest">${episode.guest || 'Unknown Guest'}</p>
+                        </div>
+                        <div class="overall-score ${scoreClass}">
+                            ${score.toFixed(1)}
+                        </div>
+                        <div class="verdict-badge ${verdictClass}">${verdictText}</div>
+                    </div>
+                    
+                    ${skipSection}
+                    
+                    ${dimensionEntries.length > 0 ? `
+                        <div class="dimensions">
+                            ${dimensionEntries.map(([name, dimScore]) => `
+                                <div class="dimension">
+                                    <div class="dimension-header">
+                                        <span class="dimension-name">${formatDimensionName(name)}</span>
+                                        <span class="dimension-score">${(dimScore || 0).toFixed(1)}</span>
+                                    </div>
+                                    <div class="dimension-bar">
+                                        <div class="dimension-fill" data-width="${(dimScore || 0) * 10}%" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${topInsight}
+                    
+                    <div class="card-footer">
+                        <span class="episode-duration">📊 ${dimensionEntries.length} Dimensions</span>
+                        <a href="/episode/${episode.id || episode.episode_id || currentNumber}" class="view-details">Details</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatDimensionName(name) {
+            return name.split('_').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-value="all"]').forEach(btn => {
+                btn.classList.add('active');
+            });
+            
+            loadEpisodes();
+        });
+    </script>
+</body>
+</html>
