@@ -306,6 +306,10 @@ def health_check():
         "episodes_loaded": len(episodes)
     }
 
+@app.route('/episode/<episode_id>')
+def episode_detail(episode_id):
+    """Serve the episode detail page"""
+    return send_from_directory('static', 'episode.html')
 
 if __name__ == "__main__":
     import uvicorn
