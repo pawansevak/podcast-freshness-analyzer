@@ -563,6 +563,20 @@
             color: var(--text-secondary);
         }
 
+        .debug-info {
+            background: var(--dark-light);
+            border: 2px solid var(--yellow);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .debug-info pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
         /* Mobile */
         @media (max-width: 968px) {
             .stats-grid {
@@ -622,6 +636,12 @@
         <div class="page-header">
             <h1>Episode Library</h1>
             <p>Brutally honest analysis of podcast quality</p>
+        </div>
+
+        <!-- Debug Info (will hide when working) -->
+        <div class="debug-info" id="debug-info" style="display: none;">
+            <strong style="color: var(--yellow);">DEBUG INFO:</strong>
+            <pre id="debug-content"></pre>
         </div>
 
         <!-- Stats Dashboard -->
@@ -730,20 +750,58 @@
         };
         let episodeCounter = 1;
 
+        function debugLog(message, data) {
+            console.log(message, data);
+            const debugDiv = document.getElementById('debug-info');
+            const debugContent = document.getElementById('debug-content');
+            debugDiv.style.display = 'block';
+            debugContent.textContent += message + '\n' + (data ? JSON.stringify(data, null, 2) : '') + '\n\n';
+        }
+
         async function loadEpisodes() {
             try {
+                debugLog('Fetching episodes from /api/episodes...');
                 const response = await fetch('/api/episodes');
+                
+                debugLog('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
-                allEpisodes = data.episodes || [];
+                debugLog('Raw API response:', data);
+                
+                // Handle different possible response formats
+                if (Array.isArray(data)) {
+                    allEpisodes = data;
+                } else if (data.episodes && Array.isArray(data.episodes)) {
+                    allEpisodes = data.episodes;
+                } else if (typeof data === 'object') {
+                    // If it's an object, try to extract episodes from it
+                    allEpisodes = Object.values(data).filter(item => 
+                        item && typeof item === 'object' && item.title
+                    );
+                }
+                
+                debugLog(`Loaded ${allEpisodes.length} episodes`);
+                
+                if (allEpisodes.length > 0) {
+                    debugLog('First episode sample:', allEpisodes[0]);
+                    // Hide debug info if we have episodes
+                    document.getElementById('debug-info').style.display = 'none';
+                }
                 
                 updateStats();
                 filterEpisodes();
             } catch (error) {
                 console.error('Error loading episodes:', error);
+                debugLog('ERROR:', error.message);
                 document.getElementById('loading-state').innerHTML = `
                     <div class="empty-state-icon">⚠️</div>
                     <h3>Error Loading</h3>
-                    <p>Please refresh the page</p>
+                    <p>${error.message}</p>
+                    <p style="margin-top: 1rem;">Check the debug info above or browser console</p>
                 `;
             }
         }
@@ -751,9 +809,9 @@
         function updateStats() {
             const total = allEpisodes.length;
             const avgScore = total > 0 
-                ? (allEpisodes.reduce((sum, ep) => sum + ep.overall_score, 0) / total).toFixed(1)
+                ? (allEpisodes.reduce((sum, ep) => sum + (ep.overall_score || 0), 0) / total).toFixed(1)
                 : '0.0';
-            const worthListening = allEpisodes.filter(ep => ep.overall_score >= 7).length;
+            const worthListening = allEpisodes.filter(ep => (ep.overall_score || 0) >= 7).length;
             const skipCount = allEpisodes.filter(ep => ep.skip_recommendation).length;
 
             document.getElementById('total-episodes').textContent = total;
@@ -787,7 +845,7 @@
             
             let filtered = allEpisodes.filter(episode => {
                 if (currentFilters.quality !== 'all') {
-                    const score = episode.overall_score;
+                    const score = episode.overall_score || 0;
                     if (currentFilters.quality === 'excellent' && score < 8) return false;
                     if (currentFilters.quality === 'good' && (score < 6 || score >= 8)) return false;
                     if (currentFilters.quality === 'mediocre' && (score < 4 || score >= 6)) return false;
@@ -796,12 +854,13 @@
                 
                 if (currentFilters.dimension !== 'all') {
                     const dim = currentFilters.dimension;
-                    const dimScore = episode.dimensions[dim] || 0;
+                    const dimensions = episode.dimensions || {};
+                    const dimScore = dimensions[dim] || 0;
                     if (dimScore < 7) return false;
                 }
                 
                 if (currentFilters.search) {
-                    const searchText = `${episode.title} ${episode.guest}`.toLowerCase();
+                    const searchText = `${episode.title || ''} ${episode.guest || ''}`.toLowerCase();
                     if (!searchText.includes(currentFilters.search)) return false;
                 }
                 
@@ -819,16 +878,16 @@
             
             switch(sortValue) {
                 case 'score-desc':
-                    sorted.sort((a, b) => b.overall_score - a.overall_score);
+                    sorted.sort((a, b) => (b.overall_score || 0) - (a.overall_score || 0));
                     break;
                 case 'score-asc':
-                    sorted.sort((a, b) => a.overall_score - b.overall_score);
+                    sorted.sort((a, b) => (a.overall_score || 0) - (b.overall_score || 0));
                     break;
                 case 'title-asc':
-                    sorted.sort((a, b) => a.title.localeCompare(b.title));
+                    sorted.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
                     break;
                 case 'title-desc':
-                    sorted.sort((a, b) => b.title.localeCompare(a.title));
+                    sorted.sort((a, b) => (b.title || '').localeCompare(a.title || ''));
                     break;
             }
             
@@ -863,18 +922,19 @@
         }
 
         function createEpisodeCard(episode) {
+            const score = episode.overall_score || 0;
             const scoreClass = 
-                episode.overall_score >= 8 ? 'score-excellent' :
-                episode.overall_score >= 6 ? 'score-good' :
-                episode.overall_score >= 4 ? 'score-ok' : 'score-poor';
+                score >= 8 ? 'score-excellent' :
+                score >= 6 ? 'score-good' :
+                score >= 4 ? 'score-ok' : 'score-poor';
             
             const verdictClass = 
-                episode.overall_score >= 7 ? 'verdict-listen' :
-                episode.overall_score >= 5 ? 'verdict-maybe' : 'verdict-skip';
+                score >= 7 ? 'verdict-listen' :
+                score >= 5 ? 'verdict-maybe' : 'verdict-skip';
             
             const verdictText = 
-                episode.overall_score >= 7 ? 'Listen' :
-                episode.overall_score >= 5 ? 'Maybe' : 'Skip';
+                score >= 7 ? 'Listen' :
+                score >= 5 ? 'Maybe' : 'Skip';
             
             const skipSection = episode.skip_recommendation ? `
                 <div class="skip-recommendation">
@@ -883,50 +943,56 @@
                 </div>
             ` : '';
             
-            const topInsight = episode.top_insights && episode.top_insights.length > 0 ? `
+            const topInsights = episode.top_insights || episode.takeaways || [];
+            const topInsight = topInsights.length > 0 ? `
                 <div class="top-insight">
                     <strong>💡 Top Insight</strong>
-                    <p>${episode.top_insights[0].insight}</p>
+                    <p>${topInsights[0].insight || topInsights[0].takeaway || topInsights[0]}</p>
                 </div>
             ` : '';
             
             const currentNumber = episodeCounter++;
+            
+            const dimensions = episode.dimensions || {};
+            const dimensionEntries = Object.entries(dimensions).slice(0, 6);
             
             return `
                 <div class="episode-card">
                     <div class="episode-header">
                         <div class="episode-number">${currentNumber}</div>
                         <div class="episode-title">
-                            <h3>${episode.title}</h3>
+                            <h3>${episode.title || 'Untitled Episode'}</h3>
                             <p class="episode-guest">${episode.guest || 'Unknown Guest'}</p>
                         </div>
                         <div class="overall-score ${scoreClass}">
-                            ${episode.overall_score.toFixed(1)}
+                            ${score.toFixed(1)}
                         </div>
                         <div class="verdict-badge ${verdictClass}">${verdictText}</div>
                     </div>
                     
                     ${skipSection}
                     
-                    <div class="dimensions">
-                        ${Object.entries(episode.dimensions).slice(0, 6).map(([name, score]) => `
-                            <div class="dimension">
-                                <div class="dimension-header">
-                                    <span class="dimension-name">${formatDimensionName(name)}</span>
-                                    <span class="dimension-score">${score.toFixed(1)}</span>
+                    ${dimensionEntries.length > 0 ? `
+                        <div class="dimensions">
+                            ${dimensionEntries.map(([name, dimScore]) => `
+                                <div class="dimension">
+                                    <div class="dimension-header">
+                                        <span class="dimension-name">${formatDimensionName(name)}</span>
+                                        <span class="dimension-score">${(dimScore || 0).toFixed(1)}</span>
+                                    </div>
+                                    <div class="dimension-bar">
+                                        <div class="dimension-fill" data-width="${(dimScore || 0) * 10}%" style="width: 0%;"></div>
+                                    </div>
                                 </div>
-                                <div class="dimension-bar">
-                                    <div class="dimension-fill" data-width="${score * 10}%" style="width: 0%;"></div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
                     
                     ${topInsight}
                     
                     <div class="card-footer">
-                        <span class="episode-duration">📊 ${Object.keys(episode.dimensions).length} Dimensions</span>
-                        <a href="/episode/${episode.id}" class="view-details">Details</a>
+                        <span class="episode-duration">📊 ${dimensionEntries.length} Dimensions</span>
+                        <a href="/episode/${episode.id || episode.episode_id || currentNumber}" class="view-details">Details</a>
                     </div>
                 </div>
             `;
