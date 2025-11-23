@@ -30,7 +30,6 @@
             background: var(--dark);
         }
 
-        /* Header */
         .header {
             background: var(--dark);
             padding: 1.5rem 2rem;
@@ -78,7 +77,6 @@
             color: var(--green);
         }
 
-        /* Hero */
         .hero {
             background: var(--dark);
             padding: 5rem 2rem;
@@ -150,7 +148,6 @@
             color: var(--dark);
         }
 
-        /* Problem Section */
         .problem-section {
             background: var(--dark-light);
             padding: 5rem 2rem;
@@ -216,7 +213,6 @@
             color: var(--text-secondary);
         }
 
-        /* Solution Section */
         .solution-section {
             background: var(--dark);
             padding: 5rem 2rem;
@@ -261,7 +257,6 @@
             color: var(--text-secondary);
         }
 
-        /* Examples Section */
         .examples-section {
             background: var(--dark-light);
             padding: 5rem 2rem;
@@ -328,17 +323,9 @@
             text-align: center;
         }
 
-        .score-high {
-            color: var(--green);
-        }
-
-        .score-mid {
-            color: var(--yellow);
-        }
-
-        .score-low {
-            color: var(--red);
-        }
+        .score-high { color: var(--green); }
+        .score-mid { color: var(--yellow); }
+        .score-low { color: var(--red); }
 
         .item-badge {
             padding: 0.5rem 1.2rem;
@@ -349,25 +336,10 @@
             border: 2px solid;
         }
 
-        .badge-listen {
-            background: var(--green);
-            color: #000;
-            border-color: var(--green);
-        }
+        .badge-listen { background: var(--green); color: #000; border-color: var(--green); }
+        .badge-maybe { background: transparent; color: var(--yellow); border-color: var(--yellow); }
+        .badge-skip { background: transparent; color: var(--red); border-color: var(--red); }
 
-        .badge-maybe {
-            background: transparent;
-            color: var(--yellow);
-            border-color: var(--yellow);
-        }
-
-        .badge-skip {
-            background: transparent;
-            color: var(--red);
-            border-color: var(--red);
-        }
-
-        /* CTA Section */
         .cta-section {
             background: var(--green);
             color: #000;
@@ -397,7 +369,6 @@
             background: var(--dark);
         }
 
-        /* Footer */
         .footer {
             background: var(--dark);
             padding: 3rem 2rem;
@@ -411,7 +382,12 @@
             color: var(--text-secondary);
         }
 
-        /* Mobile */
+        .loading-episodes {
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
         @media (max-width: 768px) {
             .playlist-item {
                 grid-template-columns: 1fr auto;
@@ -439,7 +415,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-container">
             <a href="/" class="logo">Mostly Mid</a>
@@ -450,7 +425,6 @@
         </div>
     </header>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-container">
             <h1>
@@ -467,7 +441,6 @@
         </div>
     </section>
 
-    <!-- Problem -->
     <section class="problem-section">
         <div class="container">
             <h2 class="section-title">The Problem</h2>
@@ -495,7 +468,6 @@
         </div>
     </section>
 
-    <!-- Solution -->
     <section class="solution-section" id="how">
         <div class="container">
             <h2 class="section-title">Six Brutal Dimensions</h2>
@@ -541,7 +513,6 @@
         </div>
     </section>
 
-    <!-- Examples -->
     <section class="examples-section">
         <div class="container">
             <h2 class="section-title">Real Scores</h2>
@@ -553,60 +524,13 @@
                     <p>Updated weekly with new episodes</p>
                 </div>
 
-                <div class="playlist-item">
-                    <div class="item-number">1</div>
-                    <div class="item-info">
-                        <h4>Product Strategy Masterclass</h4>
-                        <p>Top Product Leader · Concrete frameworks, real examples, data-backed</p>
-                    </div>
-                    <div class="item-score score-high">8.7</div>
-                    <div class="item-badge badge-listen">Listen</div>
-                </div>
-
-                <div class="playlist-item">
-                    <div class="item-number">2</div>
-                    <div class="item-info">
-                        <h4>PM Career Progression</h4>
-                        <p>Industry Expert · Decent frameworks but light on examples</p>
-                    </div>
-                    <div class="item-score score-mid">6.8</div>
-                    <div class="item-badge badge-maybe">Maybe</div>
-                </div>
-
-                <div class="playlist-item">
-                    <div class="item-number">3</div>
-                    <div class="item-info">
-                        <h4>Generic Startup Story</h4>
-                        <p>Famous Founder · Nothing new, absolutely generic</p>
-                    </div>
-                    <div class="item-score score-low">4.2</div>
-                    <div class="item-badge badge-skip">Skip</div>
-                </div>
-
-                <div class="playlist-item">
-                    <div class="item-number">4</div>
-                    <div class="item-info">
-                        <h4>Design Thinking Workshop</h4>
-                        <p>Design Leader · Specific exercises and clear takeaways</p>
-                    </div>
-                    <div class="item-score score-high">7.9</div>
-                    <div class="item-badge badge-listen">Listen</div>
-                </div>
-
-                <div class="playlist-item">
-                    <div class="item-number">5</div>
-                    <div class="item-info">
-                        <h4>Motivation & Mindset</h4>
-                        <p>Life Coach · Vague platitudes, zero substance</p>
-                    </div>
-                    <div class="item-score score-low">3.5</div>
-                    <div class="item-badge badge-skip">Skip</div>
+                <div id="playlist-items">
+                    <div class="loading-episodes">Loading episodes...</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Stop Wasting Time?</h2>
@@ -615,10 +539,74 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <p><strong>MOSTLY MID</strong></p>
         <p>Because most podcasts are mediocre.</p>
     </footer>
+
+    <script>
+        async function loadRecentEpisodes() {
+            try {
+                const response = await fetch('/api/episodes');
+                const data = await response.json();
+                
+                let episodes = [];
+                if (Array.isArray(data)) {
+                    episodes = data;
+                } else if (data.episodes && Array.isArray(data.episodes)) {
+                    episodes = data.episodes;
+                } else if (typeof data === 'object') {
+                    episodes = Object.values(data).filter(item => 
+                        item && typeof item === 'object' && item.title
+                    );
+                }
+
+                // Sort by score and take top 5
+                episodes.sort((a, b) => (b.overall_score || 0) - (a.overall_score || 0));
+                const topEpisodes = episodes.slice(0, 5);
+
+                if (topEpisodes.length === 0) {
+                    document.getElementById('playlist-items').innerHTML = `
+                        <div class="loading-episodes">No episodes analyzed yet</div>
+                    `;
+                    return;
+                }
+
+                // Render episodes
+                document.getElementById('playlist-items').innerHTML = topEpisodes
+                    .map((episode, idx) => {
+                        const score = episode.overall_score || 0;
+                        const scoreClass = score >= 7 ? 'score-high' : score >= 5 ? 'score-mid' : 'score-low';
+                        const badgeClass = score >= 7 ? 'badge-listen' : score >= 5 ? 'badge-maybe' : 'badge-skip';
+                        const badgeText = score >= 7 ? 'Listen' : score >= 5 ? 'Maybe' : 'Skip';
+                        
+                        // Extract description from tldr, summary, or best_for
+                        const description = episode.tldr || episode.summary || episode.best_for || 'No description available';
+                        const shortDescription = description.length > 80 
+                            ? description.substring(0, 80) + '...' 
+                            : description;
+
+                        return `
+                            <div class="playlist-item">
+                                <div class="item-number">${idx + 1}</div>
+                                <div class="item-info">
+                                    <h4>${episode.title || 'Untitled Episode'}</h4>
+                                    <p>${shortDescription}</p>
+                                </div>
+                                <div class="item-score ${scoreClass}">${score.toFixed(1)}</div>
+                                <div class="item-badge ${badgeClass}">${badgeText}</div>
+                            </div>
+                        `;
+                    }).join('');
+            } catch (error) {
+                console.error('Error loading episodes:', error);
+                document.getElementById('playlist-items').innerHTML = `
+                    <div class="loading-episodes">Failed to load episodes</div>
+                `;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadRecentEpisodes);
+    </script>
 </body>
 </html>
