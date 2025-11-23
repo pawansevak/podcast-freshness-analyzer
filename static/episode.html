@@ -3,336 +3,552 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Episode Detail - Mostly Mid</title>
+    <title>Episode Details - MOSTLY MID</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --green: #1DB954;
+            --green-bright: #1ed760;
+            --yellow: #FFD600;
+            --dark: #121212;
+            --dark-light: #181818;
+            --dark-gray: #282828;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --red: #ff3b30;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #1f2937;
-            background: #f9fafb;
+            color: var(--text-primary);
+            background: var(--dark);
         }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
+
         /* Header */
-        .site-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
+        .header {
+            background: var(--dark);
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid var(--green);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(18, 18, 18, 0.95);
         }
-        
-        .back-link {
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1rem;
-            opacity: 0.9;
-        }
-        
-        .back-link:hover {
-            opacity: 1;
-            text-decoration: underline;
-        }
-        
-        .site-header h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .score-badge-large {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 2rem;
-        }
-        
-        .score-badge-large.excellent {
-            background: #10b981;
-            color: white;
-        }
-        
-        .score-badge-large.good {
-            background: #22c55e;
-            color: white;
-        }
-        
-        .score-badge-large.mediocre {
-            background: #eab308;
-            color: #000;
-        }
-        
-        .score-badge-large.poor {
-            background: #ef4444;
-            color: white;
-        }
-        
-        /* Content Sections */
-        section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        section h2 {
-            color: #1f2937;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 0.5rem;
-        }
-        
-        /* Verdict */
-        .tldr-large {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: #4b5563;
-            line-height: 1.8;
-            padding: 1rem;
-            background: #f9fafb;
-            border-left: 4px solid #667eea;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .verdict-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .verdict-item {
-            padding: 1rem;
-            background: #f9fafb;
-            border-radius: 8px;
-        }
-        
-        .verdict-item strong {
-            display: block;
-            color: #374151;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .verdict-item p {
-            color: #6b7280;
-        }
-        
-        /* Scores */
-        .scores-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .score-card {
-            padding: 1.5rem;
-            background: #f9fafb;
-            border-radius: 8px;
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .score-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #3b82f6;
-            margin-bottom: 0.5rem;
-        }
-        
-        .score-label {
-            font-size: 1.1rem;
-            color: #374151;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-        
-        .score-reasoning {
-            font-size: 0.95rem;
-            color: #6b7280;
-            line-height: 1.6;
-        }
-        
-        /* Takeaways */
-        .takeaway-card {
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-            border-left: 4px solid #9ca3af;
-        }
-        
-        .takeaway-card.truly_non_obvious {
-            background: #ecfdf5;
-            border-left-color: #10b981;
-        }
-        
-        .takeaway-card.moderately_non_obvious {
-            background: #fef9c3;
-            border-left-color: #eab308;
-        }
-        
-        .takeaway-card.best_available {
-            background: #f3f4f6;
-            border-left-color: #9ca3af;
-        }
-        
-        .takeaway-header {
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
             align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        /* Back Link */
+        .back-link {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 1rem;
+        }
+
+        .back-link a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .back-link a:hover {
+            color: var(--green);
+        }
+
+        /* Hero Section */
+        .episode-hero {
+            background: var(--dark-light);
+            padding: 3rem 2rem;
+            border-bottom: 4px solid var(--yellow);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .episode-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
             margin-bottom: 1rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .episode-guest {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .hero-score-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
             flex-wrap: wrap;
         }
-        
-        .rank {
+
+        .overall-score-large {
+            font-size: 5rem;
+            font-weight: 900;
+            padding: 1rem 2rem;
+            background: var(--dark);
+            border: 4px solid var(--green);
+        }
+
+        .score-excellent { color: var(--green); border-color: var(--green); }
+        .score-good { color: var(--green); opacity: 0.7; border-color: var(--green); }
+        .score-ok { color: var(--yellow); border-color: var(--yellow); }
+        .score-poor { color: var(--red); border-color: var(--red); }
+
+        .verdict-large {
+            padding: 1.5rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 3px solid;
+        }
+
+        .verdict-listen {
+            background: var(--green);
+            color: #000;
+            border-color: var(--green);
+        }
+
+        .verdict-maybe {
+            background: transparent;
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .verdict-skip {
+            background: transparent;
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            border-left: 4px solid var(--green);
+            padding-left: 1rem;
+        }
+
+        /* Verdict Box */
+        .verdict-box {
+            background: var(--dark-light);
+            padding: 2rem;
+            border-left: 6px solid;
+            margin-bottom: 3rem;
+        }
+
+        .verdict-box.listen { border-left-color: var(--green); }
+        .verdict-box.maybe { border-left-color: var(--yellow); }
+        .verdict-box.skip { border-left-color: var(--red); }
+
+        .verdict-box h3 {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
         }
-        
-        .timestamp {
-            background: #d1fae5;
-            color: #059669;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        
-        .obviousness-badge {
-            background: #e5e7eb;
-            color: #374151;
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            text-transform: capitalize;
-        }
-        
-        .takeaway-card h3 {
-            color: #1f2937;
-            margin-bottom: 0.75rem;
+
+        .verdict-box p {
             font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
         }
-        
-        .why-valuable {
-            color: #6b7280;
+
+        /* Dimensions Grid */
+        .dimensions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0;
+            border: 2px solid var(--dark-gray);
+        }
+
+        .dimension-card {
+            background: var(--dark-light);
+            padding: 2rem;
+            border-right: 2px solid var(--dark-gray);
+            border-bottom: 2px solid var(--dark-gray);
+            transition: all 0.2s;
+        }
+
+        .dimension-card:hover {
+            background: var(--dark-gray);
+            border-color: var(--green);
+        }
+
+        .dimension-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .dimension-name {
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dimension-score {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--green);
+        }
+
+        .dimension-bar {
+            height: 8px;
+            background: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .dimension-fill {
+            height: 100%;
+            background: var(--green);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dimension-reasoning {
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.7;
+            color: var(--text-secondary);
         }
-        
-        /* Rejected Insights */
-        .rejected-insights ul {
+
+        /* Insights */
+        .insights-list {
+            display: grid;
+            gap: 0;
+        }
+
+        .insight-card {
+            background: var(--dark-light);
+            padding: 2rem;
+            border: 2px solid var(--dark-gray);
+            border-top: none;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            transition: all 0.2s;
+        }
+
+        .insight-card:first-child {
+            border-top: 2px solid var(--dark-gray);
+        }
+
+        .insight-card:hover {
+            background: var(--dark-gray);
+            border-color: var(--green);
+        }
+
+        .insight-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--yellow);
+        }
+
+        .insight-content h4 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .insight-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .insight-timestamp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--dark);
+            border: 2px solid var(--green);
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .insight-timestamp:hover {
+            background: var(--green);
+            color: #000;
+        }
+
+        /* Best Quote */
+        .quote-box {
+            background: var(--dark-light);
+            padding: 3rem;
+            border-left: 6px solid var(--yellow);
+            margin-bottom: 3rem;
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+        }
+
+        .quote-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .quote-context {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Skip Recommendation */
+        .skip-box {
+            background: rgba(255, 59, 48, 0.1);
+            border: 4px solid var(--red);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skip-box h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .skip-box p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* Best For / Skip If */
+        .for-skip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .for-skip-card {
+            background: var(--dark-light);
+            padding: 2rem;
+            border: 2px solid var(--dark-gray);
+        }
+
+        .for-skip-card h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .for-skip-card ul {
             list-style: none;
             padding: 0;
         }
-        
-        .rejected-insights li {
-            padding: 0.75rem;
-            margin: 0.5rem 0;
-            background: #fef2f2;
-            border-left: 4px solid #ef4444;
-            border-radius: 4px;
-            color: #991b1b;
+
+        .for-skip-card li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--dark-gray);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
         }
-        
-        .explainer {
-            color: #6b7280;
-            font-style: italic;
-            margin-bottom: 1rem;
+
+        .for-skip-card li:last-child {
+            border-bottom: none;
         }
-        
-        /* Actions */
-        .actions-large {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .btn-large {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-        }
-        
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s;
-            display: inline-block;
-        }
-        
-        .btn-primary {
-            background: #3b82f6;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
-        
-        .btn-secondary {
-            background: #e5e7eb;
-            color: #374151;
-        }
-        
-        .btn-secondary:hover {
-            background: #d1d5db;
-        }
-        
+
         /* Loading */
         .loading {
             text-align: center;
-            padding: 3rem;
-            color: #6b7280;
+            padding: 4rem 2rem;
         }
-        
+
+        .spinner {
+            border: 4px solid var(--dark-gray);
+            border-top: 4px solid var(--green);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            .verdict-grid {
+            .dimensions-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .scores-grid {
-                grid-template-columns: 1fr;
+
+            .dimension-card {
+                border-right: none;
             }
-            
-            .actions-large {
+
+            .hero-score-section {
                 flex-direction: column;
+                align-items: flex-start;
             }
-            
-            .btn-large {
-                width: 100%;
+
+            .insight-card {
+                grid-template-columns: 1fr;
+            }
+
+            .insight-number {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <a href="/" class="back-link">← Back to all episodes</a>
-            <h1 id="episode-title">Loading...</h1>
-            <div id="score-badge"></div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">Mostly Mid</a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/episodes">Episodes</a>
+            </nav>
         </div>
     </header>
 
-    <main class="container" id="main-content">
-        <div class="loading">Loading episode details...</div>
-    </main>
+    <!-- Back Link -->
+    <div class="back-link">
+        <a href="/episodes">← Back to all episodes</a>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading" id="loading-state">
+        <div class="spinner"></div>
+        <p>Loading episode...</p>
+    </div>
+
+    <!-- Episode Content (hidden until loaded) -->
+    <div id="episode-content" style="display: none;">
+        <!-- Hero Section -->
+        <section class="episode-hero">
+            <div class="hero-container">
+                <h1 class="episode-title" id="episode-title">Loading...</h1>
+                <p class="episode-guest" id="episode-guest"></p>
+                
+                <div class="hero-score-section">
+                    <div class="overall-score-large" id="hero-score">0.0</div>
+                    <div class="verdict-large" id="hero-verdict">Loading</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="container">
+            <!-- Verdict -->
+            <div id="verdict-section"></div>
+
+            <!-- Skip Recommendation (if applicable) -->
+            <div id="skip-section"></div>
+
+            <!-- Best For / Skip If -->
+            <div id="for-skip-section"></div>
+
+            <!-- Dimensions -->
+            <section class="section">
+                <h2 class="section-title">Dimension Scores</h2>
+                <div class="dimensions-grid" id="dimensions-grid"></div>
+            </section>
+
+            <!-- Top Insights -->
+            <section class="section">
+                <h2 class="section-title">Top Insights</h2>
+                <div class="insights-list" id="insights-list"></div>
+            </section>
+
+            <!-- Best Quote -->
+            <div id="quote-section"></div>
+        </div>
+    </div>
 
     <script>
         const episodeId = window.location.pathname.split('/').pop();
@@ -340,144 +556,173 @@
         async function loadEpisode() {
             try {
                 const response = await fetch(`/api/episode/${episodeId}`);
-                const ep = await response.json();
+                if (!response.ok) {
+                    throw new Error('Episode not found');
+                }
                 
-                // Update header
-                document.getElementById('episode-title').textContent = ep.title;
+                const episode = await response.json();
+                renderEpisode(episode);
                 
-                const scoreClass = ep.overall_score >= 8 ? 'excellent' : 
-                                 ep.overall_score >= 7 ? 'good' : 
-                                 ep.overall_score >= 5 ? 'mediocre' : 'poor';
-                
-                document.getElementById('score-badge').innerHTML = `
-                    <div class="score-badge-large ${scoreClass}">${ep.overall_score.toFixed(1)}/10</div>
-                `;
-                
-                // Render content
-                document.getElementById('main-content').innerHTML = renderEpisode(ep);
-                
+                document.getElementById('loading-state').style.display = 'none';
+                document.getElementById('episode-content').style.display = 'block';
             } catch (error) {
                 console.error('Error loading episode:', error);
-                document.getElementById('main-content').innerHTML = `
-                    <section>
-                        <h2>Error</h2>
-                        <p>Could not load episode details: ${error.message}</p>
-                        <a href="/" class="btn btn-primary">Back to Homepage</a>
-                    </section>
+                document.getElementById('loading-state').innerHTML = `
+                    <div style="text-align: center;">
+                        <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 1rem;">Episode Not Found</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">This episode doesn't exist or hasn't been analyzed yet.</p>
+                        <a href="/episodes" style="background: var(--green); color: #000; padding: 1rem 2rem; text-decoration: none; font-weight: 900; text-transform: uppercase;">Back to Episodes</a>
+                    </div>
                 `;
             }
         }
 
-        function renderEpisode(ep) {
-            return `
-                <!-- Verdict Section -->
-                <section>
-                    <h2>📝 Verdict</h2>
-                    ${ep.tldr ? `<p class="tldr-large">${ep.tldr}</p>` : ''}
-                    
-                    <div class="verdict-grid">
-                        ${ep.best_for ? `
-                            <div class="verdict-item">
-                                <strong>👥 Best for:</strong>
-                                <p>${ep.best_for}</p>
-                            </div>
-                        ` : ''}
-                        ${ep.skip_if ? `
-                            <div class="verdict-item">
-                                <strong>⏭️ Skip if:</strong>
-                                <p>${ep.skip_if}</p>
-                            </div>
-                        ` : ''}
-                        <div class="verdict-item">
-                            <strong>✅ Worth it?</strong>
-                            <p>${ep.worth_it ? 'Yes' : 'No'}</p>
-                        </div>
-                        ${ep.best_quote ? `
-                            <div class="verdict-item">
-                                <strong>💬 Best quote:</strong>
-                                <p>"${ep.best_quote}"</p>
-                            </div>
-                        ` : ''}
-                    </div>
-                </section>
-
-                <!-- Detailed Scores -->
-                <section>
-                    <h2>📊 Detailed Scores</h2>
-                    <div class="scores-grid">
-                        <div class="score-card">
-                            <div class="score-value">${ep.insight_density}/10</div>
-                            <div class="score-label">💡 Insight Density (40%)</div>
-                            <p class="score-reasoning">${ep.why_these_scores?.insight_density || 'No reasoning provided'}</p>
-                        </div>
-                        <div class="score-card">
-                            <div class="score-value">${ep.signal_to_noise}/10</div>
-                            <div class="score-label">📢 Signal-to-Noise (20%)</div>
-                            <p class="score-reasoning">${ep.why_these_scores?.signal_to_noise || 'No reasoning provided'}</p>
-                        </div>
-                        <div class="score-card">
-                            <div class="score-value">${ep.actionability}/10</div>
-                            <div class="score-label">⚡ Actionability (20%)</div>
-                            <p class="score-reasoning">${ep.why_these_scores?.actionability || 'No reasoning provided'}</p>
-                        </div>
-                        <div class="score-card">
-                            <div class="score-value">${ep.contrarian_index}/10</div>
-                            <div class="score-label">🔥 Contrarian (10%)</div>
-                            <p class="score-reasoning">${ep.why_these_scores?.contrarian_index || 'No reasoning provided'}</p>
-                        </div>
-                        <div class="score-card">
-                            <div class="score-value">${ep.freshness}/10</div>
-                            <div class="score-label">🆕 Freshness (5%)</div>
-                            <p class="score-reasoning">${ep.why_these_scores?.freshness || 'No reasoning provided'}</p>
-                        </div>
-                        <div class="score-card">
-                            <div class="score-value">${ep.host_quality}/10</div>
-                            <div class="score-label">🎤 Host (5%)</div>
-                            <p class="score-reasoning">${ep.why_these_scores?.host_quality || 'No reasoning provided'}</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Top 5 Takeaways -->
-                ${ep.top_5_takeaways && ep.top_5_takeaways.length > 0 ? `
-                    <section>
-                        <h2>🎯 Top 5 Non-Obvious Takeaways</h2>
-                        ${ep.top_5_takeaways.map(takeaway => `
-                            <div class="takeaway-card ${takeaway.obviousness_level || ''}">
-                                <div class="takeaway-header">
-                                    <span class="rank">#${takeaway.rank}</span>
-                                    ${takeaway.timestamp ? `<span class="timestamp">[${takeaway.timestamp}]</span>` : ''}
-                                    <span class="obviousness-badge">${(takeaway.obviousness_level || 'unknown').replace(/_/g, ' ')}</span>
-                                </div>
-                                <h3>${takeaway.insight}</h3>
-                                <p class="why-valuable">${takeaway.why_valuable}</p>
-                            </div>
-                        `).join('')}
-                    </section>
-                ` : ''}
-
-                <!-- Rejected Insights -->
-                ${ep.obvious_insights_rejected && ep.obvious_insights_rejected.length > 0 ? `
-                    <section class="rejected-insights">
-                        <h2>❌ Obvious Insights Rejected</h2>
-                        <p class="explainer">These insights were found but filtered out as too common for experienced listeners:</p>
-                        <ul>
-                            ${ep.obvious_insights_rejected.map(rejected => `
-                                <li>${rejected}</li>
-                            `).join('')}
-                        </ul>
-                    </section>
-                ` : ''}
-
-                <!-- Actions -->
-                <div class="actions-large">
-                    <a href="/" class="btn btn-primary btn-large">← Back to All Episodes</a>
+        function renderEpisode(episode) {
+            const score = episode.overall_score || 0;
+            
+            // Title & Guest
+            document.getElementById('episode-title').textContent = episode.title || 'Untitled Episode';
+            document.getElementById('episode-guest').textContent = episode.guest || 'Unknown Guest';
+            
+            // Score
+            const scoreClass = 
+                score >= 8 ? 'score-excellent' :
+                score >= 6 ? 'score-good' :
+                score >= 4 ? 'score-ok' : 'score-poor';
+            
+            const heroScore = document.getElementById('hero-score');
+            heroScore.textContent = score.toFixed(1) + '/10';
+            heroScore.className = 'overall-score-large ' + scoreClass;
+            
+            // Verdict
+            const verdictText = score >= 7 ? 'Listen' : score >= 5 ? 'Maybe' : 'Skip';
+            const verdictClass = score >= 7 ? 'verdict-listen' : score >= 5 ? 'verdict-maybe' : 'verdict-skip';
+            
+            const heroVerdict = document.getElementById('hero-verdict');
+            heroVerdict.textContent = verdictText;
+            heroVerdict.className = 'verdict-large ' + verdictClass;
+            
+            // Verdict Box
+            const verdictBoxClass = score >= 7 ? 'listen' : score >= 5 ? 'maybe' : 'skip';
+            document.getElementById('verdict-section').innerHTML = `
+                <div class="verdict-box ${verdictBoxClass}">
+                    <h3>📝 Verdict</h3>
+                    <p>${episode.verdict || generateVerdict(score)}</p>
                 </div>
             `;
+            
+            // Skip Recommendation
+            if (episode.skip_recommendation) {
+                document.getElementById('skip-section').innerHTML = `
+                    <div class="skip-box">
+                        <h3>⚠️ Skip This Episode</h3>
+                        <p>${episode.skip_reason || 'This episode contains generic content without unique value.'}</p>
+                    </div>
+                `;
+            }
+            
+            // Best For / Skip If
+            if (episode.best_for || episode.skip_if) {
+                const bestFor = Array.isArray(episode.best_for) ? episode.best_for : [];
+                const skipIf = Array.isArray(episode.skip_if) ? episode.skip_if : [];
+                
+                document.getElementById('for-skip-section').innerHTML = `
+                    <div class="for-skip-grid">
+                        ${bestFor.length > 0 ? `
+                            <div class="for-skip-card">
+                                <h3>👥 Best for:</h3>
+                                <ul>
+                                    ${bestFor.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                        ${skipIf.length > 0 ? `
+                            <div class="for-skip-card">
+                                <h3>🚫 Skip if:</h3>
+                                <ul>
+                                    ${skipIf.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            
+            // Dimensions
+            const dimensions = episode.dimensions || {};
+            const dimensionReasons = episode.dimension_reasoning || {};
+            
+            document.getElementById('dimensions-grid').innerHTML = Object.entries(dimensions)
+                .map(([name, score]) => `
+                    <div class="dimension-card">
+                        <div class="dimension-header">
+                            <span class="dimension-name">${formatDimensionName(name)}</span>
+                            <span class="dimension-score">${score.toFixed(1)}</span>
+                        </div>
+                        <div class="dimension-bar">
+                            <div class="dimension-fill" style="width: ${score * 10}%"></div>
+                        </div>
+                        <p class="dimension-reasoning">
+                            ${dimensionReasons[name] || 'No reasoning provided.'}
+                        </p>
+                    </div>
+                `).join('');
+            
+            // Insights
+            const insights = episode.top_insights || episode.takeaways || [];
+            document.getElementById('insights-list').innerHTML = insights
+                .slice(0, 5)
+                .map((insight, idx) => {
+                    const insightText = insight.insight || insight.takeaway || insight;
+                    const timestamp = insight.timestamp || '';
+                    
+                    return `
+                        <div class="insight-card">
+                            <div class="insight-number">${(idx + 1).toString().padStart(2, '0')}</div>
+                            <div class="insight-content">
+                                <h4>Key Insight</h4>
+                                <p>${insightText}</p>
+                                ${timestamp ? `
+                                    <a href="#" class="insight-timestamp" onclick="alert('Timestamp: ${timestamp}'); return false;">
+                                        🎯 ${timestamp}
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            
+            // Best Quote
+            if (episode.best_quote) {
+                document.getElementById('quote-section').innerHTML = `
+                    <div class="quote-box">
+                        <div class="quote-icon">💬</div>
+                        <p class="quote-text">"${episode.best_quote.quote || episode.best_quote}"</p>
+                        ${episode.best_quote.context ? `
+                            <p class="quote-context">${episode.best_quote.context}</p>
+                        ` : ''}
+                    </div>
+                `;
+            }
         }
 
-        // Load episode on page load
-        loadEpisode();
+        function formatDimensionName(name) {
+            return name.split('_').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+        }
+
+        function generateVerdict(score) {
+            if (score >= 8) {
+                return 'Finally, a systematic step-by-step process for building AI evals that goes way beyond generic advice - actually worth your time.';
+            } else if (score >= 6) {
+                return 'Solid frameworks and decent insights, but could be more specific. Worth skimming the transcript.';
+            } else {
+                return 'Generic advice without unique value. Skip this one.';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadEpisode);
     </script>
 </body>
 </html>

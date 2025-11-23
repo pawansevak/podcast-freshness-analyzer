@@ -30,7 +30,6 @@
             background: var(--dark);
         }
 
-        /* Header */
         .header {
             background: var(--dark);
             padding: 1.5rem 2rem;
@@ -78,14 +77,12 @@
             color: var(--green);
         }
 
-        /* Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* Page Header */
         .page-header {
             margin-bottom: 3rem;
         }
@@ -103,7 +100,6 @@
             font-weight: 600;
         }
 
-        /* Stats Dashboard */
         .stats-dashboard {
             background: var(--dark-light);
             padding: 2rem;
@@ -147,7 +143,6 @@
             letter-spacing: 0.1em;
         }
 
-        /* Filters */
         .filters {
             background: var(--dark-light);
             padding: 2rem;
@@ -254,7 +249,6 @@
             color: var(--text-secondary);
         }
 
-        /* Results Info */
         .results-info {
             margin-bottom: 2rem;
             padding: 1rem 1.5rem;
@@ -290,7 +284,6 @@
             border-color: var(--green);
         }
 
-        /* Episodes Grid */
         .episodes-grid {
             display: grid;
             gap: 0;
@@ -347,22 +340,10 @@
             text-align: center;
         }
 
-        .score-excellent {
-            color: var(--green);
-        }
-
-        .score-good {
-            color: var(--green);
-            opacity: 0.7;
-        }
-
-        .score-ok {
-            color: var(--yellow);
-        }
-
-        .score-poor {
-            color: var(--red);
-        }
+        .score-excellent { color: var(--green); }
+        .score-good { color: var(--green); opacity: 0.7; }
+        .score-ok { color: var(--yellow); }
+        .score-poor { color: var(--red); }
 
         .verdict-badge {
             padding: 0.6rem 1.2rem;
@@ -373,140 +354,25 @@
             border: 2px solid;
         }
 
-        .verdict-listen {
-            background: var(--green);
-            color: #000;
-            border-color: var(--green);
-        }
+        .verdict-listen { background: var(--green); color: #000; border-color: var(--green); }
+        .verdict-maybe { background: transparent; color: var(--yellow); border-color: var(--yellow); }
+        .verdict-skip { background: transparent; color: var(--red); border-color: var(--red); }
 
-        .verdict-maybe {
-            background: transparent;
-            color: var(--yellow);
-            border-color: var(--yellow);
-        }
-
-        .verdict-skip {
-            background: transparent;
-            color: var(--red);
-            border-color: var(--red);
-        }
-
-        /* Skip Recommendation */
-        .skip-recommendation {
-            background: rgba(255, 59, 48, 0.1);
-            border-left: 4px solid var(--red);
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .skip-recommendation strong {
-            display: block;
-            color: var(--red);
-            margin-bottom: 0.25rem;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .skip-recommendation p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        /* Dimensions */
-        .dimensions {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .dimension {
-            background: var(--dark);
-            padding: 1rem;
-            border: 2px solid var(--dark-gray);
-            transition: all 0.2s;
-        }
-
-        .dimension:hover {
-            border-color: var(--green);
-        }
-
-        .dimension-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .dimension-name {
-            font-weight: 700;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .dimension-score {
-            font-weight: 900;
-            font-size: 1.2rem;
-            color: var(--green);
-        }
-
-        .dimension-bar {
-            height: 4px;
-            background: var(--dark-gray);
-            overflow: hidden;
-        }
-
-        .dimension-fill {
-            height: 100%;
-            background: var(--green);
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Top Insight */
-        .top-insight {
-            background: rgba(29, 185, 84, 0.1);
-            border-left: 4px solid var(--green);
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .top-insight strong {
-            display: block;
-            color: var(--green);
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .top-insight p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        /* Card Footer */
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 2px solid var(--dark-gray);
-        }
-
-        .episode-duration {
+        .dimensions-count {
             color: var(--text-secondary);
             font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 2px solid var(--dark-gray);
         }
 
         .view-details {
@@ -525,7 +391,6 @@
             background: var(--green-bright);
         }
 
-        /* Loading/Empty States */
         .loading, .empty-state {
             text-align: center;
             padding: 4rem 2rem;
@@ -563,21 +428,6 @@
             color: var(--text-secondary);
         }
 
-        .debug-info {
-            background: var(--dark-light);
-            border: 2px solid var(--yellow);
-            padding: 1rem;
-            margin-bottom: 2rem;
-            font-family: monospace;
-            font-size: 0.85rem;
-        }
-
-        .debug-info pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        /* Mobile */
         @media (max-width: 968px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -590,10 +440,6 @@
 
             .stat:last-child {
                 border-bottom: none;
-            }
-
-            .dimensions {
-                grid-template-columns: 1fr;
             }
 
             .episode-header {
@@ -619,7 +465,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-container">
             <a href="/" class="logo">Mostly Mid</a>
@@ -630,21 +475,12 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Page Header -->
         <div class="page-header">
             <h1>Episode Library</h1>
             <p>Brutally honest analysis of podcast quality</p>
         </div>
 
-        <!-- Debug Info (will hide when working) -->
-        <div class="debug-info" id="debug-info" style="display: none;">
-            <strong style="color: var(--yellow);">DEBUG INFO:</strong>
-            <pre id="debug-content"></pre>
-        </div>
-
-        <!-- Stats Dashboard -->
         <div class="stats-dashboard">
             <div class="stats-grid">
                 <div class="stat">
@@ -666,26 +502,23 @@
             </div>
         </div>
 
-        <!-- Filters -->
         <div class="filters">
             <div class="filters-header">
                 <h3>Filter</h3>
                 <button class="clear-filters" onclick="clearAllFilters()">Clear All</button>
             </div>
 
-            <!-- Search -->
             <div class="filter-group">
                 <label class="filter-label">Search</label>
                 <input 
                     type="text" 
                     class="search-box" 
                     id="search-input"
-                    placeholder="Search by title, guest, or topic..."
+                    placeholder="Search by title or guest..."
                     oninput="filterEpisodes()"
                 >
             </div>
 
-            <!-- Quality Filter -->
             <div class="filter-group">
                 <label class="filter-label">Quality</label>
                 <div class="filter-buttons">
@@ -696,20 +529,8 @@
                     <button class="filter-btn" data-filter="quality" data-value="skip" onclick="setFilter('quality', 'skip')">&lt;4</button>
                 </div>
             </div>
-
-            <!-- Dimension Filter -->
-            <div class="filter-group">
-                <label class="filter-label">Focus</label>
-                <div class="filter-buttons">
-                    <button class="filter-btn" data-filter="dimension" data-value="all" onclick="setFilter('dimension', 'all')">All</button>
-                    <button class="filter-btn" data-filter="dimension" data-value="specificity" onclick="setFilter('dimension', 'specificity')">Specific</button>
-                    <button class="filter-btn" data-filter="dimension" data-value="originality" onclick="setFilter('dimension', 'originality')">Original</button>
-                    <button class="filter-btn" data-filter="dimension" data-value="density" onclick="setFilter('dimension', 'density')">Dense</button>
-                </div>
-            </div>
         </div>
 
-        <!-- Results Info -->
         <div class="results-info">
             <div class="results-count">
                 <strong id="showing-count">0</strong> of <strong id="total-count">0</strong> episodes
@@ -722,88 +543,73 @@
             </select>
         </div>
 
-        <!-- Loading State -->
         <div class="loading" id="loading-state">
             <div class="spinner"></div>
             <p>Loading episodes...</p>
         </div>
 
-        <!-- Empty State -->
         <div class="empty-state" id="empty-state" style="display: none;">
             <div class="empty-state-icon">🔍</div>
             <h3>No Episodes Found</h3>
             <p>Try adjusting your filters</p>
         </div>
 
-        <!-- Episodes Grid -->
-        <div class="episodes-grid" id="episodes-grid">
-            <!-- Episodes loaded via JavaScript -->
-        </div>
+        <div class="episodes-grid" id="episodes-grid"></div>
     </div>
 
     <script>
         let allEpisodes = [];
-        let currentFilters = {
-            quality: 'all',
-            dimension: 'all',
-            search: ''
-        };
+        let currentFilters = { quality: 'all', search: '' };
         let episodeCounter = 1;
-
-        function debugLog(message, data) {
-            console.log(message, data);
-            const debugDiv = document.getElementById('debug-info');
-            const debugContent = document.getElementById('debug-content');
-            debugDiv.style.display = 'block';
-            debugContent.textContent += message + '\n' + (data ? JSON.stringify(data, null, 2) : '') + '\n\n';
-        }
 
         async function loadEpisodes() {
             try {
-                debugLog('Fetching episodes from /api/episodes...');
                 const response = await fetch('/api/episodes');
-                
-                debugLog('Response status:', response.status);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
                 const data = await response.json();
-                debugLog('Raw API response:', data);
                 
-                // Handle different possible response formats
                 if (Array.isArray(data)) {
                     allEpisodes = data;
                 } else if (data.episodes && Array.isArray(data.episodes)) {
                     allEpisodes = data.episodes;
                 } else if (typeof data === 'object') {
-                    // If it's an object, try to extract episodes from it
                     allEpisodes = Object.values(data).filter(item => 
                         item && typeof item === 'object' && item.title
                     );
                 }
                 
-                debugLog(`Loaded ${allEpisodes.length} episodes`);
-                
-                if (allEpisodes.length > 0) {
-                    debugLog('First episode sample:', allEpisodes[0]);
-                    // Hide debug info if we have episodes
-                    document.getElementById('debug-info').style.display = 'none';
-                }
-                
                 updateStats();
                 filterEpisodes();
             } catch (error) {
-                console.error('Error loading episodes:', error);
-                debugLog('ERROR:', error.message);
+                console.error('Error:', error);
                 document.getElementById('loading-state').innerHTML = `
                     <div class="empty-state-icon">⚠️</div>
                     <h3>Error Loading</h3>
-                    <p>${error.message}</p>
-                    <p style="margin-top: 1rem;">Check the debug info above or browser console</p>
+                    <p>Please refresh the page</p>
                 `;
             }
+        }
+
+        function extractGuest(episode) {
+            // Try multiple possible fields
+            return episode.guest || 
+                   episode.speaker || 
+                   episode.guests ||
+                   (episode.title && episode.title.includes(' with ') 
+                       ? episode.title.split(' with ')[1] 
+                       : null) ||
+                   'Guest';
+        }
+
+        function getDimensionsCount(episode) {
+            if (episode.dimensions && typeof episode.dimensions === 'object') {
+                return Object.keys(episode.dimensions).length;
+            }
+            // Count individual dimension fields
+            let count = 0;
+            ['specificity', 'originality', 'density', 'depth', 'rigor', 'relevance', 'pm_relevance'].forEach(dim => {
+                if (episode[dim] !== undefined) count++;
+            });
+            return count;
         }
 
         function updateStats() {
@@ -823,16 +629,14 @@
 
         function setFilter(type, value) {
             currentFilters[type] = value;
-            
             document.querySelectorAll(`[data-filter="${type}"]`).forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.value === value);
             });
-            
             filterEpisodes();
         }
 
         function clearAllFilters() {
-            currentFilters = { quality: 'all', dimension: 'all', search: '' };
+            currentFilters = { quality: 'all', search: '' };
             document.getElementById('search-input').value = '';
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.value === 'all');
@@ -852,15 +656,8 @@
                     if (currentFilters.quality === 'skip' && score >= 4) return false;
                 }
                 
-                if (currentFilters.dimension !== 'all') {
-                    const dim = currentFilters.dimension;
-                    const dimensions = episode.dimensions || {};
-                    const dimScore = dimensions[dim] || 0;
-                    if (dimScore < 7) return false;
-                }
-                
                 if (currentFilters.search) {
-                    const searchText = `${episode.title || ''} ${episode.guest || ''}`.toLowerCase();
+                    const searchText = `${episode.title || ''} ${extractGuest(episode)}`.toLowerCase();
                     if (!searchText.includes(currentFilters.search)) return false;
                 }
                 
@@ -873,7 +670,6 @@
         function sortEpisodes(episodes = null) {
             const sortValue = document.getElementById('sort-select').value;
             const toSort = episodes || allEpisodes;
-            
             let sorted = [...toSort];
             
             switch(sortValue) {
@@ -908,14 +704,7 @@
             } else {
                 grid.style.display = 'grid';
                 emptyState.style.display = 'none';
-                
                 grid.innerHTML = episodes.map(episode => createEpisodeCard(episode)).join('');
-                
-                setTimeout(() => {
-                    document.querySelectorAll('.dimension-fill').forEach(bar => {
-                        bar.style.width = bar.dataset.width;
-                    });
-                }, 100);
             }
             
             document.getElementById('showing-count').textContent = episodes.length;
@@ -928,33 +717,13 @@
                 score >= 6 ? 'score-good' :
                 score >= 4 ? 'score-ok' : 'score-poor';
             
-            const verdictClass = 
-                score >= 7 ? 'verdict-listen' :
-                score >= 5 ? 'verdict-maybe' : 'verdict-skip';
+            const verdictClass = score >= 7 ? 'verdict-listen' : score >= 5 ? 'verdict-maybe' : 'verdict-skip';
+            const verdictText = score >= 7 ? 'Listen' : score >= 5 ? 'Maybe' : 'Skip';
             
-            const verdictText = 
-                score >= 7 ? 'Listen' :
-                score >= 5 ? 'Maybe' : 'Skip';
-            
-            const skipSection = episode.skip_recommendation ? `
-                <div class="skip-recommendation">
-                    <strong>⚠️ Skip This</strong>
-                    <p>${episode.skip_reason || 'Generic content without unique value.'}</p>
-                </div>
-            ` : '';
-            
-            const topInsights = episode.top_insights || episode.takeaways || [];
-            const topInsight = topInsights.length > 0 ? `
-                <div class="top-insight">
-                    <strong>💡 Top Insight</strong>
-                    <p>${topInsights[0].insight || topInsights[0].takeaway || topInsights[0]}</p>
-                </div>
-            ` : '';
-            
+            const guest = extractGuest(episode);
+            const dimensionsCount = getDimensionsCount(episode);
             const currentNumber = episodeCounter++;
-            
-            const dimensions = episode.dimensions || {};
-            const dimensionEntries = Object.entries(dimensions).slice(0, 6);
+            const episodeId = episode.id || episode.episode_id || currentNumber;
             
             return `
                 <div class="episode-card">
@@ -962,7 +731,7 @@
                         <div class="episode-number">${currentNumber}</div>
                         <div class="episode-title">
                             <h3>${episode.title || 'Untitled Episode'}</h3>
-                            <p class="episode-guest">${episode.guest || 'Unknown Guest'}</p>
+                            <p class="episode-guest">${guest}</p>
                         </div>
                         <div class="overall-score ${scoreClass}">
                             ${score.toFixed(1)}
@@ -970,45 +739,21 @@
                         <div class="verdict-badge ${verdictClass}">${verdictText}</div>
                     </div>
                     
-                    ${skipSection}
-                    
-                    ${dimensionEntries.length > 0 ? `
-                        <div class="dimensions">
-                            ${dimensionEntries.map(([name, dimScore]) => `
-                                <div class="dimension">
-                                    <div class="dimension-header">
-                                        <span class="dimension-name">${formatDimensionName(name)}</span>
-                                        <span class="dimension-score">${(dimScore || 0).toFixed(1)}</span>
-                                    </div>
-                                    <div class="dimension-bar">
-                                        <div class="dimension-fill" data-width="${(dimScore || 0) * 10}%" style="width: 0%;"></div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    ` : ''}
-                    
-                    ${topInsight}
+                    <div class="dimensions-count">
+                        📊 ${dimensionsCount} Dimensions
+                    </div>
                     
                     <div class="card-footer">
-                        <span class="episode-duration">📊 ${dimensionEntries.length} Dimensions</span>
-                        <a href="/episode/${episode.id || episode.episode_id || currentNumber}" class="view-details">Details</a>
+                        <a href="/episode/${episodeId}" class="view-details">Details</a>
                     </div>
                 </div>
             `;
-        }
-
-        function formatDimensionName(name) {
-            return name.split('_').map(word => 
-                word.charAt(0).toUpperCase() + word.slice(1)
-            ).join(' ');
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-value="all"]').forEach(btn => {
                 btn.classList.add('active');
             });
-            
             loadEpisodes();
         });
     </script>
