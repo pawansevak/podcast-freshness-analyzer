@@ -1,0 +1,79 @@
+{
+  "scores": {
+    "insight_density": 8,
+    "signal_to_noise": 7,
+    "actionability": 9,
+    "contrarian_index": 7,
+    "freshness": 6,
+    "host_quality": 8,
+    "overall": 7.8
+  },
+  "verdict": {
+    "tldr": "Finally, a systematic step-by-step process for building AI evals that goes way beyond generic advice - actually worth your time.",
+    "best_for": "Product managers and engineers building AI products who need concrete frameworks for systematic error analysis and automated testing",
+    "skip_if": "You're not building AI products or you're looking for high-level strategy rather than tactical implementation details",
+    "worth_it": true,
+    "best_quote": "The goal is not to do evals perfectly. It's to actionably improve your product."
+  },
+  "top_5_takeaways": [
+    {
+      "rank": 1,
+      "insight": "Start evals with manual 'open coding' error analysis - look at 100+ real user traces and write notes about what's wrong, then use LLMs to categorize these notes into 'axial codes' for systematic counting",
+      "timestamp": "16:22",
+      "why_valuable": "Completely inverts the common approach of writing tests first. Most people jump straight to automated evals without understanding their actual failure modes from real data.",
+      "obviousness_level": "truly_non_obvious"
+    },
+    {
+      "rank": 2,
+      "insight": "Use a 'benevolent dictator' model for eval creation - appoint one domain expert (often the PM) to do the initial error analysis rather than getting bogged down in committee decisions",
+      "timestamp": "25:57",
+      "why_valuable": "Cuts through organizational paralysis that kills eval initiatives. Most teams try to democratize this process and never ship anything.",
+      "obviousness_level": "truly_non_obvious"
+    },
+    {
+      "rank": 3,
+      "insight": "LLM-as-judge evals must be binary (pass/fail) and validated against human judgment using confusion matrices, not just overall agreement percentages",
+      "timestamp": "57:14",
+      "why_valuable": "Agreement percentages are misleading when errors are rare (10% error rate = 90% agreement by always saying 'pass'). The matrix approach catches this deception.",
+      "obviousness_level": "truly_non_obvious"
+    },
+    {
+      "rank": 4,
+      "insight": "Most AI products need only 4-7 LLM-as-judge evals total - many failure modes can be fixed with prompt changes rather than building automated tests",
+      "timestamp": "1:05:11",
+      "why_valuable": "Prevents over-engineering eval systems. Many teams assume they need dozens of evals when most problems are simple prompt fixes.",
+      "obviousness_level": "moderately_non_obvious"
+    },
+    {
+      "rank": 5,
+      "insight": "The eval vs vibe-checking debate is a false dichotomy - companies like Anthropic do systematic error analysis and monitoring, they just don't call it 'evals'",
+      "timestamp": "1:11:00",
+      "why_valuable": "Resolves the confusing public debate about whether successful AI companies use evals. They do systematic measurement, just not always formal automated tests.",
+      "obviousness_level": "moderately_non_obvious"
+    }
+  ],
+  "why_these_scores": {
+    "insight_density": "Packed with genuinely non-obvious tactical insights every 10-15 minutes. The systematic error analysis approach and benevolent dictator concept are legitimately surprising to experienced builders.",
+    "signal_to_noise": "Mostly high-value content with concrete examples and live demos. Some rambling during introductions and sponsor segments, but overall very tight.",
+    "actionability": "Extremely actionable - provides step-by-step process, actual prompts, spreadsheet formulas, and specific tools. You could implement this Monday morning.",
+    "contrarian_index": "Challenges several orthodoxies: that you should write tests first, that LLM agreement percentages are meaningful, that successful companies don't do evals. Not revolutionary but meaningfully contrarian.",
+    "freshness": "Content is current and relevant to AI product builders, but the core concepts (error analysis, systematic measurement) are timeless. Could stay relevant for 2-3 years.",
+    "host_quality": "Lenny asks probing follow-ups, manages the technical complexity well for a broad audience, and keeps the conversation focused on practical value rather than theory."
+  },
+  "summary": "This episode provides the most systematic, actionable framework for building AI evals I've encountered. Rather than generic advice about 'testing your AI,' it walks through a specific methodology from manual error analysis to automated LLM judges, complete with real examples and tools.",
+  "characteristics": [
+    "tactical",
+    "systematic",
+    "ai-specific",
+    "data-driven",
+    "contrarian"
+  ],
+  "obvious_insights_rejected": [
+    "AI products need systematic testing and measurement - everyone knows this already",
+    "You should look at your data to understand problems - basic product management 101",
+    "Binary pass/fail is better than rating scales - common testing wisdom"
+  ],
+  "analyzed_at": "2025-11-22T15:37:45.898698",
+  "model": "claude-sonnet-4-20250514",
+  "scoring_mode": "hybrid_critical"
+}
