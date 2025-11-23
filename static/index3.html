@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostly Mid - Stop Wasting Time on Mediocre Podcasts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 700px;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 5rem 2rem;
+            background: #fef3c7;
+            text-align: center;
+        }
+
+        .problem h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #92400e;
+        }
+
+        .problem-list {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .problem-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            font-size: 1.1rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .solution-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .solution h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature p {
+            color: #6b7280;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background: #f3f4f6;
+        }
+
+        .how-it-works-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .newsletter button {
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .newsletter button:hover {
+            background: #5568d3;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .stats-bar {
+                gap: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Stop Wasting Time on<br>Mediocre Podcasts</h1>
+        <p class="subtitle">We analyze every episode so you don't have to.</p>
+        <p class="description">
+            Most podcasts are 6/10. We find the 8+/10 episodes worth your time, 
+            and save you from the rest. Multi-dimensional scoring by experienced PMs for experienced PMs.
+        </p>
+        <div class="cta-buttons">
+            <a href="/episodes" class="btn btn-primary">🎯 Show Me Examples</a>
+            <a href="#newsletter" class="btn btn-secondary">📧 Get Weekly Picks</a>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stat">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Episodes Analyzed</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Scoring Dimensions</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">72%</div>
+            <div class="stat-label">Filtered as Mid</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Generic Advice</div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <h2>You're Drowning in "Meh" Content</h2>
+        <div class="problem-list">
+            <div class="problem-item">
+                💀 <strong>60+ minutes wasted</strong> on generic "talk to users" advice you've heard 100 times
+            </div>
+            <div class="problem-item">
+                😴 <strong>Everyone scores 7/10</strong> making it impossible to know what's actually worth listening to
+            </div>
+            <div class="problem-item">
+                🔄 <strong>Same platitudes recycled</strong> across every podcast ("iterate fast", "find PMF", "build MVPs")
+            </div>
+            <div class="problem-item">
+                ⏰ <strong>No way to know</strong> if an episode has genuinely non-obvious insights before investing an hour
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="solution-container">
+            <h2>We Filter the Noise</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; max-width: 700px; margin: 0 auto;">
+                Every episode gets 6-dimensional scoring with HARSH standards. 
+                We call out generic advice. We show you the timestamp of the best insights. 
+                We save you from wasting time.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Multi-Dimensional Scoring</h3>
+                    <p>Insight Density, Signal-to-Noise, Actionability, Contrarian Index, Freshness, Host Quality - all scored separately</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Top 5 Non-Obvious Takeaways</h3>
+                    <p>We rank insights by non-obviousness and give you timestamps. Skip straight to the gold.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">❌</div>
+                    <h3>Transparent Filtering</h3>
+                    <p>See what obvious advice we rejected. No more "iterate fast" or "build MVPs" platitudes.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💡</div>
+                    <h3>Critical Standards</h3>
+                    <p>Scored for experienced PMs, founders, and leaders. We assume you've heard the basics.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Time-Stamped Insights</h3>
+                    <p>Jump directly to the 3 minutes that matter. Skip the 57 minutes of filler.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✅</div>
+                    <h3>Honest Verdicts</h3>
+                    <p>"Best for Series B growth leads." "Skip if you hate unstructured rambling." Real talk.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="how-it-works-container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>We Listen</h3>
+                    <p>Our AI analyzes every podcast episode in the PM/product space</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Score (Harshly)</h3>
+                    <p>6 dimensions. No grade inflation. Most episodes ARE 5-6/10.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>We Filter</h3>
+                    <p>Generic advice gets rejected. Only non-obvious insights make the cut.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>You Save Time</h3>
+                    <p>Skip the 72% that are mid. Listen to the 8+/10 episodes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="newsletter">
+        <h2>Ready to Stop Wasting Time?</h2>
+        <p>Browse analyzed episodes now, or get our weekly picks delivered</p>
+        
+        <div class="cta-buttons" style="margin-bottom: 2rem;">
+            <a href="/episodes" class="btn btn-primary">🎯 Browse All Episodes</a>
+        </div>
+
+        <div class="newsletter">
+            <h3>Get Weekly Newsletter</h3>
+            <p style="color: #6b7280; margin-bottom: 1rem;">
+                Every week: 1-2 episodes worth your time, 3-5 to skip
+            </p>
+            <form class="newsletter-form" action="#" method="post">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Mostly Mid. Built for busy professionals who value their time.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.7;">
+            Because life's too short for mediocre podcasts.
+        </p>
+    </footer>
+</body>
+</html>

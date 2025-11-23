@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostly Mid - Stop Wasting Time on Mediocre Podcasts</title>
+    <title>MOSTLY MID - Stop Listening to Shit Podcasts</title>
     <style>
         * {
             margin: 0;
@@ -11,490 +11,614 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: #f9fafb;
+        :root {
+            --green: #1DB954;
+            --green-bright: #1ed760;
+            --yellow: #FFD600;
+            --dark: #121212;
+            --dark-light: #181818;
+            --dark-gray: #282828;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --red: #ff3b30;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            min-height: 80vh;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-primary);
+            background: var(--dark);
+        }
+
+        /* Header */
+        .header {
+            background: var(--dark);
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid var(--green);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(18, 18, 18, 0.95);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
 
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--dark);
+            padding: 5rem 2rem;
+            border-bottom: 4px solid var(--yellow);
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 .highlight {
+            color: var(--green);
+            display: block;
         }
 
         .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            max-width: 700px;
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            font-weight: 700;
             margin-bottom: 3rem;
-            opacity: 0.9;
-            max-width: 600px;
+            color: var(--text-secondary);
+            max-width: 700px;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
+            padding: 1.2rem 3rem;
+            font-weight: 900;
+            font-size: 1rem;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
             border: none;
         }
 
         .btn-primary {
-            background: white;
-            color: #667eea;
+            background: var(--green);
+            color: #000;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: var(--green-bright);
+            transform: scale(1.05);
         }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid white;
+            background: transparent;
+            color: var(--text-primary);
+            border: 3px solid var(--text-primary);
         }
 
         .btn-secondary:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Stats Bar */
-        .stats-bar {
-            background: white;
-            padding: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #667eea;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background: var(--text-primary);
+            color: var(--dark);
         }
 
         /* Problem Section */
-        .problem {
+        .problem-section {
+            background: var(--dark-light);
             padding: 5rem 2rem;
-            background: #fef3c7;
-            text-align: center;
+            border-bottom: 3px solid var(--dark-gray);
         }
 
-        .problem h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #92400e;
-        }
-
-        .problem-list {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .problem-item {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #f59e0b;
-            font-size: 1.1rem;
-        }
-
-        /* Solution Section */
-        .solution {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .solution-container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .solution h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #667eea;
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
         }
 
-        .features {
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-weight: 700;
+            margin-bottom: 4rem;
+            color: var(--text-secondary);
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0;
+        }
+
+        .pain-point {
+            background: var(--dark);
+            padding: 2.5rem;
+            border: 2px solid var(--dark-gray);
+            transition: all 0.2s;
+        }
+
+        .pain-point:hover {
+            background: var(--dark-gray);
+            border-color: var(--yellow);
+        }
+
+        .pain-point-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+        }
+
+        .pain-point h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .pain-point p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Solution Section */
+        .solution-section {
+            background: var(--dark);
+            padding: 5rem 2rem;
+            border-bottom: 4px solid var(--green);
+        }
+
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 0;
         }
 
         .feature {
-            background: #f9fafb;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s;
+            background: var(--dark-light);
+            padding: 2.5rem;
+            border: 2px solid var(--dark-gray);
+            transition: all 0.2s;
         }
 
         .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: var(--dark-gray);
+            border-color: var(--green);
         }
 
-        .feature-icon {
+        .feature-number {
             font-size: 3rem;
+            font-weight: 900;
+            color: var(--green);
             margin-bottom: 1rem;
         }
 
         .feature h3 {
             font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
         }
 
         .feature p {
-            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
         }
 
-        /* How It Works */
-        .how-it-works {
+        /* Examples Section */
+        .examples-section {
+            background: var(--dark-light);
             padding: 5rem 2rem;
-            background: #f3f4f6;
         }
 
-        .how-it-works-container {
-            max-width: 1000px;
-            margin: 0 auto;
+        .playlist-style {
+            background: var(--dark);
+            overflow: hidden;
         }
 
-        .how-it-works h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .step {
-            background: white;
+        .playlist-header {
             padding: 2rem;
-            border-radius: 12px;
+            border-bottom: 2px solid var(--dark-gray);
+        }
+
+        .playlist-header h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .playlist-header p {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .playlist-item {
+            padding: 1.5rem 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 1.5rem;
+            align-items: center;
+            border-bottom: 1px solid var(--dark-gray);
+            transition: all 0.2s;
+        }
+
+        .playlist-item:hover {
+            background: var(--dark-gray);
+        }
+
+        .item-number {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 900;
+        }
+
+        .item-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .item-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .item-score {
+            font-size: 2rem;
+            font-weight: 900;
+            min-width: 60px;
             text-align: center;
         }
 
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: #667eea;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1rem;
+        .score-high {
+            color: var(--green);
         }
 
-        .step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+        .score-mid {
+            color: var(--yellow);
+        }
+
+        .score-low {
+            color: var(--red);
+        }
+
+        .item-badge {
+            padding: 0.5rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 2px solid;
+        }
+
+        .badge-listen {
+            background: var(--green);
+            color: #000;
+            border-color: var(--green);
+        }
+
+        .badge-maybe {
+            background: transparent;
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .badge-skip {
+            background: transparent;
+            color: var(--red);
+            border-color: var(--red);
         }
 
         /* CTA Section */
-        .final-cta {
+        .cta-section {
+            background: var(--green);
+            color: #000;
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
             text-align: center;
         }
 
-        .final-cta h2 {
-            font-size: 2.5rem;
+        .cta-section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
             margin-bottom: 1rem;
+            text-transform: uppercase;
         }
 
-        .final-cta p {
-            font-size: 1.2rem;
+        .cta-section p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-weight: 700;
             margin-bottom: 2rem;
-            opacity: 0.9;
         }
 
-        /* Newsletter */
-        .newsletter {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 500px;
-            margin: 2rem auto 0;
+        .cta-section .btn-primary {
+            background: #000;
+            color: var(--green);
         }
 
-        .newsletter h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .newsletter input {
-            flex: 1;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-
-        .newsletter button {
-            padding: 0.75rem 1.5rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .newsletter button:hover {
-            background: #5568d3;
+        .cta-section .btn-primary:hover {
+            background: var(--dark);
         }
 
         /* Footer */
-        footer {
-            background: #1f2937;
-            color: white;
-            padding: 2rem;
+        .footer {
+            background: var(--dark);
+            padding: 3rem 2rem;
             text-align: center;
+            border-top: 2px solid var(--dark-gray);
         }
 
-        /* Responsive */
+        .footer p {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .playlist-item {
+                grid-template-columns: 1fr auto;
+                gap: 1rem;
             }
 
-            .hero .subtitle {
-                font-size: 1.2rem;
+            .item-number {
+                display: none;
+            }
+
+            .item-badge {
+                grid-column: 1 / -1;
+                text-align: center;
             }
 
             .cta-buttons {
                 flex-direction: column;
             }
 
-            .stats-bar {
-                gap: 2rem;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
+            .btn {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">Mostly Mid</a>
+            <nav class="nav-links">
+                <a href="/episodes">Episodes</a>
+                <a href="#how">How It Works</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
     <section class="hero">
-        <h1>Stop Wasting Time on<br>Mediocre Podcasts</h1>
-        <p class="subtitle">We analyze every episode so you don't have to.</p>
-        <p class="description">
-            Most podcasts are 6/10. We find the 8+/10 episodes worth your time, 
-            and save you from the rest. Multi-dimensional scoring by experienced PMs for experienced PMs.
-        </p>
-        <div class="cta-buttons">
-            <a href="/episodes" class="btn btn-primary">🎯 Show Me Examples</a>
-            <a href="#newsletter" class="btn btn-secondary">📧 Get Weekly Picks</a>
-        </div>
-    </section>
-
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-        <div class="stat">
-            <div class="stat-number">25+</div>
-            <div class="stat-label">Episodes Analyzed</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">6</div>
-            <div class="stat-label">Scoring Dimensions</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">72%</div>
-            <div class="stat-label">Filtered as Mid</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">0</div>
-            <div class="stat-label">Generic Advice</div>
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="problem">
-        <h2>You're Drowning in "Meh" Content</h2>
-        <div class="problem-list">
-            <div class="problem-item">
-                💀 <strong>60+ minutes wasted</strong> on generic "talk to users" advice you've heard 100 times
-            </div>
-            <div class="problem-item">
-                😴 <strong>Everyone scores 7/10</strong> making it impossible to know what's actually worth listening to
-            </div>
-            <div class="problem-item">
-                🔄 <strong>Same platitudes recycled</strong> across every podcast ("iterate fast", "find PMF", "build MVPs")
-            </div>
-            <div class="problem-item">
-                ⏰ <strong>No way to know</strong> if an episode has genuinely non-obvious insights before investing an hour
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section class="solution">
-        <div class="solution-container">
-            <h2>We Filter the Noise</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; max-width: 700px; margin: 0 auto;">
-                Every episode gets 6-dimensional scoring with HARSH standards. 
-                We call out generic advice. We show you the timestamp of the best insights. 
-                We save you from wasting time.
+        <div class="hero-container">
+            <h1>
+                STOP LISTENING TO
+                <span class="highlight">SHIT PODCASTS</span>
+            </h1>
+            <p class="subtitle">
+                AI-powered ratings that tell you which episodes are worth your time. Browse analyzed podcasts like you browse playlists.
             </p>
+            <div class="cta-buttons">
+                <a href="/episodes" class="btn btn-primary">Browse Episodes</a>
+                <a href="#how" class="btn btn-secondary">How It Works</a>
+            </div>
+        </div>
+    </section>
 
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <h3>Multi-Dimensional Scoring</h3>
-                    <p>Insight Density, Signal-to-Noise, Actionability, Contrarian Index, Freshness, Host Quality - all scored separately</p>
+    <!-- Problem -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">The Problem</h2>
+            <p class="section-subtitle">Most podcasts waste your time</p>
+
+            <div class="pain-points">
+                <div class="pain-point">
+                    <div class="pain-point-number">01</div>
+                    <h3>Generic Advice</h3>
+                    <p>"Work hard, be yourself, follow your passion" — you've heard it a thousand times. Zero new information.</p>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Top 5 Non-Obvious Takeaways</h3>
-                    <p>We rank insights by non-obviousness and give you timestamps. Skip straight to the gold.</p>
+
+                <div class="pain-point">
+                    <div class="pain-point-number">02</div>
+                    <h3>Wasted Time</h3>
+                    <p>90-minute episodes that could've been a tweet. You realize it's fluff 30 minutes in.</p>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">❌</div>
-                    <h3>Transparent Filtering</h3>
-                    <p>See what obvious advice we rejected. No more "iterate fast" or "build MVPs" platitudes.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💡</div>
-                    <h3>Critical Standards</h3>
-                    <p>Scored for experienced PMs, founders, and leaders. We assume you've heard the basics.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">⏱️</div>
-                    <h3>Time-Stamped Insights</h3>
-                    <p>Jump directly to the 3 minutes that matter. Skip the 57 minutes of filler.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">✅</div>
-                    <h3>Honest Verdicts</h3>
-                    <p>"Best for Series B growth leads." "Skip if you hate unstructured rambling." Real talk.</p>
+
+                <div class="pain-point">
+                    <div class="pain-point-number">03</div>
+                    <h3>No Pushback</h3>
+                    <p>Hosts let guests ramble. No hard questions. Just two people agreeing for an hour.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
-        <div class="how-it-works-container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>We Listen</h3>
-                    <p>Our AI analyzes every podcast episode in the PM/product space</p>
+    <!-- Solution -->
+    <section class="solution-section" id="how">
+        <div class="container">
+            <h2 class="section-title">Six Brutal Dimensions</h2>
+            <p class="section-subtitle">We analyze every episode on what actually matters</p>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-number">01</div>
+                    <h3>Specificity</h3>
+                    <p>Concrete tactics and frameworks vs. vague platitudes.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>We Score (Harshly)</h3>
-                    <p>6 dimensions. No grade inflation. Most episodes ARE 5-6/10.</p>
+
+                <div class="feature">
+                    <div class="feature-number">02</div>
+                    <h3>Originality</h3>
+                    <p>Novel insights vs. repackaged conventional wisdom.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>We Filter</h3>
-                    <p>Generic advice gets rejected. Only non-obvious insights make the cut.</p>
+
+                <div class="feature">
+                    <div class="feature-number">03</div>
+                    <h3>Density</h3>
+                    <p>Information per minute. No fluff tolerance.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>You Save Time</h3>
-                    <p>Skip the 72% that are mid. Listen to the 8+/10 episodes.</p>
+
+                <div class="feature">
+                    <div class="feature-number">04</div>
+                    <h3>Depth</h3>
+                    <p>Deep exploration vs. surface-level overview.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-number">05</div>
+                    <h3>Rigor</h3>
+                    <p>Evidence-backed claims vs. hand-waving anecdotes.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-number">06</div>
+                    <h3>Relevance</h3>
+                    <p>Actually useful for PMs and founders.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta" id="newsletter">
-        <h2>Ready to Stop Wasting Time?</h2>
-        <p>Browse analyzed episodes now, or get our weekly picks delivered</p>
-        
-        <div class="cta-buttons" style="margin-bottom: 2rem;">
-            <a href="/episodes" class="btn btn-primary">🎯 Browse All Episodes</a>
-        </div>
+    <!-- Examples -->
+    <section class="examples-section">
+        <div class="container">
+            <h2 class="section-title">Real Scores</h2>
+            <p class="section-subtitle">Brutally honest ratings</p>
 
-        <div class="newsletter">
-            <h3>Get Weekly Newsletter</h3>
-            <p style="color: #6b7280; margin-bottom: 1rem;">
-                Every week: 1-2 episodes worth your time, 3-5 to skip
-            </p>
-            <form class="newsletter-form" action="#" method="post">
-                <input type="email" placeholder="your@email.com" required>
-                <button type="submit">Subscribe</button>
-            </form>
+            <div class="playlist-style">
+                <div class="playlist-header">
+                    <h3>Recently Analyzed</h3>
+                    <p>Updated weekly with new episodes</p>
+                </div>
+
+                <div class="playlist-item">
+                    <div class="item-number">1</div>
+                    <div class="item-info">
+                        <h4>Product Strategy Masterclass</h4>
+                        <p>Top Product Leader · Concrete frameworks, real examples, data-backed</p>
+                    </div>
+                    <div class="item-score score-high">8.7</div>
+                    <div class="item-badge badge-listen">Listen</div>
+                </div>
+
+                <div class="playlist-item">
+                    <div class="item-number">2</div>
+                    <div class="item-info">
+                        <h4>PM Career Progression</h4>
+                        <p>Industry Expert · Decent frameworks but light on examples</p>
+                    </div>
+                    <div class="item-score score-mid">6.8</div>
+                    <div class="item-badge badge-maybe">Maybe</div>
+                </div>
+
+                <div class="playlist-item">
+                    <div class="item-number">3</div>
+                    <div class="item-info">
+                        <h4>Generic Startup Story</h4>
+                        <p>Famous Founder · Nothing new, absolutely generic</p>
+                    </div>
+                    <div class="item-score score-low">4.2</div>
+                    <div class="item-badge badge-skip">Skip</div>
+                </div>
+
+                <div class="playlist-item">
+                    <div class="item-number">4</div>
+                    <div class="item-info">
+                        <h4>Design Thinking Workshop</h4>
+                        <p>Design Leader · Specific exercises and clear takeaways</p>
+                    </div>
+                    <div class="item-score score-high">7.9</div>
+                    <div class="item-badge badge-listen">Listen</div>
+                </div>
+
+                <div class="playlist-item">
+                    <div class="item-number">5</div>
+                    <div class="item-info">
+                        <h4>Motivation & Mindset</h4>
+                        <p>Life Coach · Vague platitudes, zero substance</p>
+                    </div>
+                    <div class="item-score score-low">3.5</div>
+                    <div class="item-badge badge-skip">Skip</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Stop Wasting Time?</h2>
+            <p>Browse our full library of brutally honest ratings</p>
+            <a href="/episodes" class="btn btn-primary">See All Scores</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Mostly Mid. Built for busy professionals who value their time.</p>
-        <p style="margin-top: 0.5rem; opacity: 0.7;">
-            Because life's too short for mediocre podcasts.
-        </p>
+    <footer class="footer">
+        <p><strong>MOSTLY MID</strong></p>
+        <p>Because most podcasts are mediocre.</p>
     </footer>
 </body>
 </html>

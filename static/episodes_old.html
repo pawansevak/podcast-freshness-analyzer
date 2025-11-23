@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode Library - Mostly Mid</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .page-title p {
+            font-size: 1.1rem;
+            color: #6b7280;
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Filters */
+        .filters {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filters-header {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            color: #374151;
+        }
+
+        .filter-group select {
+            padding: 0.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .filter-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        /* Episode Count */
+        .episode-count {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            color: #6b7280;
+        }
+
+        /* Episodes List */
+        .episodes-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        /* Episode Card */
+        .episode-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .episode-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .episode-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .episode-header h3 {
+            flex: 1;
+            font-size: 1.3rem;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        /* Score Badge */
+        .score-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .score-badge.excellent {
+            background: #10b981;
+            color: white;
+        }
+
+        .score-badge.good {
+            background: #22c55e;
+            color: white;
+        }
+
+        .score-badge.mediocre {
+            background: #eab308;
+            color: #000;
+        }
+
+        .score-badge.poor {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* TLDR */
+        .tldr {
+            font-style: italic;
+            color: #4b5563;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Verdict Section */
+        .verdict-section {
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .verdict-row {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .verdict-row strong {
+            color: #1f2937;
+        }
+
+        /* Top Insight Preview */
+        .top-insight-preview {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .top-insight-preview strong {
+            color: #92400e;
+        }
+
+        .timestamp {
+            color: #059669;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Score Breakdown */
+        .score-breakdown {
+            margin: 1rem 0;
+        }
+
+        .score-breakdown summary {
+            cursor: pointer;
+            padding: 0.75rem;
+            background: #f3f4f6;
+            border-radius: 6px;
+            font-weight: 600;
+            list-style: none;
+            user-select: none;
+        }
+
+        .score-breakdown summary:hover {
+            background: #e5e7eb;
+        }
+
+        .score-breakdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .dimensions {
+            margin-top: 1rem;
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .dimension {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 6px;
+        }
+
+        .dimension .score {
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-state h2 {
+            font-size: 1.5rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .episode-header {
+                flex-direction: column;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">Mostly Mid</a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/episodes">Episodes</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>Analyzed Episodes</h1>
+            <p>Every episode scored with harsh, multi-dimensional analysis</p>
+        </div>
+
+        <!-- Stats Dashboard -->
+        <div class="stats-dashboard">
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value" id="total-episodes">-</div>
+                    <div class="stat-label">Total Episodes</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="avg-score">-</div>
+                    <div class="stat-label">Average Score</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="high-quality">-</div>
+                    <div class="stat-label">High Quality (7+)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="worth-listening">-</div>
+                    <div class="stat-label">Worth Listening</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="avg-non-obvious">-</div>
+                    <div class="stat-label">Avg Non-Obvious</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filters-header">🔍 Filter Episodes</div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="min-score">Minimum Score</label>
+                    <select id="min-score">
+                        <option value="0">All Episodes</option>
+                        <option value="5">5+ (Decent)</option>
+                        <option value="6">6+ (Above Average)</option>
+                        <option value="7">7+ (Good)</option>
+                        <option value="8">8+ (Excellent)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="min-insight">Insight Quality</label>
+                    <select id="min-insight">
+                        <option value="0">Any</option>
+                        <option value="6">6+ (Solid)</option>
+                        <option value="7">7+ (Very Good)</option>
+                        <option value="8">8+ (Exceptional)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="min-non-obvious">Non-Obvious Insights</label>
+                    <select id="min-non-obvious">
+                        <option value="0">Any</option>
+                        <option value="2">2+ truly non-obvious</option>
+                        <option value="3">3+ truly non-obvious</option>
+                        <option value="4">4+ truly non-obvious</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sort-by">Sort By</label>
+                    <select id="sort-by">
+                        <option value="score-desc">Highest Score</option>
+                        <option value="insight-desc">Best Insights</option>
+                        <option value="non-obvious-desc">Most Non-Obvious</option>
+                    </select>
+                </div>
+
+                <div class="filter-group" style="justify-content: center;">
+                    <label>
+                        <input type="checkbox" id="worth-it-only">
+                        Only "Worth It" episodes
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Episode Count -->
+        <div class="episode-count" id="episode-count">
+            Loading episodes...
+        </div>
+
+        <!-- Episodes List -->
+        <div class="episodes-list" id="episodes-list">
+            <div class="loading">Loading episodes...</div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let allEpisodes = [];
+        let filters = {
+            minScore: 0,
+            minInsight: 0,
+            minNonObvious: 0,
+            worthItOnly: false,
+            sortBy: 'score-desc'
+        };
+
+        // Load episodes on page load
+        document.addEventListener('DOMContentLoaded', loadEpisodes);
+
+        // Filter event listeners
+        document.getElementById('min-score').addEventListener('change', (e) => {
+            filters.minScore = parseFloat(e.target.value);
+            applyFilters();
+        });
+
+        document.getElementById('min-insight').addEventListener('change', (e) => {
+            filters.minInsight = parseFloat(e.target.value);
+            applyFilters();
+        });
+
+        document.getElementById('min-non-obvious').addEventListener('change', (e) => {
+            filters.minNonObvious = parseInt(e.target.value);
+            applyFilters();
+        });
+
+        document.getElementById('sort-by').addEventListener('change', (e) => {
+            filters.sortBy = e.target.value;
+            applyFilters();
+        });
+
+        document.getElementById('worth-it-only').addEventListener('change', (e) => {
+            filters.worthItOnly = e.target.checked;
+            applyFilters();
+        });
+
+        async function loadEpisodes() {
+            try {
+                const response = await fetch('/api/episodes');
+                const data = await response.json();
+                
+                allEpisodes = data.episodes;
+                
+                // Update stats
+                if (data.stats) {
+                    document.getElementById('total-episodes').textContent = data.stats.total;
+                    document.getElementById('avg-score').textContent = data.stats.avg_score + '/10';
+                    document.getElementById('high-quality').textContent = data.stats.high_quality;
+                    document.getElementById('worth-listening').textContent = data.stats.worth_listening;
+                    document.getElementById('avg-non-obvious').textContent = data.stats.avg_non_obvious + '/5';
+                }
+                
+                renderEpisodes(allEpisodes);
+            } catch (error) {
+                console.error('Error loading episodes:', error);
+                document.getElementById('episodes-list').innerHTML = `
+                    <div class="empty-state">
+                        <h2>Error loading episodes</h2>
+                        <p>Please try refreshing the page</p>
+                    </div>
+                `;
+            }
+        }
+
+        function applyFilters() {
+            let filtered = allEpisodes.filter(ep => {
+                if (ep.overall_score < filters.minScore) return false;
+                if (ep.insight_density < filters.minInsight) return false;
+                if (ep.truly_non_obvious_count < filters.minNonObvious) return false;
+                if (filters.worthItOnly && !ep.worth_it) return false;
+                return true;
+            });
+
+            // Sort
+            filtered.sort((a, b) => {
+                switch(filters.sortBy) {
+                    case 'score-desc':
+                        return b.overall_score - a.overall_score;
+                    case 'insight-desc':
+                        return b.insight_density - a.insight_density;
+                    case 'non-obvious-desc':
+                        return b.truly_non_obvious_count - a.truly_non_obvious_count;
+                    default:
+                        return 0;
+                }
+            });
+
+            renderEpisodes(filtered);
+        }
+
+        function renderEpisodes(episodes) {
+            const container = document.getElementById('episodes-list');
+            
+            // Update count
+            document.getElementById('episode-count').textContent = 
+                `Showing ${episodes.length} of ${allEpisodes.length} episodes`;
+            
+            if (episodes.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h2>No episodes match your filters</h2>
+                        <p>Try adjusting the filters above</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = episodes.map(ep => `
+                <div class="episode-card">
+                    <!-- Header -->
+                    <div class="episode-header">
+                        <h3>${ep.title}</h3>
+                        <div class="score-badge ${getScoreBadgeClass(ep.overall_score)}">
+                            ${ep.overall_score}/10
+                        </div>
+                    </div>
+
+                    <!-- TLDR -->
+                    ${ep.tldr ? `<p class="tldr">${ep.tldr}</p>` : ''}
+
+                    <!-- Verdict -->
+                    <div class="verdict-section">
+                        ${ep.best_for ? `<div class="verdict-row"><strong>👥 Best for:</strong> ${ep.best_for}</div>` : ''}
+                        ${ep.skip_if ? `<div class="verdict-row"><strong>⏭️ Skip if:</strong> ${ep.skip_if}</div>` : ''}
+                    </div>
+
+                    <!-- Top Insight -->
+                    ${ep.top_insight ? `
+                        <div class="top-insight-preview">
+                            <strong>💡 Top Insight:</strong> ${ep.top_insight.substring(0, 150)}${ep.top_insight.length > 150 ? '...' : ''}
+                            ${ep.top_insight_timestamp ? `<span class="timestamp">[${ep.top_insight_timestamp}]</span>` : ''}
+                        </div>
+                    ` : ''}
+
+                    <!-- Score Breakdown -->
+                    <details class="score-breakdown">
+                        <summary>📊 Score Breakdown</summary>
+                        <div class="dimensions">
+                            <div class="dimension">
+                                <span>💡 Insight Density</span>
+                                <span class="score">${ep.insight_density}/10</span>
+                            </div>
+                            <div class="dimension">
+                                <span>📢 Signal-to-Noise</span>
+                                <span class="score">${ep.signal_to_noise}/10</span>
+                            </div>
+                            <div class="dimension">
+                                <span>⚡ Actionability</span>
+                                <span class="score">${ep.actionability}/10</span>
+                            </div>
+                            <div class="dimension">
+                                <span>🔥 Contrarian</span>
+                                <span class="score">${ep.contrarian_index}/10</span>
+                            </div>
+                            <div class="dimension">
+                                <span>🆕 Freshness</span>
+                                <span class="score">${ep.freshness}/10</span>
+                            </div>
+                            <div class="dimension">
+                                <span>🎤 Host</span>
+                                <span class="score">${ep.host_quality}/10</span>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Actions -->
+                    <div class="actions">
+                        <a href="/episode/${ep.id}" class="btn btn-primary">View Full Analysis</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getScoreBadgeClass(score) {
+            if (score >= 8) return 'excellent';
+            if (score >= 7) return 'good';
+            if (score >= 5) return 'mediocre';
+            return 'poor';
+        }
+    </script>
+</body>
+</html>
