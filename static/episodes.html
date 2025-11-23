@@ -311,7 +311,6 @@
             grid-template-columns: auto 1fr auto auto;
             gap: 1.5rem;
             align-items: center;
-            margin-bottom: 1.5rem;
         }
 
         .episode-number {
@@ -322,15 +321,8 @@
 
         .episode-title h3 {
             font-size: 1.3rem;
-            margin-bottom: 0.25rem;
             font-weight: 900;
             text-transform: uppercase;
-        }
-
-        .episode-guest {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
         }
 
         .overall-score {
@@ -358,20 +350,12 @@
         .verdict-maybe { background: transparent; color: var(--yellow); border-color: var(--yellow); }
         .verdict-skip { background: transparent; color: var(--red); border-color: var(--red); }
 
-        .dimensions-count {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-        }
-
         .card-footer {
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
             border-top: 2px solid var(--dark-gray);
         }
 
@@ -454,6 +438,7 @@
             .verdict-badge {
                 grid-column: 1 / -1;
                 text-align: center;
+                margin-top: 1rem;
             }
 
             .results-info {
@@ -514,7 +499,7 @@
                     type="text" 
                     class="search-box" 
                     id="search-input"
-                    placeholder="Search by title or guest..."
+                    placeholder="Search by title..."
                     oninput="filterEpisodes()"
                 >
             </div>
@@ -589,29 +574,6 @@
             }
         }
 
-        function extractGuest(episode) {
-            // Try multiple possible fields
-            return episode.guest || 
-                   episode.speaker || 
-                   episode.guests ||
-                   (episode.title && episode.title.includes(' with ') 
-                       ? episode.title.split(' with ')[1] 
-                       : null) ||
-                   'Guest';
-        }
-
-        function getDimensionsCount(episode) {
-            if (episode.dimensions && typeof episode.dimensions === 'object') {
-                return Object.keys(episode.dimensions).length;
-            }
-            // Count individual dimension fields
-            let count = 0;
-            ['specificity', 'originality', 'density', 'depth', 'rigor', 'relevance', 'pm_relevance'].forEach(dim => {
-                if (episode[dim] !== undefined) count++;
-            });
-            return count;
-        }
-
         function updateStats() {
             const total = allEpisodes.length;
             const avgScore = total > 0 
@@ -657,7 +619,7 @@
                 }
                 
                 if (currentFilters.search) {
-                    const searchText = `${episode.title || ''} ${extractGuest(episode)}`.toLowerCase();
+                    const searchText = (episode.title || '').toLowerCase();
                     if (!searchText.includes(currentFilters.search)) return false;
                 }
                 
@@ -720,8 +682,6 @@
             const verdictClass = score >= 7 ? 'verdict-listen' : score >= 5 ? 'verdict-maybe' : 'verdict-skip';
             const verdictText = score >= 7 ? 'Listen' : score >= 5 ? 'Maybe' : 'Skip';
             
-            const guest = extractGuest(episode);
-            const dimensionsCount = getDimensionsCount(episode);
             const currentNumber = episodeCounter++;
             const episodeId = episode.id || episode.episode_id || currentNumber;
             
@@ -731,16 +691,11 @@
                         <div class="episode-number">${currentNumber}</div>
                         <div class="episode-title">
                             <h3>${episode.title || 'Untitled Episode'}</h3>
-                            <p class="episode-guest">${guest}</p>
                         </div>
                         <div class="overall-score ${scoreClass}">
                             ${score.toFixed(1)}
                         </div>
                         <div class="verdict-badge ${verdictClass}">${verdictText}</div>
-                    </div>
-                    
-                    <div class="dimensions-count">
-                        📊 ${dimensionsCount} Dimensions
                     </div>
                     
                     <div class="card-footer">
