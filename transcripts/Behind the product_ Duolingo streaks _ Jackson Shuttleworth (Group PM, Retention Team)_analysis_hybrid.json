@@ -1,0 +1,230 @@
+{
+  "episode_metadata": {
+    "podcast": "Lenny's Podcast",
+    "episode": "Behind the product: Duolingo streaks",
+    "guest": "Jackson Shuttleworth (Group PM, Retention Team)",
+    "primary_category": "build_ai_products"
+  },
+  "scores": {
+    "insight_density": 7,
+    "signal_to_noise": 6,
+    "actionability": 8,
+    "contrarian_index": 6,
+    "freshness": 7,
+    "host_quality": 7,
+    "overall": 6.9
+  },
+  "verdict": {
+    "tldr": "A deep dive into Duolingo's streak feature with actionable insights for retention-focused PMs.",
+    "best_for": "Product managers focused on user retention and habit formation.",
+    "skip_if": "You're looking for broad product management advice or AI-specific insights.",
+    "worth_it": true,
+    "best_quote": "The reason why users care about your streak so much is because you care about your streaks so much."
+  },
+  "insights": [
+    {
+      "rank": 1,
+      "insight": "Duolingo runs over 600 experiments on the streak feature, with a 50% success rate, showing the importance of constant iteration.",
+      "timestamp": "02:00",
+      "why_valuable": "Highlights the scale and commitment needed for optimizing a single feature.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "learn_from_legends",
+      "spicy_rating": 4,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 2,
+      "insight": "Switching from an XP-based streak to a 'one lesson a day' streak significantly increased user retention.",
+      "timestamp": "12:10",
+      "why_valuable": "Demonstrates the power of simplifying user goals to enhance engagement.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "learn_from_legends",
+      "spicy_rating": 5,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 3,
+      "insight": "Duolingo's practice reminder is sent 23.5 hours after the last session, leveraging revealed behavior for timing.",
+      "timestamp": "55:34",
+      "why_valuable": "Shows a unique approach to timing notifications based on user behavior.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "learn_from_legends",
+      "spicy_rating": 4,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 4,
+      "insight": "Adding an 'opt-out' button for streak goals increased user commitment by making the decision more intentional.",
+      "timestamp": "23:38",
+      "why_valuable": "Reveals the psychological impact of giving users control over their commitments.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "learn_from_legends",
+      "spicy_rating": 4,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 5,
+      "insight": "Duolingo's streak feature is the most impactful feature after lessons, driving significant DAU growth.",
+      "timestamp": "08:39",
+      "why_valuable": "Highlights the potential of a well-implemented streak feature in driving user engagement.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "learn_from_legends",
+      "spicy_rating": 5,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 6,
+      "insight": "Duolingo's streak saver notification at 10 PM effectively prevents streak loss by reminding users late at night.",
+      "timestamp": "56:23",
+      "why_valuable": "Illustrates the effectiveness of well-timed notifications in user retention.",
+      "obviousness_level": "sharp",
+      "category": "learn_from_legends",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 7,
+      "insight": "Perfect streaks are celebrated with visual changes, enhancing user motivation without tangible rewards.",
+      "timestamp": "59:00",
+      "why_valuable": "Shows how non-monetary rewards can drive user engagement.",
+      "obviousness_level": "sharp",
+      "category": "learn_from_legends",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 8,
+      "insight": "Duolingo's retention team focuses on the zero to seven-day user experience, as retention significantly improves after seven days.",
+      "timestamp": "20:01",
+      "why_valuable": "Emphasizes the importance of early user engagement for long-term retention.",
+      "obviousness_level": "sharp",
+      "category": "learn_from_legends",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 9,
+      "insight": "Duolingo's streak feature was launched with the app and has evolved from an XP-based system to a simpler model.",
+      "timestamp": "10:28",
+      "why_valuable": "Provides a historical perspective on feature evolution and simplification.",
+      "obviousness_level": "sharp",
+      "category": "learn_from_legends",
+      "spicy_rating": 3,
+      "actionability": "informative"
+    },
+    {
+      "rank": 10,
+      "insight": "Duolingo's streak feature includes flexibility with streak freezes, allowing users to maintain streaks despite missed days.",
+      "timestamp": "49:29",
+      "why_valuable": "Demonstrates the balance between user flexibility and feature integrity.",
+      "obviousness_level": "sharp",
+      "category": "learn_from_legends",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 11,
+      "insight": "Duolingo tests copy constantly, finding that changes like 'commit to my goal' instead of 'continue' can significantly impact engagement.",
+      "timestamp": "27:11",
+      "why_valuable": "Highlights the power of language in user interfaces.",
+      "obviousness_level": "useful",
+      "category": "learn_from_legends",
+      "spicy_rating": 2,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 12,
+      "insight": "Duolingo's retention team is metric-focused, prioritizing CER and DAUs over feature ownership.",
+      "timestamp": "05:56",
+      "why_valuable": "Illustrates a metric-driven approach to product management.",
+      "obviousness_level": "useful",
+      "category": "learn_from_legends",
+      "spicy_rating": 2,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 13,
+      "insight": "Duolingo's streak feature is designed to be simple and clear, with a focus on user understanding.",
+      "timestamp": "35:09",
+      "why_valuable": "Emphasizes the importance of clarity in feature design.",
+      "obviousness_level": "useful",
+      "category": "learn_from_legends",
+      "spicy_rating": 2,
+      "actionability": "informative"
+    },
+    {
+      "rank": 14,
+      "insight": "Duolingo's streak feature leverages loss aversion, a powerful psychological principle, to drive user engagement.",
+      "timestamp": "16:28",
+      "why_valuable": "Explains the psychological foundation of streak features.",
+      "obviousness_level": "useful",
+      "category": "learn_from_legends",
+      "spicy_rating": 2,
+      "actionability": "informative"
+    },
+    {
+      "rank": 15,
+      "insight": "Duolingo's streak feature is constantly iterated upon, with a focus on user feedback and data-driven insights.",
+      "timestamp": "02:49",
+      "why_valuable": "Highlights the importance of continuous iteration and user feedback.",
+      "obviousness_level": "useful",
+      "category": "learn_from_legends",
+      "spicy_rating": 2,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 16,
+      "insight": "Duolingo's streak feature includes a 'perfect streak' concept, rewarding users for not using streak freezes.",
+      "timestamp": "59:52",
+      "why_valuable": "Shows how additional layers of motivation can enhance user engagement.",
+      "obviousness_level": "foundational",
+      "category": "learn_from_legends",
+      "spicy_rating": 2,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 17,
+      "insight": "Duolingo's streak feature is a key part of its growth strategy, contributing significantly to user retention and engagement.",
+      "timestamp": "09:34",
+      "why_valuable": "Provides a case study of a successful feature driving business growth.",
+      "obviousness_level": "foundational",
+      "category": "learn_from_legends",
+      "spicy_rating": 2,
+      "actionability": "informative"
+    },
+    {
+      "rank": 18,
+      "insight": "Duolingo's streak feature is supported by a robust infrastructure for testing and iteration.",
+      "timestamp": "02:49",
+      "why_valuable": "Highlights the importance of infrastructure in supporting feature development.",
+      "obviousness_level": "foundational",
+      "category": "learn_from_legends",
+      "spicy_rating": 2,
+      "actionability": "informative"
+    }
+  ],
+  "why_these_scores": {
+    "insight_density": "The episode provided numerous specific insights into the development and impact of Duolingo's streak feature, though some insights were more foundational.",
+    "signal_to_noise": "The conversation was focused, but included some repetition and promotional content.",
+    "actionability": "Many insights were directly applicable to retention-focused product management.",
+    "contrarian_index": "Some insights challenged common assumptions about user engagement and feature development.",
+    "freshness": "The insights were relevant and timely, reflecting current best practices in product management.",
+    "host_quality": "The host facilitated a detailed and informative discussion, though some questions were repetitive."
+  },
+  "summary": "This episode of Lenny's Podcast dives deep into the development and impact of Duolingo's streak feature, offering valuable insights for product managers focused on user retention. The conversation covers the evolution of the feature, the importance of testing, and the psychological principles that drive its success.",
+  "characteristics": [
+    "retention",
+    "user engagement",
+    "product management",
+    "psychology",
+    "experimentation"
+  ],
+  "obvious_insights_rejected": [
+    "Iteration over perfection - too generic and common.",
+    "Talk to users - standard advice without novel application."
+  ],
+  "analyzed_at": "2025-12-31T00:24:34.204675",
+  "model": "gpt-4o",
+  "provider": "openai",
+  "scoring_mode": "hybrid_critical_v2"
+}

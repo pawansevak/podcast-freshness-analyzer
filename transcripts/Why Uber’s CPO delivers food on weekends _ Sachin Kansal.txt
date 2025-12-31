@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Why Uber’s CPO delivers food on weekends
+guest: Sachin Kansal (Chief Product Officer @ Uber)
+category: build_ai_products
+---
 
 00:00:00 - 00:00:54
 Everyone's always promoting dog fooding. It feels though that you take this to a whole other level. Either once or twice a month, I will set aside half a day and then I'll go out and I'll drive and deliver. My team and I, we designed these amazing features. They look so good. And then you get in the car and you have a phone which is sitting 3 ft away from you. You're driving at 45 mph. The world just changes. This thing that was looking so great in an office setting now maybe makes no sense. When I

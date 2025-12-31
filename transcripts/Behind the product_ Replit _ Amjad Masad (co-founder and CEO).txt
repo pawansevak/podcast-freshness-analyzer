@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Behind the product: Replit
+guest: Amjad Masad (co-founder and CEO, Replit)
+category: build_ai_products
+---
 
 00:00:00 - 00:02:04
 the idea behind repet is that making software today is very difficult we want to make it easier people view this as a developer in their pocket essentially we have 34 million uh users globally there's people everywhere learning to code and RL building startups building personal software personal tools for people building products they product managers Founders like what skills do you see will matter more matter less typically you're bottlenecked where your ideas are not fitting in because like they need to be made and they need to be made quickly now you open up that bot like so now like actually making things is is a lot easier actually you become limited by how fast you can generate ideas I think people are unaware of just how far things have gone I could imagine whatever 5 years from now someone running a billion dollar company with zero employees where it's like the support is handled by AI the development is handled by Ai and you're just building and creating this thing man the

@@ -1,3 +1,9 @@
+---
+podcast: No Priors
+episode: Ep. 139 | With Snowflake CEO Sridhar Ramaswamy
+guest: Sridhar Ramaswamy
+category: learn_from_legends
+---
 
 00:00:06 - 00:01:12
 Hi listeners, welcome back to No Priors. Today I'm here with Street Ramaswami, the CEO of Snowflake, the former founder of Neva and the SVP of Google Ads. We will talk about his first 18 months of being CEO, the incredible execution over that time in shifting a company at scale to being AI first, where the enterprise ROI is, and what happens to the cloud service providers and the ads model in the age of AI. Welcome >> Sarah. Really excited to be back. >> Well, it's a it's a pleasure to talk to

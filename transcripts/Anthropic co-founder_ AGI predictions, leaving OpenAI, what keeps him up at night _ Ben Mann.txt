@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Anthropic co-founder: AGI predictions, leaving OpenAI, what keeps him up at night | 
+guest: Ben Mann
+category: learn_from_legends
+---
 
 00:00:00 - 00:00:54
 You wrote somewhere that creating powerful  AI might be the last invention humanity ever needs to make. How much time do we have, Ben? I think 50th percentile chance of hitting some  kind of superintelligence is now like 2028. What is it that you saw at OpenAI? What'd you  experience there that made you feel like, okay, we got to go do our own thing? We felt like safety wasn't the top priority there. The case for safety  has gotten a lot more concrete, so superintelligence is a lot about how do we  keep God in a box and not let the God out? What are the odds that we align AI correctly? Once we get to superintelligence, it will be too late to align the models. My best granularity  forecast for could we have an X-risk or extremely bad outcome is somewhere between 0 and 10%. Something that's in the news right now is this whole Zuck coming after all  the top AI researchers, We've been much less affected because people  here, they get these offers and then they say, well, of course I'm not going to leave because my  best case scenario at Meta is that we make money

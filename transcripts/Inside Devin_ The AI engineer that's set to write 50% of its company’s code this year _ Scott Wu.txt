@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Inside Devin: The AI engineer that's set to write 50% of its company’s code this year 
+guest: Scott Wu
+category: build_ai_products
+---
 
 00:00:00 - 00:01:36
 Our whole team is only like 15 engineers. You know, we use a ton of Devon when we're building Devon. Most folks on the team are definitely working with up to five Devons at once. And so Devon merges like several hundred pull requests into production in the Devon code bases every month. What percentage of your PRs are Devon versus humans right now? It's in the neighborhood of a quarter or so. Where do you think this will be at the end of the year? Honestly, we expect it to be a decent bit more than half. You guys are so ahead of how companies work with AI engineers. AI is going to be the biggest technology shift of our lives. Most of the big tech revolutions that we've had over the last 50 years like personal computer and the internet and the mobile phone. They all had this big hardware component that was a big part of the distribution. Folks who were building for those industries kind of saw their market grow and grow and grow basically steadily year-over-year as the number of

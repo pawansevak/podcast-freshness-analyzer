@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Building Lovable: $10M ARR in 60 days with 15 people
+guest: Anton Osika (CEO and co-founder)
+category: learn_from_legends
+---
 
 00:00:00 - 00:01:48
 lovable is your personal AI software engineer you describe an idea and then you get a fully working product the reason is to enable those who have had like such a hard time finding people who are good at grading software that's been their absolute bottleneck and let them take their ideas and their dreams into reality you guys hit 4 million AR in the first 4 weeks you hit 10 million AR in the first 2 months with just 15 people you're the fastest growing startup in all of Europe how did you decide on lovable as the name it's so sweet the best word for a great product is that it's lovable a lot of jargon that I like to use to like emphasize what we should be striving for is building a minimum lovable product and then building a lovable product and then building an absolutely lovable product so I I took that jargon with me in the company name people wonder just what jobs will be more important what skills will be less important doing a bit of everything being in generalist is I think much more

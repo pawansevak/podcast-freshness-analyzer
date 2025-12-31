@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Notion's lost years, near collapse during COVID, staying small to move fast, building horizontal
+guest: Ivan Jiao, co-founder and CEO of Notion
+category: learn_from_legends
+---
 
 00:00:00 - 00:01:39
 the way you describe the early years of notion you describe the first three to four years as the last years we try many different version the first version they everybody can make and create their software so let's just build a developer tool that's so easy that more people can do that we try that like couple years and learn that actually most people just don't care the our realization is actually let's hide our vision which is everybody can create their software in the form factor that people do care so what kind of tool do people use every day productiv software it took us two years to realize we need to build a productivity tool we call the sugar called the broccoli people don't want to eat the broccoli but people like sugar so give them the sugar that highy your brocc inside of it what other elements do you think are key to you finding something that actually ended up working what is the building a product or business you want user you want Revenue that's a product business and building

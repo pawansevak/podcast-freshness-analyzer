@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Anthropic's CPO on what comes next
+guest: Mike Krieger (co-founder of Instagram)
+category: learn_from_legends
+---
 
 00:00:00 - 00:01:31
 90% of your code roughly is written by AI. Now, the team that works in the most futuristic way is the cloud code team. They're using cloud code to build cloud code in a very self-improving kind of way. We really rapidly became bottlenecked on other things like our merge cube. We had to completely rearchitect it because so much more code was being written and so many more pull requests were being submitted. Over half of our pull requests are cloud code generated. Probably at this point, it's probably over 70% that it just completely blew out the expectations a bit. You guys are at the edge of where things are heading. I had the very bizarre experience of I had two tabs open. It was AI 2027 and my product strategy and it was this like moment where I'm like wait am I the character in the story? It feels like Chad GBT is just winning in consumer mind share. How does that inform the way you think about product strategy and mission? I think there's room for several generationally

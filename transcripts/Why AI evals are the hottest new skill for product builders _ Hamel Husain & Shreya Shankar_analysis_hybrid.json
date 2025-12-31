@@ -1,79 +1,200 @@
 {
+  "episode_metadata": {
+    "podcast": "Lenny's Podcast",
+    "episode": "Why AI evals are the hottest new skill for product builders",
+    "guest": "Hamel Husain & Shreya Shankar",
+    "primary_category": "build_ai_products"
+  },
   "scores": {
-    "insight_density": 8,
-    "signal_to_noise": 7,
-    "actionability": 9,
-    "contrarian_index": 7,
-    "freshness": 6,
-    "host_quality": 8,
-    "overall": 7.8
+    "insight_density": 6,
+    "signal_to_noise": 5,
+    "actionability": 7,
+    "contrarian_index": 6,
+    "freshness": 8,
+    "host_quality": 6,
+    "overall": 6.1
   },
   "verdict": {
-    "tldr": "Finally, a systematic step-by-step process for building AI evals that goes way beyond generic advice - actually worth your time.",
-    "best_for": "Product managers and engineers building AI products who need concrete frameworks for systematic error analysis and automated testing",
-    "skip_if": "You're not building AI products or you're looking for high-level strategy rather than tactical implementation details",
+    "tldr": "A deep dive into AI evals with some fresh insights, but not groundbreaking.",
+    "best_for": "Product managers and AI enthusiasts looking to deepen their understanding of AI evals.",
+    "skip_if": "You're looking for broad AI product management advice or are already familiar with eval processes.",
     "worth_it": true,
     "best_quote": "The goal is not to do evals perfectly. It's to actionably improve your product."
   },
-  "top_5_takeaways": [
+  "insights": [
     {
       "rank": 1,
-      "insight": "Start evals with manual 'open coding' error analysis - look at 100+ real user traces and write notes about what's wrong, then use LLMs to categorize these notes into 'axial codes' for systematic counting",
-      "timestamp": "16:22",
-      "why_valuable": "Completely inverts the common approach of writing tests first. Most people jump straight to automated evals without understanding their actual failure modes from real data.",
-      "obviousness_level": "truly_non_obvious"
+      "insight": "Evals are not just tests; they start with data analysis to ground what you should even test.",
+      "timestamp": "10:40",
+      "why_valuable": "This approach emphasizes the importance of grounding tests in real data, which can be overlooked.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "build_ai_products",
+      "spicy_rating": 4,
+      "actionability": "immediate"
     },
     {
       "rank": 2,
-      "insight": "Use a 'benevolent dictator' model for eval creation - appoint one domain expert (often the PM) to do the initial error analysis rather than getting bogged down in committee decisions",
+      "insight": "The concept of a 'benevolent dictator' in evals: appoint one person whose taste you trust to streamline the process.",
       "timestamp": "25:57",
-      "why_valuable": "Cuts through organizational paralysis that kills eval initiatives. Most teams try to democratize this process and never ship anything.",
-      "obviousness_level": "truly_non_obvious"
+      "why_valuable": "This challenges the typical committee approach and suggests a more efficient method.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "learn_from_legends",
+      "spicy_rating": 5,
+      "actionability": "strategic"
     },
     {
       "rank": 3,
-      "insight": "LLM-as-judge evals must be binary (pass/fail) and validated against human judgment using confusion matrices, not just overall agreement percentages",
-      "timestamp": "57:14",
-      "why_valuable": "Agreement percentages are misleading when errors are rare (10% error rate = 90% agreement by always saying 'pass'). The matrix approach catches this deception.",
-      "obviousness_level": "truly_non_obvious"
+      "insight": "Evals can be thought of as a spectrum of ways to measure application quality, not just unit tests.",
+      "timestamp": "08:43",
+      "why_valuable": "Broadens the understanding of evals beyond traditional testing frameworks.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "immediate"
     },
     {
       "rank": 4,
-      "insight": "Most AI products need only 4-7 LLM-as-judge evals total - many failure modes can be fixed with prompt changes rather than building automated tests",
-      "timestamp": "1:05:11",
-      "why_valuable": "Prevents over-engineering eval systems. Many teams assume they need dozens of evals when most problems are simple prompt fixes.",
-      "obviousness_level": "moderately_non_obvious"
+      "insight": "Error analysis should be the first step in evals, focusing on the most upstream error.",
+      "timestamp": "21:52",
+      "why_valuable": "Provides a structured approach to identifying and prioritizing issues.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "build_ai_products",
+      "spicy_rating": 4,
+      "actionability": "immediate"
     },
     {
       "rank": 5,
-      "insight": "The eval vs vibe-checking debate is a false dichotomy - companies like Anthropic do systematic error analysis and monitoring, they just don't call it 'evals'",
+      "insight": "The process of open coding is essential for understanding the data before automating with LLMs.",
+      "timestamp": "24:59",
+      "why_valuable": "Highlights the importance of human insight in the initial stages of evals.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 6,
+      "insight": "LLM as a judge is a powerful tool for specific failure modes, but should be binary to simplify decision-making.",
+      "timestamp": "52:15",
+      "why_valuable": "Clarifies the role and limitations of LLMs in evals.",
+      "obviousness_level": "sharp",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 4,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 7,
+      "insight": "The concept of theoretical saturation in data analysis: stop when no new insights are uncovered.",
+      "timestamp": "31:08",
+      "why_valuable": "Provides a practical stopping point for data analysis, preventing over-analysis.",
+      "obviousness_level": "sharp",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 8,
+      "insight": "Use AI to synthesize open codes into axial codes for better categorization of issues.",
+      "timestamp": "35:56",
+      "why_valuable": "Demonstrates a practical application of AI in organizing complex data.",
+      "obviousness_level": "sharp",
+      "category": "ai_superpowers",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 9,
+      "insight": "Evals are not a one-time process; they should be revisited regularly to adapt to new data.",
+      "timestamp": "44:15",
+      "why_valuable": "Emphasizes the dynamic nature of evals in product development.",
+      "obviousness_level": "sharp",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 10,
+      "insight": "The misconception that AI can fully automate evals; human insight is still crucial.",
+      "timestamp": "24:59",
+      "why_valuable": "Counters the over-reliance on AI for complex judgment tasks.",
+      "obviousness_level": "sharp",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 4,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 11,
+      "insight": "The importance of grounding evals in actual errors rather than hypothetical tests.",
+      "timestamp": "48:32",
+      "why_valuable": "Prevents wasted effort on irrelevant tests.",
+      "obviousness_level": "useful",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 12,
+      "insight": "Evals can be used for online monitoring, not just pre-production testing.",
+      "timestamp": "53:06",
+      "why_valuable": "Expands the utility of evals beyond traditional use cases.",
+      "obviousness_level": "useful",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 13,
+      "insight": "The role of data science thinking in AI products is crucial for effective evals.",
+      "timestamp": "58:44",
+      "why_valuable": "Reinforces the need for analytical skills in AI product management.",
+      "obviousness_level": "useful",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 14,
+      "insight": "Evals should be seen as a way to systematically measure and improve AI applications.",
+      "timestamp": "06:35",
+      "why_valuable": "Provides a comprehensive view of the purpose of evals.",
+      "obviousness_level": "useful",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 15,
+      "insight": "The debate around evals often stems from narrow definitions and past failures.",
       "timestamp": "1:11:00",
-      "why_valuable": "Resolves the confusing public debate about whether successful AI companies use evals. They do systematic measurement, just not always formal automated tests.",
-      "obviousness_level": "moderately_non_obvious"
+      "why_valuable": "Highlights the importance of understanding the full scope of evals.",
+      "obviousness_level": "useful",
+      "category": "learn_from_legends",
+      "spicy_rating": 4,
+      "actionability": "strategic"
     }
   ],
   "why_these_scores": {
-    "insight_density": "Packed with genuinely non-obvious tactical insights every 10-15 minutes. The systematic error analysis approach and benevolent dictator concept are legitimately surprising to experienced builders.",
-    "signal_to_noise": "Mostly high-value content with concrete examples and live demos. Some rambling during introductions and sponsor segments, but overall very tight.",
-    "actionability": "Extremely actionable - provides step-by-step process, actual prompts, spreadsheet formulas, and specific tools. You could implement this Monday morning.",
-    "contrarian_index": "Challenges several orthodoxies: that you should write tests first, that LLM agreement percentages are meaningful, that successful companies don't do evals. Not revolutionary but meaningfully contrarian.",
-    "freshness": "Content is current and relevant to AI product builders, but the core concepts (error analysis, systematic measurement) are timeless. Could stay relevant for 2-3 years.",
-    "host_quality": "Lenny asks probing follow-ups, manages the technical complexity well for a broad audience, and keeps the conversation focused on practical value rather than theory."
+    "insight_density": "The episode provided a mix of truly non-obvious insights and more common knowledge, leading to a moderate score.",
+    "signal_to_noise": "There was a fair amount of filler content, particularly around the examples and explanations, which diluted the overall signal.",
+    "actionability": "The episode offered actionable insights, particularly around the process of conducting evals, which could be implemented directly.",
+    "contrarian_index": "The episode presented some contrarian views, particularly around the role of human insight in evals, but these were not deeply controversial.",
+    "freshness": "The focus on AI evals and their application in modern AI product management is a relatively fresh topic.",
+    "host_quality": "The host was competent and facilitated the discussion well, but did not add significant value beyond the guests' insights."
   },
-  "summary": "This episode provides the most systematic, actionable framework for building AI evals I've encountered. Rather than generic advice about 'testing your AI,' it walks through a specific methodology from manual error analysis to automated LLM judges, complete with real examples and tools.",
+  "summary": "This episode of Lenny's Podcast explores the emerging importance of AI evals in product management, featuring insights from Hamel Husain and Shreya Shankar. The discussion covers the process of conducting evals, the role of human insight, and the debate around their value. While the episode offers actionable insights, it may not be groundbreaking for those already familiar with eval processes.",
   "characteristics": [
-    "tactical",
-    "systematic",
-    "ai-specific",
-    "data-driven",
-    "contrarian"
+    "AI evals",
+    "product management",
+    "data analysis",
+    "LLM",
+    "contrarian insights"
   ],
   "obvious_insights_rejected": [
-    "AI products need systematic testing and measurement - everyone knows this already",
-    "You should look at your data to understand problems - basic product management 101",
-    "Binary pass/fail is better than rating scales - common testing wisdom"
+    "AI needs eval frameworks - This is a common understanding in AI product management.",
+    "Iteration over perfection - A well-known principle in product development."
   ],
-  "analyzed_at": "2025-11-22T15:37:45.898698",
-  "model": "claude-sonnet-4-20250514",
-  "scoring_mode": "hybrid_critical"
+  "analyzed_at": "2025-12-31T00:34:10.955865",
+  "model": "gpt-4o",
+  "provider": "openai",
+  "scoring_mode": "hybrid_critical_v2"
 }

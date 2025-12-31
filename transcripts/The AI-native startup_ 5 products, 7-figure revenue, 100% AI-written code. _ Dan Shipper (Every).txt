@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: The AI-native startup: 5 products, 7-figure revenue, 100% AI-written code.
+guest: Dan Shipper (CEO, Every)
+category: learn_from_legends
+---
 
 00:00:00 - 00:01:21
 The business you're building, the team you're building, the way you're operating is the very bleeding edge of how companies are trying to operate in this AI era. >> We have a head of AI operations. She's just constantly like building prompts and building workflows so that I and everyone else on the team are just automating as much as possible. >> What are some things that you believe about AI that most people don't? >> I hate the headlines that are like entry-le jobs are taken away by AI. Whenever I see a kid with ChetBT, I'm like, "Holy they're going to go so much faster than any other person that I've worked with, we have this guy, he made like a year's worth of progress in like two months because every time I sat down with him and told him, "Okay, here's how you tell a story. Here's how you think about a headline." Like, he recorded all of it, put it into a prompt, and he never made the same mistake twice.

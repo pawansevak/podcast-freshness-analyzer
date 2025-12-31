@@ -1,3 +1,9 @@
+---
+podcast: How I AI
+episode: How this Yelp AI PM works backward from “golden conversations” to create high-quality prototypes
+guest: Priya Matthew Badger, AI PM at Yelp
+category: ai_superpowers
+---
 
 00:00:00 - 00:00:59
 Where do you start when you're thinking about designing and framing out a AI product for what you're working on at work? >> What's different about managing products that are powered by AI is there's the interface of how a user interacts with any product or product feature and that still really matters. And there's also a lot going on behind the scenes. There's a lot also about how do you drive good quality products because these technologies produce different results

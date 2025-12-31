@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Behind the product: Duolingo streaks
+guest: Jackson Shuttleworth (Group PM, Retention Team)
+category: build_ai_products
+---
 
 00:00:00 - 00:01:44
 dingo is a$1 14 billion company that's hitting alltime highs too just keeps going up I think it doubled in value in the past 6 months streaks is the most impactful feature we have right now over 9 million users with a year plus streak if you look at the numbers I think has been our biggest growth lover what dualingo really focuses on is you know how do we help users build habits around language learning getting user come back the next day is the biggest problem to solve let's get into the motherload of learnings from the Journey of streaks talk about the key lessons insights and also turns along the way I'd say like test everything we've run in the last four years over 600 experiments on the streak so every other day we've actually set up really good infrastructure for copy testing we used to say continue our like standard CTA is continue and we changed that to commit to my goal and it was like a massive win there's so much human psychology that you all learn through all these experiments of just

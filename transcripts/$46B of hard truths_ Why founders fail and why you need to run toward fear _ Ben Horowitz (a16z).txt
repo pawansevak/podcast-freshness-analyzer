@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: $46B of hard truths: Why founders fail and why you need to run toward fear
+guest: Ben Horowitz
+category: build_ai_products    ← Use one of the 4 code names
+---
 
 00:00:00 - 00:01:44
 The worst thing that you do as a leader is you hesitate on the next decision. The thing that causes you to hesitate is both decisions are horrible. Probably one of my bigger ones on that was we went public with $2 million in trailing 12 months revenue at 18 months old. That's obviously a bad idea. But the truth of it was the alternative was going bankrupt. And that's a worse idea. >> It's very difficult and painful to be a CEO, to be a founder. In spite of that, so many people want to start companies. The psychological muscle you have to build to be a great leader is to be able to click in the abyss and go, "Okay, that way is slightly better. We're going to go that way." If everybody agrees with the decision, then you didn't add any value cuz they would have done that without you. So, the only value you ever add is when you make a decision that most people don't like. You are famous for writing one of the most popular pieces of literature for product

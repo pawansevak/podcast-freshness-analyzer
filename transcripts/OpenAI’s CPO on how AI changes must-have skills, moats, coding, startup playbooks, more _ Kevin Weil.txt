@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: OpenAI’s CPO on how AI changes must-have skills, moats, coding, startup playbooks, more 
+guest: Kevin Weil
+category: build_ai_products
+---
 
 00:00:00 - 00:01:29
 The AI models that you're using today is the worst AI model you will ever use for the rest of your life. And when you actually get that in your head, it's kind of wild. Everywhere I've ever worked before this, you kind of know what technology you're building on. But that's not true at all with AI. Every 2 months, computers can do something they've never been able to do before, and you need to completely think differently about what you're doing. You're chief product officer of maybe the most important company in the world right now. I want to chat about what it's just like to be inside the center of the storm. Our general mindset is in 2 months there's going to be a better model and it's going to blow away whatever the current set of limitations are. And we say this to developers too. If you're building and the product that you're building is kind of right on the edge of the capabilities of the models, keep going cuz you're doing something

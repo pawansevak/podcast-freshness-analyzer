@@ -1,3 +1,9 @@
+---
+podcast: How I AI
+episode: I’m incapable of doing my job without AI”: How this PM uses Claude + ChatGPT as his second brain
+guest: Amir Klein - AI product manager at monday.com
+category: ai_superpowers
+---
 
 00:00:00 - 00:00:59
 You've actually set up these independent, fully loaded brains in Claude and Chat GPT and then use those to hold the context for you and be more efficient with your job. So, show us what one of these brains actually looks like. >> Yeah, let's dive right into it. So, here's an example of a project. You can see here that I have a bunch of them. And in it, we have my files and my instructions. Right now, there's 20 files. It started with two or three or four and then just kept growing and

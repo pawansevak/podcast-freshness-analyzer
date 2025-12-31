@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Rethinking SEO in the age of AI
+guest: Eli Schwartz (SEO advisor, author)
+category: build_ai_products
+---
 
 00:00:00 - 00:01:41
 you've noticed a significant shift in how SEO works with the rise of AI answers being integrated into search results transparently I thought this was going to be apocalypse up until AI overviews whoever won on that long form piece of content would get that first clip but now that doesn't exist anymore what should people do to be successful in this new paradigm think of SEO as a product the product managers are the people that should be thinking about this SEO question because it's a product question product people need to think about how do we position this to the user that is is not going to find out about this from a social Channel that's not going to be attracted by an ad this is a user that's doing their own self-discovery Journey if you can't answer the question about what is it that someone's going to do a search on then don't do SEO to a lot of people SEO is kind of this Dark Art it is not a dark art it is simple I think Step One is the step that almost everyone misses

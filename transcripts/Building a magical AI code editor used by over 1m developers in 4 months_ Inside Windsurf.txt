@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Building a magical AI code editor used by over 1m developers in 4 months: Inside Windsurf
+guest: Varun Mohan, co-founder and CEO of Kodium, the company behind Windsurf
+category: build_ai_products
+---
 
 00:00:00 - 00:01:33
 A lot of the bets we're making inside the company are for things that are not, you know, 3, four weeks away. We should be cannibalizing the existing state of our product every 6 to 12 months. Every 6 to 12 months, it should make our existing product look silly. It should almost make the form factor of existing product look dump. How do you know when it's time to hire someone? I wanted the company to almost be like this dehydrated entity. Every hire is like a little bit of water and we only go back and hire someone when we're back to being dehydrated. Any other skills you think people should be investing more in with the rise of AI, building more and more of our products? engineers are now able to produce more technology. The ROI of building technology has actually gone up. This actually means you hire more. The best thing to do is just get your hands dirty with all of these products. You could be a force multiplier to your organization in ways in which they never even [Music]

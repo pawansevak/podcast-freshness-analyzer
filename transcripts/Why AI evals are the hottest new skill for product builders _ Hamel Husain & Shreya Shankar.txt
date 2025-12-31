@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Why AI evals are the hottest new skill for product builders 
+guest: Hamel Husain & Shreya Shankar
+category: build_ai_products
+---
 
 00:00:00 - 00:01:33
 To build great AI products, you need to be really good at building evals. It's the highest ROI activity you can engage in. This process is a lot of fun. Everyone that does this immediately gets addicted to it when you're building an AI application. You just learn a lot. What's cool about this is you don't need to do this many, many times. For most products, you do this process once and then you build on it. >> The goal is not to do evals perfectly. It's to actionably improve your product. >> I did not realize how much controversy and drama there is around eval. There's a lot of people with very strong opinions. People have been burned by evals in the past. People have done evals badly, then they didn't trust it anymore and then they're like, "Oh, I'm anti- evals." >> What are a couple of the most common misconceptions people have with EVEL? The top one is we live in the age of AI. Can't the AI just eval it? But it doesn't work. A term that you used in

@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Dumbest idea I’ve heard” to $100M ARR: Inside the rise of Gamma
+guest: Grant Lee, CEO and co-founder of Gamma
+category: learn_from_legends
+---
 
 00:00:00 - 00:00:51
 I'm in my third pitch in. I get to the very end of the pitch feeling pretty good about myself. The investor pauses a little bit and then just says that is a has to be the worst pitch worst idea I have ever heard. Not only are you trying to go against incumbents, you're going against incumbents that have massive distribution. You are never going to succeed. >> You guys are at over 100 million AR now worth over $2 billion. One of the most interesting ways you guys grew early on was influencer marketing.

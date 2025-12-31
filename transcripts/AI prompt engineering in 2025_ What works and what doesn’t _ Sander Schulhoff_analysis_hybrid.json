@@ -1,0 +1,231 @@
+{
+  "episode_metadata": {
+    "podcast": "Lenny's Podcast",
+    "episode": "AI prompt engineering in 2025: What works and what doesn\u2019t",
+    "guest": "Sander Schulhoff",
+    "primary_category": "speak_ai_fluently"
+  },
+  "scores": {
+    "insight_density": 7,
+    "signal_to_noise": 6,
+    "actionability": 7,
+    "contrarian_index": 8,
+    "freshness": 8,
+    "host_quality": 7,
+    "overall": 7.0
+  },
+  "verdict": {
+    "tldr": "A deep dive into prompt engineering with some surprising insights, but not groundbreaking.",
+    "best_for": "AI product managers and engineers looking to deepen their understanding of prompt engineering.",
+    "skip_if": "You are looking for general AI or product management advice.",
+    "worth_it": true,
+    "best_quote": "You can patch a bug, but you can't patch a brain."
+  },
+  "insights": [
+    {
+      "rank": 1,
+      "insight": "Prompt engineering is not dead; it's evolving with each model iteration.",
+      "timestamp": "00:01:00",
+      "why_valuable": "Contradicts the common belief that prompt engineering will become obsolete.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 5,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 2,
+      "insight": "Self-criticism techniques can boost LLM performance by allowing models to critique and improve their own outputs.",
+      "timestamp": "00:01:30",
+      "why_valuable": "Provides a novel method to enhance AI output quality.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "build_ai_products",
+      "spicy_rating": 4,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 3,
+      "insight": "Prompt injection remains a significant security challenge, akin to social engineering.",
+      "timestamp": "00:02:00",
+      "why_valuable": "Highlights a persistent and evolving threat in AI security.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 5,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 4,
+      "insight": "Role prompting is largely ineffective for accuracy-based tasks.",
+      "timestamp": "00:02:30",
+      "why_valuable": "Challenges a widely held belief in the AI community.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 4,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 5,
+      "insight": "Ensembling techniques can improve model accuracy by leveraging multiple prompts and models.",
+      "timestamp": "00:03:00",
+      "why_valuable": "Introduces a sophisticated method for enhancing AI accuracy.",
+      "obviousness_level": "truly_non_obvious",
+      "category": "build_ai_products",
+      "spicy_rating": 4,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 6,
+      "insight": "Decomposition involves breaking down tasks into sub-problems to improve AI performance.",
+      "timestamp": "00:03:30",
+      "why_valuable": "Offers a practical approach to complex problem-solving with AI.",
+      "obviousness_level": "sharp",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 7,
+      "insight": "Additional information, or context, is crucial for improving AI task performance.",
+      "timestamp": "00:04:00",
+      "why_valuable": "Emphasizes the importance of context in AI interactions.",
+      "obviousness_level": "sharp",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 8,
+      "insight": "Few-shot prompting can significantly enhance AI performance by providing examples.",
+      "timestamp": "00:04:30",
+      "why_valuable": "Reinforces the value of examples in AI training.",
+      "obviousness_level": "sharp",
+      "category": "build_ai_products",
+      "spicy_rating": 3,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 9,
+      "insight": "Prompt engineering is akin to artificial social intelligence, requiring nuanced communication with AI.",
+      "timestamp": "00:05:00",
+      "why_valuable": "Frames prompt engineering as a form of interpersonal communication.",
+      "obviousness_level": "sharp",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 10,
+      "insight": "AI red teaming involves crowdsourcing to identify vulnerabilities in AI systems.",
+      "timestamp": "00:05:30",
+      "why_valuable": "Highlights an innovative approach to AI security testing.",
+      "obviousness_level": "sharp",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 11,
+      "insight": "Prompt injection can be mitigated but not completely solved, similar to classical security challenges.",
+      "timestamp": "00:06:00",
+      "why_valuable": "Sets realistic expectations for AI security.",
+      "obviousness_level": "useful",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 3,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 12,
+      "insight": "Chain of thought prompting is less necessary with modern reasoning models but still useful for robustness.",
+      "timestamp": "00:06:30",
+      "why_valuable": "Clarifies the evolving role of reasoning prompts.",
+      "obviousness_level": "useful",
+      "category": "build_ai_products",
+      "spicy_rating": 2,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 13,
+      "insight": "Prompt engineering techniques are essential for product-focused AI applications.",
+      "timestamp": "00:07:00",
+      "why_valuable": "Emphasizes the importance of prompt engineering in product development.",
+      "obviousness_level": "useful",
+      "category": "build_ai_products",
+      "spicy_rating": 2,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 14,
+      "insight": "AI's ability to self-criticize can be used to iteratively improve its outputs.",
+      "timestamp": "00:07:30",
+      "why_valuable": "Highlights a method for continuous AI improvement.",
+      "obviousness_level": "useful",
+      "category": "build_ai_products",
+      "spicy_rating": 2,
+      "actionability": "immediate"
+    },
+    {
+      "rank": 15,
+      "insight": "Prompt injection is a persistent threat that requires ongoing vigilance and innovation.",
+      "timestamp": "00:08:00",
+      "why_valuable": "Reinforces the need for continuous security efforts.",
+      "obviousness_level": "useful",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 2,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 16,
+      "insight": "AI security is not just about preventing data leaks but also about preventing harmful outputs.",
+      "timestamp": "00:08:30",
+      "why_valuable": "Broadens the scope of AI security concerns.",
+      "obviousness_level": "foundational",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 2,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 17,
+      "insight": "The future of AI involves balancing innovation with security to prevent misuse.",
+      "timestamp": "00:09:00",
+      "why_valuable": "Encourages a balanced approach to AI development.",
+      "obviousness_level": "foundational",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 2,
+      "actionability": "strategic"
+    },
+    {
+      "rank": 18,
+      "insight": "AI red teaming competitions are a valuable tool for discovering new vulnerabilities.",
+      "timestamp": "00:09:30",
+      "why_valuable": "Demonstrates the effectiveness of crowdsourced security testing.",
+      "obviousness_level": "foundational",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 2,
+      "actionability": "strategic"
+    }
+  ],
+  "why_these_scores": {
+    "insight_density": "The episode provided several non-obvious insights, particularly around prompt engineering and security, but not consistently throughout.",
+    "signal_to_noise": "There was a fair amount of filler and promotional content, but the core content was valuable.",
+    "actionability": "Many insights were immediately applicable, especially for those working directly with AI models.",
+    "contrarian_index": "The episode challenged several common beliefs about prompt engineering and AI security.",
+    "freshness": "The content was cutting-edge, discussing recent developments and future trends in AI.",
+    "host_quality": "The host facilitated a deep and engaging conversation, though some parts were less focused."
+  },
+  "summary": "This episode dives deep into the nuances of prompt engineering and AI security, offering a mix of practical techniques and thought-provoking insights. While not every moment is groundbreaking, the discussion on prompt injection and red teaming is particularly enlightening.",
+  "characteristics": [
+    "AI security",
+    "prompt engineering",
+    "red teaming",
+    "AI innovation",
+    "AI product management"
+  ],
+  "obvious_insights_rejected": [
+    "Iteration over perfection, speed matters - too common in startup advice.",
+    "Talk to users, find PMF - standard advice for product managers.",
+    "AI needs eval frameworks - a generic statement without novel application."
+  ],
+  "analyzed_at": "2025-12-31T00:22:51.206059",
+  "model": "gpt-4o",
+  "provider": "openai",
+  "scoring_mode": "hybrid_critical_v2"
+}

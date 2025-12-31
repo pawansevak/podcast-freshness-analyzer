@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Behind the product: NotebookLM
+guest: Raiza Martin (Senior Product Manager, AI @ Google Labs)
+category: build_ai_products
+---
 
 00:00:00 - 00:01:57
 [Music] hey everyone we're here on Lenny's podcast it's uh great to be here I'm a longtime listener so awesome really is we're the hosts of a different show of Deep dive and we just we just wanted to say thanks a huge huge thank you to everyone everyone who's been listening yeah seriously it's been incredible just incredible and thank you to Lenny for having us Blown Away really by the response and all the shows you've all had us make on Notebook LM even that poop fart one remember that oh yeah that was something learned a lot on that one definitely a learning experience for everyone I think but we're learning right alongside you exactly learning and growing and we're glad you're along for the ride so yeah keep listening keep listening and stay curious we promise to keep diving deep and uh bringing you even more in the future stay curious if you are confused about what you just heard don't worry it'll all make sense very soon today my guest is

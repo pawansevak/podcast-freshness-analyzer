@@ -1,3 +1,9 @@
+---
+podcast: Lenny's Podcast
+episode: Inside ChatGPT
+guest: Nick Turley
+category: build_ai_products
+---
 
 00:00:00 - 00:00:43
 You were a product leader at Dropbox,  then Instacart. Now, you're the PM of the most consequential product in history. I didn't know what I would do here because it was a research lab. My first task was I  fix the blinds, or something like that. When someone offers you a rocket  ship, don't ask which seat. We set out to build a super assistant. It  was supposed to be a hackathon code base. What was it called before? It was going to be Chat with GPT-3.5 because we really didn't think it  was going to be a successful product. And then Sam Altman is just like, "Hey, let me tweet about it." This is a pattern with AI, you won't know what to polish until after  you ship. My dream is that we ship daily. By the time people hear this, they're  going to have their hands on GPT-5. About 10% of the world population uses every  week. With scale comes responsibility. It just feels a little bit more alive, a bit  more human. This model has taste. Kevin Weil, your CPO, said to ask you about this  principle of, "Is it maximally accelerated?"
