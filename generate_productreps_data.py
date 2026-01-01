@@ -4,11 +4,11 @@ Generate ProductReps insight cards from podcast analysis JSON files.
 Updated to support 15-20 insights per episode with category classification.
 
 Usage:
-  python generate_productreps_data.py              # Without AI judgment (fast)
-  python generate_productreps_data.py --with-ai    # With AI judgment (requires ANTHROPIC_API_KEY)
+  python generate_productreps_data.py              # Without AI challenge scenarios (fast)
+  python generate_productreps_data.py --with-ai    # With AI challenge scenarios (requires OPENAI_API_KEY)
   
 Environment:
-  ANTHROPIC_API_KEY - Required for --with-ai mode
+  OPENAI_API_KEY - Required for --with-ai mode (loads from .env file)
 """
 
 import json
@@ -18,20 +18,35 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
-# Check if AI generation is requested
-GENERATE_AI_JUDGMENTS = "--with-ai" in sys.argv
+# Load environment variables from .env file
+def load_env():
+    """Load environment variables from .env file if it exists."""
+    env_path = Path(__file__).parent / ".env"
+    if env_path.exists():
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ[key.strip()] = value.strip().strip('"').strip("'")
 
-if GENERATE_AI_JUDGMENTS:
+load_env()
+
+# Check if AI generation is requested
+GENERATE_AI_CHALLENGES = "--with-ai" in sys.argv
+client = None
+
+if GENERATE_AI_CHALLENGES:
     try:
-        import anthropic
-        client = anthropic.Anthropic()
-        print("✓ Anthropic client initialized - AI judgments will be generated")
+        from openai import OpenAI
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        print("✓ OpenAI client initialized - AI challenge scenarios will be generated")
     except Exception as e:
-        print(f"✗ Could not initialize Anthropic client: {e}")
-        print("  Set ANTHROPIC_API_KEY environment variable or run without --with-ai")
-        GENERATE_AI_JUDGMENTS = False
+        print(f"✗ Could not initialize OpenAI client: {e}")
+        print("  Set OPENAI_API_KEY in .env file or run without --with-ai")
+        GENERATE_AI_CHALLENGES = False
 else:
-    print("ℹ Running without AI judgment generation (use --with-ai to enable)")
+    print("ℹ Running without AI challenge generation (use --with-ai to enable)")
 
 TRANSCRIPTS_DIR = Path("transcripts")
 OUTPUT_FILE = Path("productreps_insights.json")
@@ -87,13 +102,13 @@ def extract_metadata_from_analysis(data: dict, filename: str) -> dict:
     }
 
 
-def generate_judgment_scenario(insight: dict, guest: str, context: str) -> dict:
-    """Use Claude to generate a judgment scenario from an insight."""
+def generate_challenge_scenario(insight: dict, guest: str, context: str) -> dict:
+    """Use OpenAI to generate a challenge scenario from an insight."""
     
-    if not GENERATE_AI_JUDGMENTS:
+    if not GENERATE_AI_CHALLENGES or client is None:
         return None
     
-    prompt = f"""Based on this product insight, create a judgment training scenario for product managers.
+    prompt = f"""Based on this product insight, create a challenge scenario for product managers.
 
 INSIGHT: {insight.get('insight', '')}
 WHY VALUABLE: {insight.get('why_valuable', '')}
@@ -102,9 +117,10 @@ CONTEXT: {context}
 
 Create a scenario where a product manager must make a decision. The scenario should:
 1. Present a realistic product decision situation
-2. Have two clear options (A and B)
+2. Have two clear options (A and B) - both should sound reasonable
 3. One option should align with the insight (the "correct" one)
 4. Include reasoning that references the original insight
+5. Make it thought-provoking, not obvious
 
 Respond in this exact JSON format:
 {{
@@ -118,16 +134,25 @@ Respond in this exact JSON format:
 Only respond with valid JSON, no other text."""
 
     try:
-        response = client.messages.create(
-            model="claude-sonnet-4-20250514",
+        response = client.chat.completions.create(
+            model="gpt-4o",
             max_tokens=500,
+            temperature=0.7,
             messages=[{"role": "user", "content": prompt}]
         )
         
-        result = json.loads(response.content[0].text)
+        response_text = response.choices[0].message.content
+        
+        # Handle markdown code blocks if present
+        if "```json" in response_text:
+            response_text = response_text.split("```json")[1].split("```")[0].strip()
+        elif "```" in response_text:
+            response_text = response_text.split("```")[1].split("```")[0].strip()
+        
+        result = json.loads(response_text)
         return result
     except Exception as e:
-        print(f"    Warning: Could not generate judgment scenario: {e}")
+        print(f"    Warning: Could not generate challenge scenario: {e}")
         return None
 
 
@@ -202,6 +227,12 @@ def process_analysis_file(filepath: Path) -> list[dict]:
             "category": insight_category,
             "podcastSourceId": podcast,
             
+            # NEW: Nugget type classification
+            "nuggetType": takeaway.get("nugget_type", "technical"),
+            
+            # NEW: Learning hook (makes users feel smarter)
+            "learningHook": takeaway.get("learning_hook", ""),
+            
             # Rich metadata
             "sourceFile": filepath.name,
             "characteristics": characteristics,
@@ -221,8 +252,26 @@ def process_analysis_file(filepath: Path) -> list[dict]:
             # Actionability from new format
             "actionabilityType": takeaway.get("actionability", "strategic"),
             
-            # Judgment scenario (will be filled by AI if enabled)
-            "judgment": None,
+            # Type-based enrichments
+            # For "technical" type:
+            "simpleExplanation": takeaway.get("simple_explanation", ""),
+            "analogy": takeaway.get("analogy", ""),
+            
+            # For "counter_intuitive" type:
+            "whySurprising": takeaway.get("why_surprising", ""),
+            "evidence": takeaway.get("evidence", ""),
+            
+            # For "actionable" type:
+            "proTip": takeaway.get("pro_tip", ""),
+            
+            # For "abstract" type:
+            "realWorldExample": takeaway.get("real_world_example", ""),
+            
+            # For "reinforcement" type:
+            "memorableStat": takeaway.get("memorable_stat", ""),
+            
+            # Challenge scenario (will be filled by AI if enabled)
+            "challenge": None,
             
             # Metadata
             "createdAt": datetime.now().isoformat(),
@@ -230,12 +279,12 @@ def process_analysis_file(filepath: Path) -> list[dict]:
             "isSaved": False
         }
         
-        # Generate judgment scenario for top-ranked insights only
-        if GENERATE_AI_JUDGMENTS and takeaway.get("rank", i + 1) <= 5:
-            print(f"    Generating judgment for insight {i+1}...")
-            judgment = generate_judgment_scenario(takeaway, guest, summary)
-            if judgment:
-                insight_card["judgment"] = judgment
+        # Generate challenge scenario for top-ranked insights only
+        if GENERATE_AI_CHALLENGES and takeaway.get("rank", i + 1) <= 5:
+            print(f"    Generating challenge for insight {i+1}...")
+            challenge = generate_challenge_scenario(takeaway, guest, summary)
+            if challenge:
+                insight_card["challenge"] = challenge
         
         insights.append(insight_card)
     
@@ -327,6 +376,24 @@ def main():
     for pod, count in sorted(podcast_counts.items(), key=lambda x: -x[1]):
         print(f"  • {pod}: {count} insights")
     
+    # Print nugget type breakdown
+    print("\n📌 NUGGET TYPES:")
+    type_icons = {
+        "technical": "🔬",
+        "counter_intuitive": "🤯",
+        "abstract": "🧠",
+        "actionable": "⚡",
+        "reinforcement": "💡"
+    }
+    type_counts = {}
+    for insight in all_insights:
+        ntype = insight.get("nuggetType", "technical")
+        type_counts[ntype] = type_counts.get(ntype, 0) + 1
+    
+    for ntype, count in sorted(type_counts.items(), key=lambda x: -x[1]):
+        icon = type_icons.get(ntype, "📝")
+        print(f"  {icon} {ntype}: {count} insights")
+    
     # Print spicy ratings
     print("\n🔥 SPICY RATINGS:")
     for rating in [5, 4, 3, 2, 1]:
@@ -335,9 +402,13 @@ def main():
             emoji = "🔥" * rating
             print(f"  {emoji}: {count} insights")
     
-    # Judgment scenarios
-    with_judgment = sum(1 for i in all_insights if i.get("judgment"))
-    print(f"\n🎯 JUDGMENT SCENARIOS: {with_judgment}/{len(all_insights)} insights")
+    # Learning hooks
+    with_hook = sum(1 for i in all_insights if i.get("learningHook"))
+    print(f"\n🎓 LEARNING HOOKS: {with_hook}/{len(all_insights)} insights")
+    
+    # Challenge scenarios
+    with_challenge = sum(1 for i in all_insights if i.get("challenge"))
+    print(f"🎯 CHALLENGE SCENARIOS: {with_challenge}/{len(all_insights)} insights")
     
     print("\n✅ Done! Copy productreps_insights.json to your Xcode project Resources folder.")
 

@@ -42,16 +42,18 @@ VALID_CATEGORIES = [
     "ai_superpowers"       # Using AI tools to work better
 ]
 
-ANALYSIS_PROMPT = """You are an EXTREMELY CRITICAL expert podcast analyst for "ProductReps" - an app that helps product managers train their product sense with high-quality insights.
+ANALYSIS_PROMPT = """You are helping a user create personal study notes from a podcast they listened to. The user wants to capture key learnings in their own words for their personal learning app called "ProductReps".
 
-**EPISODE METADATA:**
+Your task: Help summarize and paraphrase the main insights from this episode. Do NOT quote verbatim - rephrase everything in your own words as educational summaries.
+
+**EPISODE INFO:**
 - Podcast: {podcast_name}
 - Episode: {episode_title}
 - Guest: {guest_name}
 - Category: {category}
 
-**CRITICAL CONTEXT:**
-You are evaluating for experienced Principal Product Managers and senior leaders who have heard HUNDREDS of podcasts. Your standards are VERY high. Most podcasts recycle the same advice. Extract ONLY insights that would surprise experienced professionals.
+**CONTEXT:**
+The user is an experienced product manager who wants non-obvious insights. Help them identify the most valuable learnings from this conversation, paraphrased as study notes.
 
 ---
 
@@ -98,27 +100,56 @@ OBVIOUS insights (1-3) - DO NOT REWARD:
 
 ---
 
-## PART 2: EXTRACT 15-20 INSIGHTS (TIERED)
+## PART 2: EXTRACT 15-20 INSIGHTS WITH SMART ENRICHMENT
 
-Extract 15-20 insights that pass the quality bar. Capture ALL genuinely valuable moments.
+Extract 15-20 insights that pass the quality bar. For EACH insight, classify its type and add the RIGHT enrichment to make users feel they learned something.
+
+**NUGGET TYPES - Classify each insight:**
+
+1. **technical** - Contains jargon, frameworks, or technical concepts
+   → REQUIRES: simple_explanation + analogy
+   → Example: "RAG systems fail due to chunking strategy"
+   
+2. **counter_intuitive** - Contradicts common PM/AI beliefs  
+   → REQUIRES: why_surprising + evidence
+   → Example: "Role prompting doesn't improve accuracy"
+   
+3. **abstract** - High-level concept without concrete grounding
+   → REQUIRES: real_world_example (name specific companies)
+   → Example: "Decomposition improves AI performance"
+   
+4. **actionable** - Clear action the user can take immediately
+   → REQUIRES: pro_tip (specific template/script/next step)
+   → Example: "Add self-criticism to prompts"
+   
+5. **reinforcement** - Common sense that benefits from memorable proof
+   → REQUIRES: memorable_stat (surprising number or quote)
+   → Example: "Test your prompts"
 
 **TIERED EXTRACTION:**
 
 TIER 1 (Rank 1-5): "Mind-blowing" - Would surprise a 10+ year PM veteran
-- Specific data, numbers, counterintuitive findings
-- Makes someone stop and reconsider assumptions
+- MUST have full enrichment based on nugget_type
+- Include learning_hook
 
-TIER 2 (Rank 6-10): "Sharp" - High-quality tactical insights  
-- Specific frameworks, processes, techniques
-- Enough detail to replicate
+TIER 2 (Rank 6-10): "Sharp" - High-quality tactical insights
+- Include enrichment based on nugget_type
+- Include learning_hook
 
 TIER 3 (Rank 11-15): "Useful" - Solid insights worth capturing
-- Good examples or case studies
-- Fresh angles on familiar concepts
+- Include at least one enrichment field
+- learning_hook optional
 
 TIER 4 (Rank 16-20): "Foundational" - Best remaining insights
-- Context-setting information
-- Good quotes or memorable framings
+- Minimal enrichment (only if truly needed)
+- No learning_hook required
+
+**LEARNING HOOK - Makes users feel smarter:**
+For Tier 1-2 insights, include a learning_hook that starts with ONE of:
+- "Now you know: ..." (revelation)
+- "Most PMs don't realize: ..." (insider knowledge)  
+- "The key insight is: ..." (distillation)
+- "This means you can: ..." (immediate application)
 
 **INSIGHT MINING - Look for these HIGH-SIGNAL patterns:**
 
@@ -137,29 +168,84 @@ Framework Reveals:
 - "Our process is..."
 - "The way we think about it..."
 
-Origin Stories:
-- "The real reason we did X was..."
-- "What nobody knows is..."
-- "Behind the scenes..."
-
-Failure Lessons:
-- "We tried X and it failed because..."
-- "Our biggest mistake was..."
-- "If I could go back..."
-
 **EXTRACTION RULES:**
-1. Extract 15-20 insights (aim for 18)
-2. If insight-dense episode, go up to 25
-3. If mediocre episode, minimum 12
-4. Capture specific numbers, percentages, timeframes
-5. Include speaker's exact framing when memorable
-6. Timestamp every insight (format: "MM:SS")
+1. Extract 15-20 insights (aim for 18) - ONLY if they pass the "so what?" test
+2. Each insight MUST have a clear "why_valuable" that explains WHY an experienced PM should care
+3. Classify each with nugget_type
+4. Add enrichment fields based on nugget_type
+5. Timestamp every insight (format: "MM:SS")
+6. Top 10 insights MUST have learning_hook
 
-**REJECTION CRITERIA - DO NOT include:**
-- Generic startup advice (iterate fast, talk to users, find PMF)
-- Obvious career advice (be curious, work hard)
-- Standard frameworks without novel application
-- Anything you've heard in 5+ other podcasts
+**VALIDATION FOR EACH INSIGHT:**
+Before including, verify:
+- ✅ Has specific details (numbers, names, techniques, examples)
+- ✅ Provides actionable value or surprising knowledge
+- ✅ Would make an expert think "I didn't know that" or "That's a new angle"
+- ✅ NOT a generic statement anyone could make
+- ✅ NOT obvious advice everyone already follows
+
+**REJECTION CRITERIA - DO NOT include (these are "so what?" insights):**
+
+1. **Generic platitudes** - Statements that everyone already knows:
+   - "AI has risks and needs safety measures"
+   - "User feedback is important"
+   - "Iteration is key to success"
+   - "Data-driven decisions are better"
+   - "Communication matters in teams"
+   - "Focus on customer needs"
+
+2. **Obvious statements** - Things that don't need to be said:
+   - "AI models are getting better"
+   - "Startups need to move fast"
+   - "Product-market fit is important"
+   - "Testing helps improve products"
+
+3. **Vague generalizations** - No specific details or actionable value:
+   - "AI will change everything"
+   - "Good products solve problems"
+   - "Team culture matters"
+   - "Innovation requires risk"
+
+4. **Standard frameworks** - Common knowledge without novel application:
+   - "Use OKRs for goal setting"
+   - "Follow agile methodology"
+   - "Do user interviews"
+
+**THE "SO WHAT?" TEST:**
+Before including ANY insight, ask:
+- "Would an experienced PM read this and think 'I already know this'?" → REJECT
+- "Does this provide a specific number, technique, or surprising finding?" → KEEP
+- "Can the user do something different tomorrow because of this?" → KEEP
+- "Does this contradict common wisdom with evidence?" → KEEP
+- "Is this just stating the obvious?" → REJECT
+
+**ONLY EXTRACT INSIGHTS THAT:**
+- Include specific numbers, percentages, or metrics
+- Reveal a counterintuitive finding with evidence
+- Provide a concrete technique, framework, or process
+- Share a surprising case study or example
+- Contradict common beliefs with proof
+- Give actionable next steps the user can take immediately
+
+**EXAMPLES - REJECT vs KEEP:**
+
+❌ REJECT: "AI's potential risks require proactive safety measures"
+   → Generic, obvious, no specific value
+
+✅ KEEP: "OpenAI red-teams new models with 50+ external experts before release, catching 85% of safety issues pre-launch"
+   → Specific numbers, concrete process, actionable
+
+❌ REJECT: "User feedback is important for product development"
+   → Everyone knows this, no new information
+
+✅ KEEP: "Duolingo sends practice reminders exactly 23.5 hours after last session, matching user behavior patterns and increasing retention by 12%"
+   → Specific timing, metric, and result
+
+❌ REJECT: "Good products solve real problems"
+   → Vague platitude, no actionable value
+
+✅ KEEP: "Notion's near-collapse during COVID was saved by focusing on horizontal use cases (not just note-taking), which increased their addressable market 10x"
+   → Specific story, concrete strategy, measurable impact
 
 **CATEGORY ASSIGNMENT:**
 Assign each insight to one of these ProductReps categories:
@@ -167,8 +253,6 @@ Assign each insight to one of these ProductReps categories:
 - "build_ai_products" - Building AI features, AI product management, AI UX
 - "speak_ai_fluently" - Understanding AI/ML technology, LLMs, technical concepts
 - "ai_superpowers" - Using AI tools to work better, AI productivity, prompting
-
-If the insight doesn't clearly fit AI categories, use "learn_from_legends".
 
 ---
 
@@ -200,25 +284,61 @@ If the insight doesn't clearly fit AI categories, use "learn_from_legends".
   "insights": [
     {{
       "rank": 1,
-      "insight": "Most non-obvious insight with specific details",
+      "insight": "The core insight in 1-2 sentences - MUST be specific with numbers/examples/techniques",
       "timestamp": "15:30",
-      "why_valuable": "Why this surprises experienced professionals",
+      "why_valuable": "Why this surprises experienced professionals - MUST explain the specific value, not generic benefits",
       "obviousness_level": "truly_non_obvious",
       "category": "build_ai_products",
       "spicy_rating": 5,
-      "actionability": "immediate"
+      "actionability": "immediate",
+      "nugget_type": "technical",
+      "simple_explanation": "In plain terms: How you split documents matters more than how you search them.",
+      "analogy": "Think of it like: Cutting a book at chapter breaks vs random 500-word pieces.",
+      "real_world_example": "",
+      "pro_tip": "",
+      "why_surprising": "",
+      "evidence": "",
+      "memorable_stat": "",
+      "learning_hook": "Now you know: If your RAG is underperforming, fix chunking first."
     }},
     {{
       "rank": 2,
-      "insight": "Second insight...",
+      "insight": "Counter-intuitive finding about AI",
       "timestamp": "23:45",
-      "why_valuable": "Why this matters",
+      "why_valuable": "Contradicts common belief",
       "obviousness_level": "truly_non_obvious",
-      "category": "learn_from_legends",
+      "category": "speak_ai_fluently",
+      "spicy_rating": 5,
+      "actionability": "strategic",
+      "nugget_type": "counter_intuitive",
+      "simple_explanation": "",
+      "analogy": "",
+      "real_world_example": "",
+      "pro_tip": "",
+      "why_surprising": "Most assume: Telling AI 'you are an expert' makes it smarter. Reality: Role prompts change style, not accuracy.",
+      "evidence": "Research shows role prompting has no effect on math/logic tasks.",
+      "memorable_stat": "",
+      "learning_hook": "Most PMs don't realize: Roles are for personality, not precision."
+    }},
+    {{
+      "rank": 3,
+      "insight": "Actionable technique you can use today",
+      "timestamp": "31:20",
+      "why_valuable": "Immediately applicable",
+      "obviousness_level": "sharp",
+      "category": "ai_superpowers",
       "spicy_rating": 4,
-      "actionability": "strategic"
+      "actionability": "immediate",
+      "nugget_type": "actionable",
+      "simple_explanation": "",
+      "analogy": "",
+      "real_world_example": "",
+      "pro_tip": "Try this: End your prompt with 'Review your answer and improve it' for 15-20% better outputs.",
+      "why_surprising": "",
+      "evidence": "",
+      "memorable_stat": "",
+      "learning_hook": "This means you can: Add one line to any prompt and get better results."
     }}
-    // ... continue for 15-20 insights total
   ],
   "why_these_scores": {{
     "insight_density": "<Why this score?>",
@@ -246,11 +366,18 @@ If the insight doesn't clearly fit AI categories, use "learn_from_legends".
 ## FINAL REMINDERS:
 
 - BE BRUTALLY HARSH with scoring
-- Extract 15-20 insights, not just 5
+- **REJECT generic "so what?" insights** - If it's obvious or vague, don't include it
+- Extract 15-20 insights ONLY if they pass the "so what?" test
+- Each insight MUST have specific details (numbers, examples, techniques)
+- Each "why_valuable" MUST explain specific value, not generic benefits
+- Classify EACH insight with nugget_type
+- Add enrichment based on nugget_type (see requirements above)
+- Top 10 insights MUST have learning_hook
 - Assign a category to EACH insight
 - Include spicy_rating (1-5) for each insight
-- Most podcasts score 4-6 overall
 - Return ONLY valid JSON, no other text
+
+**CRITICAL: If an insight makes you think "so what?" or "everyone knows that", REJECT IT. Only include insights that provide genuine, specific value.**
 """
 
 
